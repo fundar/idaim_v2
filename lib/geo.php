@@ -36,5 +36,3 @@ $regiones = array(
 	'yuc', //'Yucatán',
 	'zac', //'Zacatecas'
 );
-
-?>
