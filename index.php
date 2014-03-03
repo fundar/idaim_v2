@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php require('./lib/geo.php'); ?>
+<?php require('lib/geo.php'); ?>
 <html>
 <head>
 	<meta charset="utf-8" />
