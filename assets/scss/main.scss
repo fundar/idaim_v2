@@ -1,0 +1,70 @@
+//
+// Estilo principal IDAIM
+//
+
+@import "attache/attache";
+@import "variables";
+
+body {
+  font-family: $font-texto;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+#logo {
+  width: 250px;
+  height: 52px;
+  background: url(/img/logo.png) no-repeat 50%/100%;
+}
+
+#hero {
+  background: url(/img/bg-featured.jpg) no-repeat;
+  @include clearfix;
+}
+#hero-text {
+  width: 280px;
+  padding: 20px 0;
+  margin: 0 20px 20px;
+  border-bottom: 1px solid #A2A2A2;
+
+  float: left;
+  text-align: center;
+}
+.hero-text {
+  display: block;
+
+  color: $gris;
+  font-size: 24px;
+  font-family: $font-titulos;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 #fff;
+
+  &.l2, &.l6 {
+    text-transform: none;
+  }
+  &.l5, &.l8 {
+    color: $verde;
+  }
+  &:nth-child(even) {
+    font-family: $font-texto;
+  }
+
+  &.l1, &.l7 { font-size: 48px;}
+  &.l2, &.l6, &.l8 { font-size: 16px;}
+  &.l3 { font-size: 36px;}
+  &.l4 { font-size: 24px;}
+  &.l5 { font-size: 38px;}
+}
+
+footer {
+  background: #282828;
+  color: #fff;
+}
+#logo-fundar {
+}

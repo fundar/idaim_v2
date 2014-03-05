@@ -1,0 +1,3 @@
+[submodule "assets/scss/attache"]
+	path = assets/scss/attache
+	url = https://github.com/jaimerodas/attache.git
