@@ -42,8 +42,19 @@
 
 			</section>
 
-			<section>
-
+			<section id="nacional">
+				<h2 class="pc" id="total-nacional"></h2>
+				<div class="graph-total">
+					
+				</div>
+				<div id="total-ultimo">
+					<h2 class="pc"></h2>
+					<h3></h3>
+				</div>
+				<div id="total-primero">
+					<h2 class="pc"></h2>
+					<h3></h3>
+				</div>
 			</section>
 
 			<section>
@@ -66,7 +77,6 @@
 							</ul>
 					</nav>
 			</footer>
-			<script>var regiones = <?=json_encode($regiones);?>;</script>
 			<script src="/js/main.js"></script>
 		</body>
 </html>
