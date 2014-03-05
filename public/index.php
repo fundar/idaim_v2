@@ -78,13 +78,17 @@
 			</section>
 
 			<section id="indice-nacional">
-				<div id="graph-indices-nacional">
-					
+				<div class="container">
+					<div id="graph-indices-nacional">
+						
+					</div>
 				</div>
 			</section>
 
 			<section id="mapa">
-				<?= file_get_contents('./img/mapa.svg') ;?>
+				<div class="container">
+					<?= file_get_contents('./img/mapa.svg') ;?>
+				</div>
 			</section>
 
 			<section class="sec-a">
