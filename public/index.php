@@ -57,8 +57,14 @@
 				</div>
 			</section>
 
-			<section>
+			<section id="indice-nacional">
+				<div id="graph-indices-nacional">
+					
+				</div>
+			</section>
 
+			<section id="mapa">
+				<?= file_get_contents('./img/mapa.svg') ;?>
 			</section>
 
 			<footer>

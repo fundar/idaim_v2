@@ -1,0 +1,21 @@
+.barra-container {
+	display: block;
+}
+
+.barra-container:after {
+	content: ' ';
+	display: block;
+	clear: both;
+}
+
+.barra-label {
+	width: 20%;
+	float: left;
+}
+
+.barra {
+	background: #333;
+	margin-left: 20%;
+	height: 10px;
+	margin-bottom: 5px;
+}
