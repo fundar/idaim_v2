@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 $region = (int) $_SERVER['GEOIP_REGION'];
 $regiones = array(
 	'agu', //'Aguascalientes',
