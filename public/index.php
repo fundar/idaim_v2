@@ -13,13 +13,13 @@
 			<!--[if lt IE 8]>
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
 			<![endif]-->
-			<div id="container">
+			<div class="container">
 				<div id="geolocated">
 
 				</div>
 
 				<header>
-						<div id="logo"></div>
+						<a href="#" id="logo">IDAIM</a>
 						<nav>
 								<ul>
 										<li><a href="">Quiénes somos</a></li>
@@ -34,8 +34,10 @@
 								</ul>
 						</nav>
 				</header>
+			</div>
 
-				<section id="hero">
+			<section id="hero">
+				<div class="container">
 					<div id="hero-text">
 						<span class="hero-text l1">El IDAIM</span>
 						<span class="hero-text l2">mide las</span>
@@ -46,15 +48,18 @@
 						<span class="hero-text l7">mejores prácticas</span>
 						<span class="hero-text l8">Nacionales e Internacionales</span>
 					</div>
-				</section>
+				</div>
+			</section>
 
-				<section>
-						<div>Estás visitándonos desde</div>
-						<h1>Aguascalientes</h1>
+			<section class="sec-a">
+				<div class="container">
+					<div>Estás visitándonos desde</div>
+					<h1>Aguascalientes</h1>
+				</div>
+			</section>
 
-				</section>
-
-				<section id="nacional">
+			<section id="nacional" class="sec-b">
+				<div class="container">
 					<h2 class="pc" id="total-nacional"></h2>
 					<div class="graph-total">
 
@@ -67,30 +72,33 @@
 						<h2 class="pc"></h2>
 						<h3></h3>
 					</div>
-				</section>
+				</div>
+			</section>
 
-				<section>
+			<section class="sec-a">
+				<div class="container">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+			</section>
+			<footer>
+				<div class="container">
+					<div id="logo-fundar"></div>
+					<div id="copyright">&copy; 2014 Fundar. Todos los derechos reservados</div>
+					<nav>
+							<ul>
+									<li><a href="">Quiénes somos</a></li>
+									<li><a href="">Acerca de</a></li>
+									<li><a href="">Contacto</a></li>
+									<li><a href="">IDAIM 2010</a></li>
+							</ul>
 
-				</section>
-
-				<footer>
-						<div id="logo-fundar"></div>
-						<div id="copyright">&copy; 2014 Fundar. Todos los derechos reservados</div>
-						<nav>
-								<ul>
-										<li><a href="">Quiénes somos</a></li>
-										<li><a href="">Acerca de</a></li>
-										<li><a href="">Contacto</a></li>
-										<li><a href="">IDAIM 2010</a></li>
-								</ul>
-
-								<ul>
-										<li><a href="">Aviso de Privacidad</a></li>
-										<li><a href="">Ayuda</a></li>
-								</ul>
-						</nav>
-				</footer>
-			</div>
+							<ul>
+									<li><a href="">Aviso de Privacidad</a></li>
+									<li><a href="">Ayuda</a></li>
+							</ul>
+					</nav>
+				</div>
+			</footer>
 			<script src="/js/main.js"></script>
 		</body>
 </html>
