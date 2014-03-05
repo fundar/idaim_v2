@@ -39,7 +39,7 @@ ul {
 }
 #hero-text {
   width: 280px;
-  padding: 20px 0;
+  padding: 15px 0;
   margin: 0 auto 20px;
   border-bottom: 1px solid #A2A2A2;
 
@@ -47,12 +47,14 @@ ul {
 }
 .hero-text {
   display: block;
+  padding: 5px 0;
 
   color: $gris;
   font-size: 24px;
   font-family: $font-titulos;
   text-transform: uppercase;
   text-shadow: 0 1px 0 #fff;
+  line-height: 1;
 
   &.l2, &.l6 {
     text-transform: none;
