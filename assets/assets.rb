@@ -103,7 +103,7 @@ module Assets
   end
 
 
-  @options = {js: {}, css: {style: :compressed}}
+  @options = {js: {bare: true}, css: {style: :compressed}}
   def self.options type, data=nil
     if data
       @options[type] = @options[type].merge data

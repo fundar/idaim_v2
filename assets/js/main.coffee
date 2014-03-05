@@ -2,4 +2,4 @@
 #= require _d3
 
 $ ()->
-	alert('asdf');
+	console('asdf');

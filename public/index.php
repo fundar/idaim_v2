@@ -67,6 +67,6 @@
 					</nav>
 			</footer>
 			<script>var regiones = <?=json_encode($regiones);?>;</script>
-			<script src="/js/main.js" />
+			<script src="/js/main.js"></script>
 		</body>
 </html>
