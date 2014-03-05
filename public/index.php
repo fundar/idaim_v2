@@ -14,6 +14,10 @@
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
 			<![endif]-->
 
+			<div id="geolocated">
+				
+			</div>
+
 			<header>
 					<div id="logo"></div>
 					<nav>
@@ -29,9 +33,6 @@
 									<li><a href="">facebook</a></li>
 							</ul>
 					</nav>
-
-					<p class="server"><strong>Server:</strong> <?= $regiones[$region-1] ? : "No tenemos región de servidor"; ?></p>
-					<p><strong>Navigator.geolocation:</strong> <span class="location">cargando...</span></p>
 
 			</header>
 
@@ -66,6 +67,6 @@
 					</nav>
 			</footer>
 			<script>var regiones = <?=json_encode($regiones);?>;</script>
-			<script src="js/test.js"></script>
+			<script src="/js/main.js" />
 		</body>
 </html>
