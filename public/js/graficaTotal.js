@@ -31,6 +31,7 @@ d3.json("data/estructura.json", function(root) {
 
   function color(d) {
     var col, set;
+    // var val = d.calificacion;
     var val = Math.round(Math.random() * 100);
     var colores = [['73161A', '8B1B1F', 'A31F25', 'BB242A', 'D3282F'], ['E87321', 'ED861E', 'F3981A', 'F8AB17', 'FDBD13'], ['8AC65A', '81BD47', '78B434', '6FAA20', '66A10D']];
 
@@ -49,13 +50,13 @@ d3.json("data/estructura.json", function(root) {
   function click(d) {
     if (!d.children) return;
     x.domain([d.x, d.x + d.dx]);
-    y.domain([d.y, 1]).range([d.y ? 20 : 0, h]);
+    //y.domain([d.y, 1]).range([d.y ? 40 : 0, h]);
 
     rect.transition()
       .duration(750)
       .attr("x", function(d) { return x(d.x); })
-      .attr("y", function(d) { return y(d.y); })
+     // .attr("y", function(d) { return y(d.y); })
       .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
-      .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); });
+      //.attr("height", function(d) { return y(d.y + d.dy) - y(d.y); });
   }
 });
