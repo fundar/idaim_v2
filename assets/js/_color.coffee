@@ -15,7 +15,7 @@ ColorStuff =
 		else
 			set = Colores.lineales[2]
 
-		col = '#'+set[Math.round((set.length)*(val)/100)-1]
+		col = '#'+set[Math.round((set.length - 1)*(val)/100)]
 		col
 
 Colores = {}
