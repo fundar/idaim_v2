@@ -8,6 +8,21 @@
 				<meta name="description" content="">
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<link rel="stylesheet" href="css/main.css">
+				<style type="text/css">
+
+.chart {
+  display: block;
+  margin: auto;
+  margin-top: 60px;
+  font-size: 11px;
+}
+
+rect {
+  stroke: #eee;
+  fill-opacity: .8;
+}
+
+    </style>
 		</head>
 		<body>
 			<!--[if lt IE 8]>
@@ -51,20 +66,10 @@
 				</div>
 			</section>
 
-			<section class="sec-a">
-				<div class="container">
-					<div>Estás visitándonos desde</div>
-					<h1>Aguascalientes</h1>
-				</div>
-			</section>
-
-
-
-			<section id="nacional" class="sec-b">
+			<section id="nacional" class="sec-a">
 				<div class="container">
 					<h2 class="pc" id="total-nacional"></h2>
-					<div class="graph-total">
-
+					<div id="graph-total">
 					</div>
 					<div id="total-ultimo">
 						<h2 class="pc"></h2>
@@ -109,5 +114,6 @@
 				</div>
 			</footer>
 			<script src="/js/main.js"></script>
+			<script src="/js/graficaTotal.js"></script>
 		</body>
 </html>

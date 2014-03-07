@@ -4,8 +4,8 @@
 #= require _idaim
 
 $ ()->
-	
-	$graphTotal = $ '.graph-total'
+
+	$graphTotal = $ '#graph-total'
 
 	IDAIM.load([
 		'regiones',
@@ -41,7 +41,7 @@ $ ()->
 		first = arr[arr.length-1]
 		$('#total-ultimo').find('h2').text(last[1])
 		$('#total-primero').find('h2').text(first[1])
-		
+
 		$('#total-ultimo').find('h3').text(IDAIM.estado last[0])
 		$('#total-primero').find('h3').text(IDAIM.estado first[0])
 

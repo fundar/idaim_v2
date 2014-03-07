@@ -1,0 +1,1129 @@
+{
+  "id": "idaim",
+  "children": [
+    {
+      "id": "eje-1",
+      "class": "eje",
+      "children": [
+        {
+          "id": "indice-1",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-1",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-2",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-3",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-4",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-5",
+              "class": "indicador",
+              "size": 52.91
+            }
+          ]
+        },
+        {
+          "id": "indice-2",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-6",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-7",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-8",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-9",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-10",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-11",
+              "class": "indicador",
+              "size": 52.91
+            }
+          ]
+        },
+        {
+          "id": "indice-3",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-12",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-13",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-14",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-15",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-16",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-17",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-18",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-19",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-20",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-21",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-22",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-23",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-24",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-25",
+              "class": "indicador",
+              "size": 52.91
+            }
+          ]
+        },
+        {
+          "id": "indice-4",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-26",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-27",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-28",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-29",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-30",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-31",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-32",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-33",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-34",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-35",
+              "class": "indicador",
+              "size": 52.91
+            }
+          ]
+        },
+        {
+          "id": "indice-5",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-36",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-37",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-38",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-39",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-40",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-41",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-42",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-43",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-44",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-45",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-46",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-47",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-48",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-49",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-50",
+              "class": "indicador",
+              "size": 52.91
+            }
+          ]
+        },
+        {
+          "id": "indice-6",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-51",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-52",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-53",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-54",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-55",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-56",
+              "class": "indicador",
+              "size": 52.91
+            }
+          ]
+        },
+        {
+          "id": "indice-7",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-57",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-58",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-59",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-60",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-61",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-62",
+              "class": "indicador",
+              "size": 52.91
+            },
+            {
+              "id": "indicador-63",
+              "class": "indicador",
+              "size": 52.91
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eje-2",
+      "class": "eje",
+      "children": [
+        {
+          "id": "indice-8",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-64",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-65",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-66",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-67",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-68",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-69",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-70",
+              "class": "indicador",
+              "size": 62.89
+            }
+          ]
+        },
+        {
+          "id": "indice-9",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-71",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-72",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-73",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-74",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-75",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-76",
+              "class": "indicador",
+              "size": 62.89
+            }
+          ]
+        },
+        {
+          "id": "indice-10",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-77",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-78",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-79",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-80",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-81",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-82",
+              "class": "indicador",
+              "size": 62.89
+            }
+          ]
+        },
+        {
+          "id": "indice-11",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-83",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-84",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-85",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-86",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-87",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-88",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-89",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-90",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-91",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-92",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-93",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-94",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-95",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-96",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-97",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-98",
+              "class": "indicador",
+              "size": 62.89
+            }
+          ]
+        },
+        {
+          "id": "indice-12",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-99",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-100",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-101",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-102",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-103",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-104",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-105",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-106",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-107",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-108",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-109",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-110",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-111",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-112",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-113",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-114",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-115",
+              "class": "indicador",
+              "size": 62.89
+            },
+            {
+              "id": "indicador-116",
+              "class": "indicador",
+              "size": 62.89
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eje-3",
+      "class": "eje",
+      "children": [
+        {
+          "id": "indice-13",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-117",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-118",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-119",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-120",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-121",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-122",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-123",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        },
+        {
+          "id": "indice-14",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-124",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-125",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-126",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-127",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-128",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-129",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-130",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        },
+        {
+          "id": "indice-15",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-131",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-132",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-133",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-134",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        },
+        {
+          "id": "indice-16",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-135",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-136",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-137",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        },
+        {
+          "id": "indice-17",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-138",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-139",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-140",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-141",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-142",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        },
+        {
+          "id": "indice-18",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-143",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-144",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-145",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-146",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        },
+        {
+          "id": "indice-19",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-147",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-148",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-149",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-150",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-151",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        },
+        {
+          "id": "indice-20",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-152",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-153",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-154",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-155",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-156",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-157",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-158",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-159",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-160",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-161",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-162",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-163",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-164",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-165",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-166",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-167",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-168",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-169",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-170",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-171",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-172",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-173",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-174",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-175",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-176",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-177",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-178",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-179",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-180",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-181",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-182",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-183",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-184",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-185",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        },
+        {
+          "id": "indice-21",
+          "class": "indice",
+          "children": [
+            {
+              "id": "indicador-186",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-187",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-188",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-189",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-190",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-191",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-192",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-193",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-194",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-195",
+              "class": "indicador",
+              "size": 41.6666
+            },
+            {
+              "id": "indicador-196",
+              "class": "indicador",
+              "size": 41.6666
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
