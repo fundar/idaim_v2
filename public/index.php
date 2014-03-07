@@ -96,7 +96,7 @@ rect {
 
 			<footer>
 				<div class="container">
-					<div id="logo-fundar"></div>
+					<a href="#" id="logo-fundar"></a>
 					
 					<nav id="nav-footer">
 							<ul class="footer-paginas">
