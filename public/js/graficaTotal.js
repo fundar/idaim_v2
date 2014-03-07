@@ -1,6 +1,6 @@
 
 var w = 1024,
-    h = 400,
+    h = 240,
     x = d3.scale.linear().range([0, w]),
     y = d3.scale.linear().range([0, h]);
 
@@ -29,6 +29,8 @@ d3.json("data/estructura.json", function(root) {
     .attr("fill", color)
     .on("click", click);
 
+  $('#idaim').addClass('activo');
+
   function color(d) {
     var col, set;
     // var val = d.calificacion;
@@ -43,20 +45,22 @@ d3.json("data/estructura.json", function(root) {
       set = colores[2];
     }
     col = '#' + set[Math.round((set.length - 1) * val / 100)];
-    console.log(val, Math.round((set.length - 1) * val / 100))
     return col;
   };
 
   function click(d) {
-    if (!d.children) return;
-    x.domain([d.x, d.x + d.dx]);
-    //y.domain([d.y, 1]).range([d.y ? 40 : 0, h]);
+    if (!d.children) {
+      x.domain([d.parent.x, d.parent.x + d.parent.dx]);
+    } else {
+      x.domain([d.x, d.x + d.dx]);
+    }
 
-    rect.transition()
+    rect.classed('activo', false)
+      .transition()
       .duration(750)
       .attr("x", function(d) { return x(d.x); })
-     // .attr("y", function(d) { return y(d.y); })
       .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
-      //.attr("height", function(d) { return y(d.y + d.dy) - y(d.y); });
+    
+    $(this).addClass('activo');
   }
 });

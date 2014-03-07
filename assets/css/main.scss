@@ -216,11 +216,19 @@ footer {
 }
 
 rect {
-  stroke: #eee;
-  fill-opacity: .8;
+  stroke: #ddd;
+  fill-opacity: .6;
+  cursor: pointer;
+
+  @include transition(fill-opacity 0.2s linear);
 
   &:hover {
     fill-opacity: 1;
+  }
+
+  &.activo {
+    fill-opacity: 1;
+    stroke: #fff;
   }
 }
 
