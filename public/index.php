@@ -28,28 +28,28 @@ rect {
 			<!--[if lt IE 8]>
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
 			<![endif]-->
-			<div class="container">
 				<div id="geolocated">
 
 				</div>
 
-				<header>
-						<a href="#" id="logo">IDAIM</a>
-						<nav>
-								<ul>
-										<li><a href="">Quiénes somos</a></li>
-										<li><a href="">Acerca de</a></li>
-										<li><a href="">Contacto</a></li>
-								</ul>
+			<header>
+				<div class="container">
+					<a href="#" id="logo">IDAIM</a>
+					<nav id="nav-principal">
+							<ul class="nav-paginas">
+									<li><a href="">Quiénes somos</a></li>
+									<li><a href="">Acerca de</a></li>
+									<li><a href="">Contacto</a></li>
+							</ul>
 
-								<ul>
-										<li><a href="">email</a></li>
-										<li><a href="">twitter</a></li>
-										<li><a href="">facebook</a></li>
-								</ul>
-						</nav>
-				</header>
-			</div>
+							<ul class="nav-social">
+									<li><a class="ss-icon ss-social-regular" href="">email</a></li>
+									<li><a class="ss-icon ss-social-regular" href="">tumblr</a></li>
+									<li><a class="ss-icon ss-social-regular" href="">facebook</a></li>
+							</ul>
+					</nav>
+				</div>
+			</header>
 
 			<section id="hero">
 				<div class="container">
@@ -66,7 +66,7 @@ rect {
 				</div>
 			</section>
 
-			<section id="nacional" class="sec-a">
+			<section id="nacional" class="sec sec-a">
 				<div class="container">
 					<h2 class="pc" id="total-nacional"></h2>
 					<div id="graph-total">
@@ -82,13 +82,13 @@ rect {
 				</div>
 			</section>
 
-			<section id="indice-nacional" class="sec-b">
+			<section id="indice-nacional" class="sec sec-b">
 				<div class="container">
 					<div id="graph-indices-nacional"></div>
 				</div>
 			</section>
 
-			<section id="mapa" class="sec-a">
+			<section id="mapa" class="sec sec-a">
 				<div class="container">
 					<?= file_get_contents('./img/mapa.svg') ;?>
 				</div>
@@ -97,20 +97,22 @@ rect {
 			<footer>
 				<div class="container">
 					<div id="logo-fundar"></div>
-					<div id="copyright">&copy; 2014 Fundar. Todos los derechos reservados</div>
-					<nav>
-							<ul>
+					
+					<nav id="nav-footer">
+							<ul class="footer-paginas">
 									<li><a href="">Quiénes somos</a></li>
 									<li><a href="">Acerca de</a></li>
 									<li><a href="">Contacto</a></li>
 									<li><a href="">IDAIM 2010</a></li>
 							</ul>
 
-							<ul>
+							<ul class="footer-otros">
 									<li><a href="">Aviso de Privacidad</a></li>
 									<li><a href="">Ayuda</a></li>
 							</ul>
 					</nav>
+
+					<div id="copyright">&copy; 2014 Fundar. Todos los derechos reservados</div>
 				</div>
 			</footer>
 			<script src="/js/main.js"></script>
