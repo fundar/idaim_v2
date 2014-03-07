@@ -52,24 +52,6 @@ def calificacion_por_entidad entidad
   h
 end
 
-=begin
-
-## Index:
-nombres.json = {
-  ejes: {index: 'nombre'},
-  indicadores: {index: 'nombre'},
-  criterios: {index: 'nombre'}
-}
-federal.json = {
-  ejes: { index: calificacion },
-  indicadores: {index: calificacion},
-  criterios: {index: 'calificacion'}
-}
-estados.json = {
-  index: {nombre: 'nombre', iso: '3 letter code'}...
-}
-
-=end
 
 nombres = {
   ejes: {
@@ -80,6 +62,21 @@ nombres = {
   indicadores: Hash[$data[:indicadores].map { |index, indicador| [index, indicador[:nombre]] }],
   criterios: Hash[$data[:criterios].map { |criterio| [criterio[:index], criterio[:nombre]] }],
 }
+
+e = []
+$data[:ejes].each do |eje, d|
+  indicadores = d[:indicadores].map do |indicador|
+    c = $data[:criterios].select {|crit| crit[:indicador].to_s == indicador.to_s}.map {|crit| crit[:index]}
+    {i: indicador, c: c}
+  end
+  e.push({
+    e: eje,
+    i: indicadores,
+  })
+end
+
+guarda :estructura, e
+exit;
 
 guarda :nombres, nombres
 
