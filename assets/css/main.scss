@@ -208,6 +208,22 @@ footer {
   margin-bottom: 5px;
 }
 
+.chart {
+  display: block;
+  margin: auto;
+  margin-top: 60px;
+  font-size: 11px;
+}
+
+rect {
+  stroke: #eee;
+  fill-opacity: .8;
+
+  &:hover {
+    fill-opacity: 1;
+  }
+}
+
 @media screen and (min-width: 800px) {
   #nav-principal ul {
     display: inline;

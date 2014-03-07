@@ -10,18 +10,6 @@
 				<link rel="stylesheet" href="css/main.css">
 				<style type="text/css">
 
-.chart {
-  display: block;
-  margin: auto;
-  margin-top: 60px;
-  font-size: 11px;
-}
-
-rect {
-  stroke: #eee;
-  fill-opacity: .8;
-}
-
     </style>
 		</head>
 		<body>
