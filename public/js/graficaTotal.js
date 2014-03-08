@@ -8,7 +8,7 @@ function dibuja() {
   var container = $('#graph-total').empty();
 
   var w = container.outerWidth(),
-      h = 240,
+      h = (w > 500)? 240 : 200,
       x = d3.scale.linear().range([0, w]),
       y = d3.scale.linear().range([0, h]),
       minW = 40;
@@ -30,7 +30,7 @@ function dibuja() {
     var g = vis.selectAll("g")
       .data(partition.nodes(root))
       .enter().append("svg:g")
-      .attr("id", function(d){return d.id})
+      .attr("id", function(d){return 'gn-'+d.id})
       .attr("transform", function(d) {
         return "translate("+x(d.x)+","+y(d.y)+")";
       })
@@ -41,6 +41,8 @@ function dibuja() {
       .attr("height", function(d) {return y(d.dy);})
       .attr("fill", color);
 
+    d3.select('#gn-idaim').attr('class','activo');
+
     // g.append("svg:text")
     //   .attr("transform", function(d) {
     //     return "translate("+x(d.dx)/2+","+(y(d.dy) / 2 + 6)+")";
@@ -49,14 +51,10 @@ function dibuja() {
     //   .style("opacity", function(d) {return (d.dx * w) < minW ? 0 : 1;})
     //   .text(function(d) {return d.id;});
 
-    $('#idaim').addClass('activo');
-
     function click(d) {
       x.domain([d.x, d.x + d.dx]);
 
       var newWidth = w / d.dx;
-
-      console.log(newWidth, newZero, newTot);
       
       if (!d.children) {
         x.domain([d.parent.x, d.parent.x + d.parent.dx]);
@@ -76,6 +74,8 @@ function dibuja() {
         .select("rect")
         .attr("width", function(d){ return d.dx * newWidth;});
 
+      d3.select('#gn-'+d.id).attr('class', 'activo');
+
       // g.select("text")
       //   .transition()
       //   .duration(500)
@@ -88,7 +88,6 @@ function dibuja() {
       //     );
 
       //     if (check) {
-      //       console.log(w, x(d.x), d.dx * newWidth, d.id);
       //       pos = w/2 - x(d.x);
       //     }
       //     return "translate("+pos+","+(y(d.dy) / 2 + 6)+")";
@@ -97,7 +96,7 @@ function dibuja() {
       //     return (d.dx * newWidth) < minW ? 0 : 1;
       //   })
       
-      $(this).addClass('activo');
+      
     }
   });
 
