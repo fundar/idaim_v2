@@ -215,6 +215,10 @@ footer {
   font-size: 11px;
 }
 
+g.activo rect {
+  fill-opacity: 1;
+  stroke: #fff;
+}
 rect {
   stroke: #ddd;
   fill-opacity: .6;
@@ -225,11 +229,9 @@ rect {
   &:hover {
     fill-opacity: 1;
   }
-
-  &.activo {
-    fill-opacity: 1;
-    stroke: #fff;
-  }
+}
+text {
+  pointer-events: none;
 }
 
 @media screen and (min-width: 800px) {

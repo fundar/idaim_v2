@@ -4,6 +4,7 @@ $(document).ready(function(){
 });
 
 function dibuja() {
+
   var container = $('#graph-total').empty();
 
   var w = container.outerWidth(),
@@ -24,32 +25,47 @@ function dibuja() {
       .sort(null);
 
   d3.json("data/estructura.json", function(root) {
-    var rect = vis.selectAll("rect")
+
+    var g = vis.selectAll("g")
       .data(partition.nodes(root))
-      .enter().append("svg:rect")
-      .attr("x", function(d) { return x(d.x); })
-      .attr("y", function(d) { return y(d.y); })
-      .attr("width", function(d) { return x(d.dx); })
-      .attr("height", function(d) { return y(d.dy); })
-      .attr("class", function(d){return d.class})
+      .enter().append("svg:g")
       .attr("id", function(d){return d.id})
-      .attr("fill", color)
+      .attr("transform", function(d) {
+        return "translate("+x(d.x)+","+y(d.y)+")";
+      })
       .on("click", click);
+
+    g.append("svg:rect")
+      .attr("width", function(d) {return x(d.dx);})
+      .attr("height", function(d) {return y(d.dy);})
+      .attr("fill", color);
+
+    // g.append("svg:text")
+    //   .attr("transform", function(d) {
+    //     return "translate(0,"+(y(d.dy) / 2 + 6)+")";
+    //   })
+    //   .style("opacity", function(d) {return (d.dx * w) < 20 ? 0 : 1;})
+    //   .text(function(d) {return d.id;});
 
     $('#idaim').addClass('activo');
 
     function click(d) {
+      x.domain([d.x, d.x + d.dx]);
+      var newWidth = w / d.dx;
+      
       if (!d.children) {
         x.domain([d.parent.x, d.parent.x + d.parent.dx]);
-      } else {
-        x.domain([d.x, d.x + d.dx]);
+        newWidth = w / d.parent.dx;
       }
 
-      rect.classed('activo', false)
+      g.classed('activo', false)
         .transition()
-        .duration(750)
-        .attr("x", function(d) { return x(d.x); })
-        .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
+        .duration(500)
+        .attr("transform", function(d) {
+          return "translate("+x(d.x)+","+y(d.y)+")";
+        })
+        .select("rect")
+        .attr("width", function(d){ return d.dx * newWidth;});
       
       $(this).addClass('activo');
     }
@@ -84,6 +100,6 @@ var debounce = function(fn, timeout) {
   }
 };
 
-var debounce_dibuja = debounce(dibuja, 125);
+var debounce_dibuja = debounce(dibuja, 250);
 
 $(window).resize(debounce_dibuja);
