@@ -18,7 +18,7 @@ ul {
 }
 
 .container {
-  width: 100%;
+  width: 95%;
   max-width: 1024px;
   margin: 0 auto;
 }
@@ -221,7 +221,7 @@ g.activo rect {
 }
 rect {
   stroke: #ddd;
-  fill-opacity: .6;
+  fill-opacity: .75;
   cursor: pointer;
 
   @include transition(fill-opacity 0.2s linear);
@@ -232,6 +232,7 @@ rect {
 }
 text {
   pointer-events: none;
+  text-anchor: middle;
 }
 
 @media screen and (min-width: 800px) {

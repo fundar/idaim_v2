@@ -10,7 +10,8 @@ function dibuja() {
   var w = container.outerWidth(),
       h = 240,
       x = d3.scale.linear().range([0, w]),
-      y = d3.scale.linear().range([0, h]);
+      y = d3.scale.linear().range([0, h]),
+      minW = 40;
 
   var vis = d3.select("#graph-total").append("div")
       .attr("class", "chart")
@@ -42,21 +43,29 @@ function dibuja() {
 
     // g.append("svg:text")
     //   .attr("transform", function(d) {
-    //     return "translate(0,"+(y(d.dy) / 2 + 6)+")";
+    //     return "translate("+x(d.dx)/2+","+(y(d.dy) / 2 + 6)+")";
     //   })
-    //   .style("opacity", function(d) {return (d.dx * w) < 20 ? 0 : 1;})
+    //   .attr("width", function(d) {return x(d.dx);})
+    //   .style("opacity", function(d) {return (d.dx * w) < minW ? 0 : 1;})
     //   .text(function(d) {return d.id;});
 
     $('#idaim').addClass('activo');
 
     function click(d) {
       x.domain([d.x, d.x + d.dx]);
+
       var newWidth = w / d.dx;
+
+      console.log(newWidth, newZero, newTot);
       
       if (!d.children) {
         x.domain([d.parent.x, d.parent.x + d.parent.dx]);
         newWidth = w / d.parent.dx;
+        depth = d.parent.depth
       }
+
+      var newZero = x(0);
+      var newTot = x(1);
 
       g.classed('activo', false)
         .transition()
@@ -66,6 +75,27 @@ function dibuja() {
         })
         .select("rect")
         .attr("width", function(d){ return d.dx * newWidth;});
+
+      // g.select("text")
+      //   .transition()
+      //   .duration(500)
+      //   .attr("transform", function(d) {
+      //     pos = (d.dx * newWidth)/2;
+
+      //     check = (
+      //       (d.dx*newWidth > w) && 
+      //       (((x(d.x) + d.dx * newWidth) > 0) && (x(d.x) < w))
+      //     );
+
+      //     if (check) {
+      //       console.log(w, x(d.x), d.dx * newWidth, d.id);
+      //       pos = w/2 - x(d.x);
+      //     }
+      //     return "translate("+pos+","+(y(d.dy) / 2 + 6)+")";
+      //   })
+      //   .style("opacity", function(d) {
+      //     return (d.dx * newWidth) < minW ? 0 : 1;
+      //   })
       
       $(this).addClass('activo');
     }
