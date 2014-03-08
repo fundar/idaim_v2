@@ -3,7 +3,7 @@
 //
 
 @import "attache/_attache";
-@import "icons","variables";
+@import "icons","fonts","variables";
 
 body {
   font-family: $font-texto;
@@ -221,7 +221,7 @@ g.activo rect {
 }
 rect {
   stroke: #ddd;
-  fill-opacity: .75;
+  fill-opacity: .5;
   cursor: pointer;
 
   @include transition(fill-opacity 0.2s linear);
