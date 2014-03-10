@@ -8,33 +8,36 @@
 				<meta name="description" content="">
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<link rel="stylesheet" href="css/main.css">
+				<style type="text/css">
+
+    </style>
 		</head>
 		<body>
 			<!--[if lt IE 8]>
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
 			<![endif]-->
-			<div class="container">
 				<div id="geolocated">
 
 				</div>
 
-				<header>
-						<a href="#" id="logo">IDAIM</a>
-						<nav>
-								<ul>
-										<li><a href="">Quiénes somos</a></li>
-										<li><a href="">Acerca de</a></li>
-										<li><a href="">Contacto</a></li>
-								</ul>
+			<header>
+				<div class="container">
+					<a href="#" id="logo">IDAIM</a>
+					<nav id="nav-principal">
+							<ul class="nav-paginas">
+									<li><a href="">Quiénes somos</a></li>
+									<li><a href="">Acerca de</a></li>
+									<li><a href="">Contacto</a></li>
+							</ul>
 
-								<ul>
-										<li><a href="">email</a></li>
-										<li><a href="">twitter</a></li>
-										<li><a href="">facebook</a></li>
-								</ul>
-						</nav>
-				</header>
-			</div>
+							<ul class="nav-social">
+									<li><a class="ss-icon ss-social-regular" href="">email</a></li>
+									<li><a class="ss-icon ss-social-regular" href="">tumblr</a></li>
+									<li><a class="ss-icon ss-social-regular" href="">facebook</a></li>
+							</ul>
+					</nav>
+				</div>
+			</header>
 
 			<section id="hero">
 				<div class="container">
@@ -51,20 +54,10 @@
 				</div>
 			</section>
 
-			<section class="sec-a">
-				<div class="container">
-					<div>Estás visitándonos desde</div>
-					<h1>Aguascalientes</h1>
-				</div>
-			</section>
-
-
-
-			<section id="nacional" class="sec-b">
+			<section id="nacional" class="sec sec-a">
 				<div class="container">
 					<h2 class="pc" id="total-nacional"></h2>
-					<div class="graph-total">
-
+					<div id="graph-total">
 					</div>
 					<div id="total-ultimo">
 						<h2 class="pc"></h2>
@@ -77,44 +70,40 @@
 				</div>
 			</section>
 
-			<section id="indice-nacional">
+			<section id="indice-nacional" class="sec sec-b">
 				<div class="container">
-					<div id="graph-indices-nacional">
-						
-					</div>
+					<div id="graph-indices-nacional"></div>
 				</div>
 			</section>
 
-			<section id="mapa">
+			<section id="mapa" class="sec sec-a">
 				<div class="container">
 					<?= file_get_contents('./img/mapa.svg') ;?>
 				</div>
 			</section>
 
-			<section class="sec-a">
-				<div class="container">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</div>
-			</section>
 			<footer>
 				<div class="container">
-					<div id="logo-fundar"></div>
-					<div id="copyright">&copy; 2014 Fundar. Todos los derechos reservados</div>
-					<nav>
-							<ul>
+					<a href="#" id="logo-fundar"></a>
+					
+					<nav id="nav-footer">
+							<ul class="footer-paginas">
 									<li><a href="">Quiénes somos</a></li>
 									<li><a href="">Acerca de</a></li>
 									<li><a href="">Contacto</a></li>
 									<li><a href="">IDAIM 2010</a></li>
 							</ul>
 
-							<ul>
+							<ul class="footer-otros">
 									<li><a href="">Aviso de Privacidad</a></li>
 									<li><a href="">Ayuda</a></li>
 							</ul>
 					</nav>
+
+					<div id="copyright">&copy; 2014 Fundar. Todos los derechos reservados</div>
 				</div>
 			</footer>
 			<script src="/js/main.js"></script>
+			<script src="/js/graficaTotal.js"></script>
 		</body>
 </html>
