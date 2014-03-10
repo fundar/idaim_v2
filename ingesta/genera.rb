@@ -54,29 +54,28 @@ end
 
 
 nombres = {
-  ejes: {
+  eje: {
     1 => 'Positivación',
     2 => 'Diseño institucional',
     3 => 'Proceso de acceso y obligaciones de transparencia'
   },
-  indicadores: Hash[$data[:indicadores].map { |index, indicador| [index, indicador[:nombre]] }],
-  criterios: Hash[$data[:criterios].map { |criterio| [criterio[:index], criterio[:nombre]] }],
+  indicador: Hash[$data[:indicadores].map { |index, indicador| [index, indicador[:nombre]] }],
+  criterio: Hash[$data[:criterios].map { |criterio| [criterio[:index], criterio[:nombre]] }],
 }
 
 e = []
 $data[:ejes].each do |eje, d|
   indicadores = d[:indicadores].map do |indicador|
-    c = $data[:criterios].select {|crit| crit[:indicador].to_s == indicador.to_s}.map {|crit| crit[:index]}
-    {i: indicador, c: c}
+    c = $data[:criterios].select {|crit| crit[:indicador].to_s == indicador.to_s}.map {|crit| {id: crit[:index]} }
+    {id: indicador, children: c}
   end
   e.push({
-    e: eje,
-    i: indicadores,
+    id: eje,
+    children: indicadores,
   })
 end
 
 guarda :estructura, e
-exit;
 
 guarda :nombres, nombres
 
