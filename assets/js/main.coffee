@@ -3,6 +3,12 @@
 #= require _color
 #= require _idaim
 
+debounce = (fn, timeout)->
+	timeoutID = -1;
+	()->
+		window.clearTimeout timeoutID if (timeoutID > -1)
+		timeoutID = window.setTimeout fn, timeout
+
 $ ()->
 
 	$graphTotal = $ '#graph-total'
@@ -13,7 +19,8 @@ $ ()->
 		'indicadores',
 		'nacional',
 		'estados',
-		'estados/nal'
+		'estados/nal',
+		'estructura'
 	]);
 
 	IDAIM.on 'ready', ()->
@@ -45,7 +52,14 @@ $ ()->
 		$('#total-ultimo').find('h3').text(IDAIM.estado last[0])
 		$('#total-primero').find('h3').text(IDAIM.estado first[0])
 
-		IDAIM.mainChart(IDAIM.get('estados/nal'), $('#graph-total'))
+		# esto debería de cambiar a pasar argumentos a la función
+		# ya que también podríamos tener otro estado, no solo nacional...
+		dibujaMain = ()->
+			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal')
+		debounce_main = debounce dibujaMain, 250
+		dibujaMain()
+		$(window).resize debounce_main
+
 		totalesNacional = arr
 		totalesNacional.push(["32", totales.total[32]])
 		totalesNacional.sort (a,b)->

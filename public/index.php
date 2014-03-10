@@ -104,6 +104,5 @@
 				</div>
 			</footer>
 			<script src="/js/main.js"></script>
-			<script src="/js/graficaTotal.js"></script>
 		</body>
 </html>

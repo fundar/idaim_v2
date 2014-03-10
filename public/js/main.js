@@ -28,7 +28,7 @@ ColorStuff = {
     } else {
       set = Colores.lineales[2];
     }
-    col = '#' + set[Math.round(set.length * val / 100) - 1];
+    col = '#' + set[Math.round((set.length - 1) * val / 100)];
     return col;
   }
 };
@@ -51,8 +51,109 @@ IDAIM.estado = function(index) {
   return IDAIM.get('estados')[index].n;
 };
 
-IDAIM.mainChart = function(dataSet, container) {
-  return console.log(dataSet.e);
+IDAIM.mainChart = function(dataSet, container, source) {
+  var click, colorPara, count, data, eje, g, h, idPara, indicador, minW, nombreDe, partition, sizes, transform, valor, vis, w, x, y, _i, _j, _len, _len1, _ref;
+  container.empty();
+  w = container.outerWidth();
+  h = w > 500 ? 240 : 200;
+  x = d3.scale.linear().range([0, w]);
+  y = d3.scale.linear().range([0, h]);
+  minW = 40;
+  data = {
+    id: "idaim",
+    children: dataSet
+  };
+  vis = d3.select('#' + container.attr('id')).append("div").attr('class', 'chart').style('width', "" + w + "px").style('height', '#{h}px').append('svg:svg').attr('width', w).attr('height', h);
+  sizes = {};
+  for (_i = 0, _len = dataSet.length; _i < _len; _i++) {
+    eje = dataSet[_i];
+    count = 0;
+    _ref = eje.children;
+    for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+      indicador = _ref[_j];
+      count += indicador.children.length;
+    }
+    sizes[eje.id] = 1 / 3 / count * 10000;
+  }
+  partition = d3.layout.partition().sort(null);
+  partition.nodes(data);
+  partition.value(function(d) {
+    return sizes[d.parent.parent.id];
+  });
+  nombreDe = function(d) {
+    var tipo;
+    tipo = (function() {
+      switch (d.depth) {
+        case 0:
+          return 'total';
+        case 1:
+          return 'eje';
+        case 2:
+          return 'indicador';
+        case 3:
+          return 'criterio';
+      }
+    })();
+    return tipo;
+  };
+  valor = function(d) {
+    var id, val;
+    if (d.depth !== 0) {
+      id = d.id.toString().replace(/\D+/, '');
+    }
+    val = (function() {
+      switch (d.depth) {
+        case 0:
+          return source.t;
+        case 1:
+          return source.e[id];
+        case 2:
+          return source.i[id];
+        case 3:
+          return source.c[id] * 100;
+      }
+    })();
+    return val;
+  };
+  colorPara = function(d) {
+    return Color(valor(d));
+  };
+  idPara = function(d) {
+    return "gn-" + (nombreDe(d)) + "-" + d.id;
+  };
+  transform = function(d) {
+    return "translate(" + (x(d.x)) + ", " + (y(d.y)) + ")";
+  };
+  click = function(d) {
+    var clase, depth, id, newTotal, newWidth, newZero, nombre;
+    x.domain([d.x, d.x + d.dx]);
+    newWidth = w / d.dx;
+    if (!d.children) {
+      x.domain([d.parent.x, d.parent.x + d.parent.dx]);
+      newWidth = w / d.parent.dx;
+      depth = d.parent.depth;
+    }
+    newZero = x(0);
+    newTotal = x(1);
+    id = d.id.toString().replace(/\D+/, '');
+    if (id) {
+      clase = d3.select(this).attr('class');
+      nombre = IDAIM.get('nombres')[clase][id];
+    } else {
+      nombre = "IDAIM";
+    }
+    g.classed('activo', false).transition().duration(500).attr('transform', transform).select('rect').attr('width', function(d) {
+      return d.dx * newWidth;
+    });
+    return d3.select("#" + (idPara(d))).attr('class', 'activo');
+  };
+  g = vis.selectAll('g').data(partition.nodes(data)).enter().append('svg:g').attr('class', nombreDe).attr('id', idPara).attr('transform', transform).on('click', click);
+  g.append('svg:rect').attr('width', function(d) {
+    return x(d.dx);
+  }).attr('height', function(d) {
+    return y(d.dy);
+  }).attr('fill', colorPara);
+  return d3.select('#gn-total-idaim').attr('class', 'activo');
 };
 
 IDAIM.indiceNacional = function(variable, container) {
@@ -126,12 +227,25 @@ IDAIM.load = function(data) {
   };
   return load.then(ready, error);
 };
+var debounce;
+
+debounce = function(fn, timeout) {
+  var timeoutID;
+  timeoutID = -1;
+  return function() {
+    if (timeoutID > -1) {
+      window.clearTimeout(timeoutID);
+    }
+    return timeoutID = window.setTimeout(fn, timeout);
+  };
+};
+
 $(function() {
   var $graphTotal;
-  $graphTotal = $('.graph-total');
-  IDAIM.load(['regiones', 'nombres', 'indicadores', 'nacional', 'estados', 'estados/nal']);
+  $graphTotal = $('#graph-total');
+  IDAIM.load(['regiones', 'nombres', 'indicadores', 'nacional', 'estados', 'estados/nal', 'estructura']);
   return IDAIM.on('ready', function() {
-    var $svg, arr, cal, dup, edo, estados, first, last, svg, totales, totalesNacional;
+    var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, last, svg, totales, totalesNacional;
     totales = IDAIM.get('nacional');
     estados = IDAIM.get('estados');
     $('#total-nacional').text(totales.total[32]);
@@ -160,7 +274,12 @@ $(function() {
     $('#total-primero').find('h2').text(first[1]);
     $('#total-ultimo').find('h3').text(IDAIM.estado(last[0]));
     $('#total-primero').find('h3').text(IDAIM.estado(first[0]));
-    IDAIM.mainChart(IDAIM.get('estados/nal'), $('#graph-total'));
+    dibujaMain = function() {
+      return IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
+    };
+    debounce_main = debounce(dibujaMain, 250);
+    dibujaMain();
+    $(window).resize(debounce_main);
     totalesNacional = arr;
     totalesNacional.push(["32", totales.total[32]]);
     totalesNacional.sort(function(a, b) {
