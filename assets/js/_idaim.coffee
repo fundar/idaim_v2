@@ -82,7 +82,7 @@ IDAIM.mainChart = (dataSet, container, source)->
 			id = 'total'
 			nombre = "IDAIM"
 
-		IDAIM.emit('mainChart.click', {id: id, tipo: tipo, nombre: nombre, valor: elem.attr('total') })
+		IDAIM.emit('mainChart.click', {id: id, tipo: tipo, nombre: nombre, valor: elem.attr('valor') })
 
 		g.classed('activo', false)
 			.transition()

@@ -77,8 +77,10 @@ $ ()->
 
 		IDAIM.on 'mainChart.click', (data)->
 			descripcion = false
+			nombre = "Calificación de #{data.tipo}"
 			switch data.tipo
 				when 'total'
+					nombre = 'Promedio Nacional'
 					console.log 'total'
 				when 'eje'
 					descripcion = IDAIM.get('ejes')[data.id]
@@ -89,7 +91,8 @@ $ ()->
 			textoVariable.nombre.text(data.nombre)
 			textoVariable.descripcion[action]()
 			textoVariable.descripcion.text(descripcion)
-				
+			$('#total-nacional').text(data.valor)
+			$('#total-nombre').text(nombre)
 
 		debounce_main = debounce dibujaMain, 250
 		dibujaMain()

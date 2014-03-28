@@ -153,7 +153,7 @@ IDAIM.mainChart = function(dataSet, container, source) {
       id: id,
       tipo: tipo,
       nombre: nombre,
-      valor: elem.attr('total')
+      valor: elem.attr('valor')
     });
     g.classed('activo', false).transition().duration(500).attr('transform', transform).select('rect').attr('width', function(d) {
       return d.dx * newWidth;
@@ -307,10 +307,12 @@ $(function() {
       return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     };
     IDAIM.on('mainChart.click', function(data) {
-      var action, descripcion;
+      var action, descripcion, nombre;
       descripcion = false;
+      nombre = "Calificación de " + data.tipo;
       switch (data.tipo) {
         case 'total':
+          nombre = 'Promedio Nacional';
           console.log('total');
           break;
         case 'eje':
@@ -322,7 +324,9 @@ $(function() {
       action = descripcion ? 'show' : 'hide';
       textoVariable.nombre.text(data.nombre);
       textoVariable.descripcion[action]();
-      return textoVariable.descripcion.text(descripcion);
+      textoVariable.descripcion.text(descripcion);
+      $('#total-nacional').text(data.valor);
+      return $('#total-nombre').text(nombre);
     });
     debounce_main = debounce(dibujaMain, 250);
     dibujaMain();

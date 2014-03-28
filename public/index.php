@@ -63,7 +63,7 @@
 
 					<div class="texto-total" id="total-nacional-cont">
 						<h2 class="pc" id="total-nacional"></h2>
-						<h3>Promedio Nacional</h3>
+						<h3 id="total-nombre">Promedio Nacional</h3>
 					</div>
 
 					<div id="graph-total">
