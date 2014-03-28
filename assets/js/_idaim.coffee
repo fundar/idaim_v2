@@ -9,7 +9,7 @@ IDAIM.estado = (index)->
 
 IDAIM.mainChart = (dataSet, container, source)->
 	# NO JALA RESIZE after click
-	container.empty()	
+	container.empty()
 	w = container.outerWidth()
 	h = if w>500 then 240 else 200
 	x = d3.scale.linear().range [0,w]
@@ -110,9 +110,8 @@ IDAIM.mainChart = (dataSet, container, source)->
 	d3.select('#gn-total-idaim').attr('class', 'activo')
 	
 
-
 IDAIM.indiceNacional = (variable, container)->
-
+	
 	data = []
 	for e in variable
 		data.push({id: e[0], v:e[1]})

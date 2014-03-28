@@ -2,6 +2,7 @@
 #= require _d3
 #= require _color
 #= require _idaim
+# require _
 
 debounce = (fn, timeout)->
 	timeoutID = -1;
@@ -58,8 +59,20 @@ $ ()->
 
 		# esto debería de cambiar a pasar argumentos a la función
 		# ya que también podríamos tener otro estado, no solo nacional...
+
+		totalesNacional = arr
+		totalesNacional.push(["32", totales.total[32]])
+		totalesNacional.sort (a,b)->
+			#sort por nombre
+			if IDAIM.estado(a[0]) > IDAIM.estado(b[0])
+				return 1
+			if IDAIM.estado(a[0]) < IDAIM.estado(b[0])
+				return -1
+			return 0
+
 		dibujaMain = ()->
 			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal')
+			IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')
 		
 
 		IDAIM.on 'mainChart.click', (data)->
@@ -81,15 +94,3 @@ $ ()->
 		debounce_main = debounce dibujaMain, 250
 		dibujaMain()
 		$(window).resize debounce_main
-
-		totalesNacional = arr
-		totalesNacional.push(["32", totales.total[32]])
-		totalesNacional.sort (a,b)->
-			#sort por nombre
-			if IDAIM.estado(a[0]) > IDAIM.estado(b[0])
-				return 1
-			if IDAIM.estado(a[0]) < IDAIM.estado(b[0])
-				return -1
-			return 0
-
-		IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')

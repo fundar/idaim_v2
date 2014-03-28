@@ -291,8 +291,20 @@ $(function() {
     $('#total-primero').find('h2').text(first[1]);
     $('#total-ultimo').find('h3').text(IDAIM.estado(last[0]));
     $('#total-primero').find('h3').text(IDAIM.estado(first[0]));
+    totalesNacional = arr;
+    totalesNacional.push(["32", totales.total[32]]);
+    totalesNacional.sort(function(a, b) {
+      if (IDAIM.estado(a[0]) > IDAIM.estado(b[0])) {
+        return 1;
+      }
+      if (IDAIM.estado(a[0]) < IDAIM.estado(b[0])) {
+        return -1;
+      }
+      return 0;
+    });
     dibujaMain = function() {
-      return IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
+      IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
+      return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     };
     IDAIM.on('mainChart.click', function(data) {
       var action, descripcion;
@@ -314,18 +326,6 @@ $(function() {
     });
     debounce_main = debounce(dibujaMain, 250);
     dibujaMain();
-    $(window).resize(debounce_main);
-    totalesNacional = arr;
-    totalesNacional.push(["32", totales.total[32]]);
-    totalesNacional.sort(function(a, b) {
-      if (IDAIM.estado(a[0]) > IDAIM.estado(b[0])) {
-        return 1;
-      }
-      if (IDAIM.estado(a[0]) < IDAIM.estado(b[0])) {
-        return -1;
-      }
-      return 0;
-    });
-    return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
+    return $(window).resize(debounce_main);
   });
 });
