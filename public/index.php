@@ -54,20 +54,8 @@
 				</div>
 			</section>
 
-			<section id="nacional" class="sec sec-a">
+			<section id="nacional" class="sec sec-a cf">
 				<div class="container">
-					<h2 class="pc" id="total-nacional"></h2>
-					<div id="graph-total">
-					</div>
-					<div id="total-ultimo">
-						<h2 class="pc"></h2>
-						<h3></h3>
-					</div>
-					<div id="total-primero">
-						<h2 class="pc"></h2>
-						<h3></h3>
-					</div>
-				
 					<div id="textos-ejes">
 						<h3 id="nombre-variable">IDAIM</h3>
 						<div id="texto-eje-1" class="eje-text">
@@ -84,6 +72,22 @@
 							<h3>Procedimiento de Acceso a la Información y Obligaciones de Transparencia</h3>
 							<p>Los principios y bases del DAI deben verse reflejados en las garantías que la ley establezca para el cumplimiento de este derecho. Es en el procedimiento de acceso a la información así como en la difusión de las obligaciones de transparencia donde se materializa la satisfacción del DAI. En esta variable se mide la universalidad,  facilidad, expeditez y gratuidad de este derecho, así como las medidas proactivas que se tomen para dar a conocer información relevante.</p>
 						</div>
+					</div>
+
+					<div class="texto-total" id="total-nacional-cont">
+						<h2 class="pc" id="total-nacional"></h2>
+						<h3>Promedio Nacional</h3>
+					</div>
+
+					<div id="graph-total">
+					</div>
+					<div id="total-ultimo" class="texto-total">
+						<h2 class="pc"></h2>
+						<h3></h3>
+					</div>
+					<div id="total-primero" class="texto-total">
+						<h2 class="pc"></h2>
+						<h3></h3>
 					</div>
 				</div>
 			</section>
@@ -103,7 +107,7 @@
 			<footer>
 				<div class="container">
 					<a href="#" id="logo-fundar"></a>
-					
+
 					<nav id="nav-footer">
 							<ul class="footer-paginas">
 									<li><a href="">Quiénes somos</a></li>
