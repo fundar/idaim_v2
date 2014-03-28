@@ -55,22 +55,26 @@
 			</section>
 
 			<section id="nacional" class="sec sec-a">
-				<div class="container">
-					<h2 class="pc" id="total-nacional"></h2>
-					<div id="graph-total">
-					</div>
-					<div id="total-ultimo">
-						<h2 class="pc"></h2>
-						<h3></h3>
-					</div>
-					<div id="total-primero">
-						<h2 class="pc"></h2>
-						<h3></h3>
-					</div>
-				
+				<div class="container cf">
 					<div id="texto-variable">
 						<h3 id="nombre-variable">IDAIM</h3>
-						<p id="descripcion-variable"></p>
+						<p id="descripcion-variable" style="display:none;"></p>
+					</div>
+
+					<div class="texto-total" id="total-nacional-cont">
+						<h2 class="pc" id="total-nacional"></h2>
+						<h3>Promedio Nacional</h3>
+					</div>
+
+					<div id="graph-total">
+					</div>
+					<div id="total-ultimo" class="texto-total">
+						<h2 class="pc"></h2>
+						<h3></h3>
+					</div>
+					<div id="total-primero" class="texto-total">
+						<h2 class="pc"></h2>
+						<h3></h3>
 					</div>
 				</div>
 
@@ -89,7 +93,7 @@
 			<footer>
 				<div class="container">
 					<a href="#" id="logo-fundar"></a>
-					
+
 					<nav id="nav-footer">
 							<ul class="footer-paginas">
 									<li><a href="">Quiénes somos</a></li>
