@@ -68,22 +68,9 @@
 						<h3></h3>
 					</div>
 				
-					<div id="textos-ejes">
+					<div id="texto-variable">
 						<h3 id="nombre-variable">IDAIM</h3>
-						<div id="texto-eje-1" class="eje-text">
-							<h3>Disposiciones Normativas</h3>
-							<p>Es en los objetivos y la conceptualización del DAI donde se establecen las bases y principios que determinaran la interpretación de la ley y guiarán su aplicación. La delimitación de los sujetos obligados y sus obligaciones de transparencia, las disposiciones para el régimen de excepción de la información y el establecimiento de sanciones ante violaciones al derecho e incumplimiento de la ley constituyen los elementos que determinan su alcance.</p>
-						</div>
-
-						<div id="texto-eje-2" class="eje-text">
-							<h3>Diseño Institucional</h3>
-							<p>Esta variable mide las disposiciones en ley que fundamentan la construcción del engranaje institucional que deberá proteger, respetar, promover y garantizar el ejercicio del derecho de acceso a la información. Son tres figuras las que se contemplan como básicas: el órgano garante, su autonomía y alcance de funciones;  las oficinas de información y los órganos internos de revisión.</p>
-						</div>
-
-						<div id="texto-eje-3" class="eje-text">
-							<h3>Procedimiento de Acceso a la Información y Obligaciones de Transparencia</h3>
-							<p>Los principios y bases del DAI deben verse reflejados en las garantías que la ley establezca para el cumplimiento de este derecho. Es en el procedimiento de acceso a la información así como en la difusión de las obligaciones de transparencia donde se materializa la satisfacción del DAI. En esta variable se mide la universalidad,  facilidad, expeditez y gratuidad de este derecho, así como las medidas proactivas que se tomen para dar a conocer información relevante.</p>
-						</div>
+						<p id="descripcion-variable"></p>
 					</div>
 				</div>
 			</section>

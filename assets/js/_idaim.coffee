@@ -59,7 +59,8 @@ IDAIM.mainChart = (dataSet, container, source)->
 	idPara = (d)-> "gn-#{nombreDe(d)}-#{d.id}"
 	transform = (d)-> "translate(#{x(d.x)}, #{y(d.y)})"
 	click = (d)->
-		clase = d3.select(this).attr('class')
+		elem = d3.select(this)
+		clase = elem.attr('class')
 		return true if clase.match /activo/
 		x.domain [d.x, d.x+d.dx]
 		newWidth = w/d.dx;
@@ -81,7 +82,7 @@ IDAIM.mainChart = (dataSet, container, source)->
 			id = 'total'
 			nombre = "IDAIM"
 
-		IDAIM.emit('mainChart.click', {id: id, tipo: tipo, nombre: nombre})
+		IDAIM.emit('mainChart.click', {id: id, tipo: tipo, nombre: nombre, valor: elem.attr('total') })
 
 		g.classed('activo', false)
 			.transition()
@@ -96,6 +97,7 @@ IDAIM.mainChart = (dataSet, container, source)->
 		.data(partition.nodes(data))
 		.enter().append('svg:g')
 			.attr('class', nombreDe)
+			.attr('valor', valor)
 			.attr('id', idPara)
 			.attr('transform', transform)
 			.on('click', click)

@@ -12,10 +12,14 @@ debounce = (fn, timeout)->
 $ ()->
 
 	$graphTotal = $ '#graph-total'
+	textoVariable =
+		nombre: $('#nombre-variable')
+		descripcion: $('#descripcion-variable')
 
 	IDAIM.load([
 		'regiones',
 		'nombres',
+		'ejes',
 		'indicadores',
 		'nacional',
 		'estados',
@@ -57,17 +61,22 @@ $ ()->
 		dibujaMain = ()->
 			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal')
 
-		$('.eje-text').hide();
-		$('#nombre-variable').hide();
+		
 
 		IDAIM.on 'mainChart.click', (data)->
-			$('.eje-text').hide();
-			if data.tipo is 'eje'
-				$('#nombre-variable').hide();
-				$("#texto-eje-#{data.id}").show()
-			else
-				$('.eje-text').hide();
-				$('#nombre-variable').text(data.nombre).show();
+			descripcion = false
+			switch data.tipo
+				when 'total'
+					console.log 'total'
+				when 'eje'
+					descripcion = IDAIM.get('ejes')[data.id]
+				when 'indicador'
+					descripcion = IDAIM.get('indicadores')[data.id]
+			
+			action = if descripcion then 'show' else 'hide'
+			textoVariable.nombre.text(data.nombre)
+			textoVariable.descripcion[action]()
+			textoVariable.descripcion.text(descripcion)
 				
 
 		debounce_main = debounce dibujaMain, 250

@@ -125,8 +125,9 @@ IDAIM.mainChart = function(dataSet, container, source) {
     return "translate(" + (x(d.x)) + ", " + (y(d.y)) + ")";
   };
   click = function(d) {
-    var clase, depth, id, newTotal, newWidth, newZero, nombre, tipo;
-    clase = d3.select(this).attr('class');
+    var clase, depth, elem, id, newTotal, newWidth, newZero, nombre, tipo;
+    elem = d3.select(this);
+    clase = elem.attr('class');
     if (clase.match(/activo/)) {
       return true;
     }
@@ -151,14 +152,15 @@ IDAIM.mainChart = function(dataSet, container, source) {
     IDAIM.emit('mainChart.click', {
       id: id,
       tipo: tipo,
-      nombre: nombre
+      nombre: nombre,
+      valor: elem.attr('total')
     });
     g.classed('activo', false).transition().duration(500).attr('transform', transform).select('rect').attr('width', function(d) {
       return d.dx * newWidth;
     });
     return d3.select("#" + (idPara(d))).attr('class', "" + clase + " activo");
   };
-  g = vis.selectAll('g').data(partition.nodes(data)).enter().append('svg:g').attr('class', nombreDe).attr('id', idPara).attr('transform', transform).on('click', click);
+  g = vis.selectAll('g').data(partition.nodes(data)).enter().append('svg:g').attr('class', nombreDe).attr('valor', valor).attr('id', idPara).attr('transform', transform).on('click', click);
   g.append('svg:rect').attr('width', function(d) {
     return x(d.dx);
   }).attr('height', function(d) {
@@ -252,9 +254,13 @@ debounce = function(fn, timeout) {
 };
 
 $(function() {
-  var $graphTotal;
+  var $graphTotal, textoVariable;
   $graphTotal = $('#graph-total');
-  IDAIM.load(['regiones', 'nombres', 'indicadores', 'nacional', 'estados', 'estados/nal', 'estructura']);
+  textoVariable = {
+    nombre: $('#nombre-variable'),
+    descripcion: $('#descripcion-variable')
+  };
+  IDAIM.load(['regiones', 'nombres', 'ejes', 'indicadores', 'nacional', 'estados', 'estados/nal', 'estructura']);
   return IDAIM.on('ready', function() {
     var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, last, svg, totales, totalesNacional;
     totales = IDAIM.get('nacional');
@@ -288,17 +294,23 @@ $(function() {
     dibujaMain = function() {
       return IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
     };
-    $('.eje-text').hide();
-    $('#nombre-variable').hide();
     IDAIM.on('mainChart.click', function(data) {
-      $('.eje-text').hide();
-      if (data.tipo === 'eje') {
-        $('#nombre-variable').hide();
-        return $("#texto-eje-" + data.id).show();
-      } else {
-        $('.eje-text').hide();
-        return $('#nombre-variable').text(data.nombre).show();
+      var action, descripcion;
+      descripcion = false;
+      switch (data.tipo) {
+        case 'total':
+          console.log('total');
+          break;
+        case 'eje':
+          descripcion = IDAIM.get('ejes')[data.id];
+          break;
+        case 'indicador':
+          descripcion = IDAIM.get('indicadores')[data.id];
       }
+      action = descripcion ? 'show' : 'hide';
+      textoVariable.nombre.text(data.nombre);
+      textoVariable.descripcion[action]();
+      return textoVariable.descripcion.text(descripcion);
     });
     debounce_main = debounce(dibujaMain, 250);
     dibujaMain();
