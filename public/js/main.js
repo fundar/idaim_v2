@@ -126,6 +126,10 @@ IDAIM.mainChart = function(dataSet, container, source) {
   };
   click = function(d) {
     var clase, depth, id, newTotal, newWidth, newZero, nombre, tipo;
+    clase = d3.select(this).attr('class');
+    if (clase.match(/activo/)) {
+      return true;
+    }
     x.domain([d.x, d.x + d.dx]);
     newWidth = w / d.dx;
     if (!d.children) {
@@ -137,7 +141,6 @@ IDAIM.mainChart = function(dataSet, container, source) {
     newTotal = x(1);
     id = d.id.toString().replace(/\D+/, '');
     if (id) {
-      clase = d3.select(this).attr('class');
       nombre = IDAIM.get('nombres')[clase][id];
       tipo = clase;
     } else {
@@ -147,12 +150,13 @@ IDAIM.mainChart = function(dataSet, container, source) {
     }
     IDAIM.emit('mainChart.click', {
       id: id,
-      tipo: tipo
+      tipo: tipo,
+      nombre: nombre
     });
     g.classed('activo', false).transition().duration(500).attr('transform', transform).select('rect').attr('width', function(d) {
       return d.dx * newWidth;
     });
-    return d3.select("#" + (idPara(d))).attr('class', 'activo');
+    return d3.select("#" + (idPara(d))).attr('class', "" + clase + " activo");
   };
   g = vis.selectAll('g').data(partition.nodes(data)).enter().append('svg:g').attr('class', nombreDe).attr('id', idPara).attr('transform', transform).on('click', click);
   g.append('svg:rect').attr('width', function(d) {
@@ -285,11 +289,15 @@ $(function() {
       return IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
     };
     $('.eje-text').hide();
+    $('#nombre-variable').hide();
     IDAIM.on('mainChart.click', function(data) {
-      console.log(data.tipo, data.id);
       $('.eje-text').hide();
       if (data.tipo === 'eje') {
+        $('#nombre-variable').hide();
         return $("#texto-eje-" + data.id).show();
+      } else {
+        $('.eje-text').hide();
+        return $('#nombre-variable').text(data.nombre).show();
       }
     });
     debounce_main = debounce(dibujaMain, 250);

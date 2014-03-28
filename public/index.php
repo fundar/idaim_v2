@@ -69,6 +69,7 @@
 					</div>
 				
 					<div id="textos-ejes">
+						<h3 id="nombre-variable">IDAIM</h3>
 						<div id="texto-eje-1" class="eje-text">
 							<h3>Disposiciones Normativas</h3>
 							<p>Es en los objetivos y la conceptualización del DAI donde se establecen las bases y principios que determinaran la interpretación de la ley y guiarán su aplicación. La delimitación de los sujetos obligados y sus obligaciones de transparencia, las disposiciones para el régimen de excepción de la información y el establecimiento de sanciones ante violaciones al derecho e incumplimiento de la ley constituyen los elementos que determinan su alcance.</p>
