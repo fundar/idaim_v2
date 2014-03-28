@@ -20,9 +20,9 @@ ColorStuff =
 
 Colores = {}
 Colores.lineales = [
-		['D10715', 'CC4C59', 'E887A5', 'F4B3CB', 'FFEBF3']
-		['D10715', 'FFB510', 'FCD786', 'FFE3AB', 'FFF4C7'],
-		['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'],
+		['C10015', 'CC4C59', 'E887A5', 'F4B3CB', 'FFEBF3']
+		['D10715', 'FFB510', 'FCD786', 'FFE3AB', 'FFF4C7'].reverse(),
+		['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse(),
 	]
 
 
