@@ -11,6 +11,10 @@ body {
   padding: 0;
 }
 
+.cf {
+  @include clearfix;
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -174,6 +178,31 @@ footer {
   &.l5 { font-size: 38px;}
 }
 
+.texto-total {
+  width: 120px;
+  text-align: center;
+
+  h2, h3 {
+    margin: 0;
+  }
+  h2 {
+    font-size: 40px;
+    line-height: 1;
+  }
+  h3 {
+    font-size: 12px;
+  }
+}
+#total-nacional-cont {
+  margin: 0 auto;
+}
+#total-ultimo {
+  float: left;
+}
+#total-primero {
+  float: right;
+}
+
 .sec {
   padding: 40px 0;
 }
@@ -211,7 +240,7 @@ footer {
 .chart {
   display: block;
   margin: auto;
-  margin-top: 60px;
+  margin: 10px 0;
   font-size: 11px;
 }
 

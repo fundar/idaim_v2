@@ -60,7 +60,6 @@ $ ()->
 		# ya que también podríamos tener otro estado, no solo nacional...
 		dibujaMain = ()->
 			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal')
-
 		
 
 		IDAIM.on 'mainChart.click', (data)->

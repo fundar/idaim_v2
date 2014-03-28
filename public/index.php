@@ -73,7 +73,6 @@
 						<p id="descripcion-variable"></p>
 					</div>
 				</div>
-			</section>
 
 			<section id="indice-nacional" class="sec sec-b">
 				<div class="container">
