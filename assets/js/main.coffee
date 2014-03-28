@@ -58,10 +58,16 @@ $ ()->
 			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal')
 
 		$('.eje-text').hide();
+		$('#nombre-variable').hide();
 
 		IDAIM.on 'mainChart.click', (data)->
 			$('.eje-text').hide();
-			$("#texto-eje-#{data.id}").show() if data.tipo is 'eje'
+			if data.tipo is 'eje'
+				$('#nombre-variable').hide();
+				$("#texto-eje-#{data.id}").show()
+			else
+				$('.eje-text').hide();
+				$('#nombre-variable').text(data.nombre).show();
 				
 
 		debounce_main = debounce dibujaMain, 250

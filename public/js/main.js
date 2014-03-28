@@ -141,7 +141,6 @@ IDAIM.mainChart = function(dataSet, container, source) {
     newTotal = x(1);
     id = d.id.toString().replace(/\D+/, '');
     if (id) {
-      console.log(clase);
       nombre = IDAIM.get('nombres')[clase][id];
       tipo = clase;
     } else {
@@ -151,7 +150,8 @@ IDAIM.mainChart = function(dataSet, container, source) {
     }
     IDAIM.emit('mainChart.click', {
       id: id,
-      tipo: tipo
+      tipo: tipo,
+      nombre: nombre
     });
     g.classed('activo', false).transition().duration(500).attr('transform', transform).select('rect').attr('width', function(d) {
       return d.dx * newWidth;
@@ -289,10 +289,15 @@ $(function() {
       return IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
     };
     $('.eje-text').hide();
+    $('#nombre-variable').hide();
     IDAIM.on('mainChart.click', function(data) {
       $('.eje-text').hide();
       if (data.tipo === 'eje') {
+        $('#nombre-variable').hide();
         return $("#texto-eje-" + data.id).show();
+      } else {
+        $('.eje-text').hide();
+        return $('#nombre-variable').text(data.nombre).show();
       }
     });
     debounce_main = debounce(dibujaMain, 250);

@@ -74,8 +74,6 @@ IDAIM.mainChart = (dataSet, container, source)->
 
 		id = d.id.toString().replace /\D+/, ''
 		if id
-			
-			console.log(clase)
 			nombre = IDAIM.get('nombres')[clase][id]
 			tipo = clase
 		else
@@ -83,7 +81,7 @@ IDAIM.mainChart = (dataSet, container, source)->
 			id = 'total'
 			nombre = "IDAIM"
 
-		IDAIM.emit('mainChart.click', {id: id, tipo: tipo})
+		IDAIM.emit('mainChart.click', {id: id, tipo: tipo, nombre: nombre})
 
 		g.classed('activo', false)
 			.transition()
