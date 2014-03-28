@@ -178,6 +178,17 @@ footer {
   &.l5 { font-size: 38px;}
 }
 
+#nombre-variable {
+  font-size: 24px;
+  text-align: center;
+
+  margin: 0;
+}
+#descripcion-variable {
+  margin: 10px 0;
+  min-height: 50px;
+}
+
 .texto-total {
   width: 120px;
   text-align: center;
@@ -191,6 +202,7 @@ footer {
   }
   h3 {
     font-size: 12px;
+    font-weight: normal;
   }
 }
 #total-nacional-cont {

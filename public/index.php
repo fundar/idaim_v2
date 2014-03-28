@@ -58,7 +58,7 @@
 				<div class="container cf">
 					<div id="texto-variable">
 						<h3 id="nombre-variable">IDAIM</h3>
-						<p id="descripcion-variable"></p>
+						<p id="descripcion-variable" style="display:none;"></p>
 					</div>
 
 					<div class="texto-total" id="total-nacional-cont">
