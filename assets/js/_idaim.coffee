@@ -6,7 +6,7 @@ IDAIM.db = {}
 IDAIM.estado = (index)->
 	IDAIM.get('estados')[index].n
 
-
+IDAIM.selected = null
 IDAIM.mainChart = (dataSet, container, source)->
 	# NO JALA RESIZE after click
 	container.empty()
@@ -58,10 +58,13 @@ IDAIM.mainChart = (dataSet, container, source)->
 	colorPara = (d)-> Color(valor d)
 	idPara = (d)-> "gn-#{nombreDe(d)}-#{d.id}"
 	transform = (d)-> "translate(#{x(d.x)}, #{y(d.y)})"
-	click = (d)->
+	click = (d, sepa, resize)->
+		resize = resize isnt 0
+		IDAIM.selected = {d:d, this:this}
 		elem = d3.select(this)
 		clase = elem.attr('class')
-		return true if clase.match /activo/
+		return true if clase.match /activo/ and !resize
+		clase = clase.replace /\s?activo\s?/, ''
 		x.domain [d.x, d.x+d.dx]
 		newWidth = w/d.dx;
 
@@ -84,14 +87,16 @@ IDAIM.mainChart = (dataSet, container, source)->
 
 		IDAIM.emit('mainChart.click', {id: id, tipo: tipo, nombre: nombre, valor: elem.attr('valor') })
 
-		g.classed('activo', false)
-			.transition()
-			.duration(500)
-			.attr('transform', transform)
+		el = g.classed('activo', false)
+		# KHAAAAAAAAAAAAAAAAAACK
+		el = el.transition().duration(500) if !resize
+
+		el.attr('transform', transform)
 			.select('rect')
-				.attr 'width', (d)-> d.dx*newWidth
+			.attr 'width', (d)-> d.dx*newWidth
 
 		d3.select("##{idPara d}").attr 'class', "#{clase} activo"
+
 
 	g = vis.selectAll('g')
 		.data(partition.nodes(data))
@@ -108,6 +113,7 @@ IDAIM.mainChart = (dataSet, container, source)->
 		.attr('fill', colorPara)
 	
 	d3.select('#gn-total-idaim').attr('class', 'activo')
+	click.apply(IDAIM.selected.this, [IDAIM.selected.d, null, true]) if IDAIM.selected
 	
 
 IDAIM.indiceNacional = (variable, container)->
@@ -118,6 +124,7 @@ IDAIM.indiceNacional = (variable, container)->
 
 	chart = d3.select(container)
 	$container = $(container)
+	$container.empty()
 	x = d3.scale.linear()
 		.domain([0, 100])
 		.range([0, $container.width()]);

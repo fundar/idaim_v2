@@ -71,10 +71,11 @@ $ ()->
 			return 0
 
 		dibujaMain = ()->
+			ww = Math.min $('#mapa .container').width(), 1000
+			$('#mapa svg').width(ww).height(ww*0.8)
 			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal')
 			IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')
 		
-
 		IDAIM.on 'mainChart.click', (data)->
 			descripcion = false
 			nombre = "Calificación de #{data.tipo}"

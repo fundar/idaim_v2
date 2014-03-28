@@ -35,6 +35,8 @@ ColorStuff = {
 
 Colores = {};
 
+Colores.lineales = [['73161A', '8B1B1F', 'A31F25', 'BB242A', 'D3282F'], ['E87321', 'ED861E', 'F3981A', 'F8AB17', 'FDBD13'], ['8AC65A', '81BD47', '78B434', '6FAA20', '66A10D']];
+
 Colores.lineales = [['C10015', 'CC4C59', 'E887A5', 'F4B3CB', 'FFEBF3'], ['D10715', 'FFB510', 'FCD786', 'FFE3AB', 'FFF4C7'].reverse(), ['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse()];
 
 Color = ColorStuff.lineal;
@@ -50,6 +52,8 @@ IDAIM.db = {};
 IDAIM.estado = function(index) {
   return IDAIM.get('estados')[index].n;
 };
+
+IDAIM.selected = null;
 
 IDAIM.mainChart = function(dataSet, container, source) {
   var click, colorPara, count, data, eje, g, h, idPara, indicador, minW, nombreDe, partition, sizes, transform, valor, vis, w, x, y, _i, _j, _len, _len1, _ref;
@@ -124,13 +128,19 @@ IDAIM.mainChart = function(dataSet, container, source) {
   transform = function(d) {
     return "translate(" + (x(d.x)) + ", " + (y(d.y)) + ")";
   };
-  click = function(d) {
-    var clase, depth, elem, id, newTotal, newWidth, newZero, nombre, tipo;
+  click = function(d, sepa, resize) {
+    var clase, depth, el, elem, id, newTotal, newWidth, newZero, nombre, tipo;
+    resize = resize !== 0;
+    IDAIM.selected = {
+      d: d,
+      "this": this
+    };
     elem = d3.select(this);
     clase = elem.attr('class');
-    if (clase.match(/activo/)) {
+    if (clase.match(/activo/ && !resize)) {
       return true;
     }
+    clase = clase.replace(/\s?activo\s?/, '');
     x.domain([d.x, d.x + d.dx]);
     newWidth = w / d.dx;
     if (!d.children) {
@@ -155,7 +165,11 @@ IDAIM.mainChart = function(dataSet, container, source) {
       nombre: nombre,
       valor: elem.attr('valor')
     });
-    g.classed('activo', false).transition().duration(500).attr('transform', transform).select('rect').attr('width', function(d) {
+    el = g.classed('activo', false);
+    if (!resize) {
+      el = el.transition().duration(500);
+    }
+    el.attr('transform', transform).select('rect').attr('width', function(d) {
       return d.dx * newWidth;
     });
     return d3.select("#" + (idPara(d))).attr('class', "" + clase + " activo");
@@ -166,7 +180,10 @@ IDAIM.mainChart = function(dataSet, container, source) {
   }).attr('height', function(d) {
     return y(d.dy);
   }).attr('fill', colorPara);
-  return d3.select('#gn-total-idaim').attr('class', 'activo');
+  d3.select('#gn-total-idaim').attr('class', 'activo');
+  if (IDAIM.selected) {
+    return click.apply(IDAIM.selected["this"], [IDAIM.selected.d, null, true]);
+  }
 };
 
 IDAIM.indiceNacional = function(variable, container) {
@@ -181,6 +198,7 @@ IDAIM.indiceNacional = function(variable, container) {
   }
   chart = d3.select(container);
   $container = $(container);
+  $container.empty();
   x = d3.scale.linear().domain([0, 100]).range([0, $container.width()]);
   c = chart.selectAll('div').data(data);
   edo = c.enter().append('div').attr('class', 'barra-container');
@@ -303,6 +321,9 @@ $(function() {
       return 0;
     });
     dibujaMain = function() {
+      var ww;
+      ww = Math.min($('#mapa .container').width(), 1000);
+      $('#mapa svg').width(ww).height(ww * 0.8);
       IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
       return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     };
