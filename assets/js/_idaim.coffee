@@ -70,12 +70,17 @@ IDAIM.mainChart = (dataSet, container, source)->
 		newZero = x 0
 		newTotal = x 1
 
-		id = d.id.toString().replace(/\D+/, '')
+		id = d.id.toString().replace /\D+/, ''
 		if id
 			clase = d3.select(this).attr('class')
 			nombre = IDAIM.get('nombres')[clase][id]
+			tipo = clase
 		else
+			tipo = 'total'
+			id = 'total'
 			nombre = "IDAIM"
+
+		IDAIM.emit('mainChart.click', {id: id, tipo: tipo})
 
 		g.classed('activo', false)
 			.transition()

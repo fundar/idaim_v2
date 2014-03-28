@@ -125,7 +125,7 @@ IDAIM.mainChart = function(dataSet, container, source) {
     return "translate(" + (x(d.x)) + ", " + (y(d.y)) + ")";
   };
   click = function(d) {
-    var clase, depth, id, newTotal, newWidth, newZero, nombre;
+    var clase, depth, id, newTotal, newWidth, newZero, nombre, tipo;
     x.domain([d.x, d.x + d.dx]);
     newWidth = w / d.dx;
     if (!d.children) {
@@ -139,9 +139,16 @@ IDAIM.mainChart = function(dataSet, container, source) {
     if (id) {
       clase = d3.select(this).attr('class');
       nombre = IDAIM.get('nombres')[clase][id];
+      tipo = clase;
     } else {
+      tipo = 'total';
+      id = 'total';
       nombre = "IDAIM";
     }
+    IDAIM.emit('mainChart.click', {
+      id: id,
+      tipo: tipo
+    });
     g.classed('activo', false).transition().duration(500).attr('transform', transform).select('rect').attr('width', function(d) {
       return d.dx * newWidth;
     });
@@ -277,6 +284,14 @@ $(function() {
     dibujaMain = function() {
       return IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
     };
+    $('.eje-text').hide();
+    IDAIM.on('mainChart.click', function(data) {
+      console.log(data.tipo, data.id);
+      $('.eje-text').hide();
+      if (data.tipo === 'eje') {
+        return $("#texto-eje-" + data.id).show();
+      }
+    });
     debounce_main = debounce(dibujaMain, 250);
     dibujaMain();
     $(window).resize(debounce_main);
