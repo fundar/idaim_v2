@@ -51,6 +51,7 @@
 						<span class="hero-text l7">mejores prácticas</span>
 						<span class="hero-text l8">Nacionales e Internacionales</span>
 					</div>
+					<div id="mapita"></div>
 				</div>
 			</section>
 

@@ -178,6 +178,7 @@ footer {
   &.l5 { font-size: 38px;}
 }
 
+
 #nombre-variable {
   font-size: 24px;
   text-align: center;
@@ -295,5 +296,13 @@ text {
     position: absolute;
     right: 0;
     bottom: 0;
+  }
+  #mapita {
+    float: right;
+    width: 700px;
+    height: 353px;
+    margin: 10px 0;
+
+    background: url(/img/mapa.png) no-repeat 0 0/700px 353px;
   }
 }
