@@ -81,6 +81,7 @@
 
 			<section id="indice-nacional" class="sec sec-b">
 				<div class="container">
+					<h1>Índice por Estado</h1>
 					<div id="graph-indices-nacional"></div>
 				</div>
 			</section>

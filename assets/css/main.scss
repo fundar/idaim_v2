@@ -190,6 +190,9 @@ footer {
   min-height: 50px;
 }
 
+#nacional .container {
+  padding: 0 0 40px;
+}
 .texto-total {
   width: 120px;
   text-align: center;
@@ -283,7 +286,7 @@ text {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1078px) {
   #hero-text {
     float: left;
   }
