@@ -60,7 +60,6 @@ $ ()->
 		$('.eje-text').hide();
 
 		IDAIM.on 'mainChart.click', (data)->
-			console.log data.tipo, data.id
 			$('.eje-text').hide();
 			$("#texto-eje-#{data.id}").show() if data.tipo is 'eje'
 				
