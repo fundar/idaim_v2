@@ -82,6 +82,7 @@
 			<section id="indice-nacional" class="sec sec-b">
 				<div class="container">
 					<h1>Índice por Estado</h1>
+					<label><input type="checkbox" id="indice-nacional-toggle" />Ordenar</label>
 					<div id="graph-indices-nacional"></div>
 				</div>
 			</section>

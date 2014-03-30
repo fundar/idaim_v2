@@ -2,7 +2,7 @@
 // Estilo principal IDAIM
 //
 
-@import "attache/_attache";
+@import "attache/attache";
 @import "icons","fonts","variables";
 
 body {
@@ -260,24 +260,43 @@ footer {
   font-size: 11px;
 }
 
-g.activo rect {
-  fill-opacity: 1;
-  stroke: #fff;
-}
-rect {
-  stroke: #fff;
-  fill-opacity: .7;
-  cursor: pointer;
-
-  @include transition(fill-opacity 0.2s linear);
-
-  &:hover {
+#graph-total {
+  g.activo rect {
     fill-opacity: 1;
+    stroke: #fff;
+  }
+  rect {
+    stroke: #fff;
+    fill-opacity: .7;
+    cursor: pointer;
+
+    @include transition(fill-opacity 0.2s linear);
+
+    &:hover {
+      fill-opacity: 1;
+    }
+  }
+  text {
+    pointer-events: none;
+    text-anchor: middle;
   }
 }
-text {
-  pointer-events: none;
-  text-anchor: middle;
+
+#graph-indices-nacional {
+  .tick line {
+    stroke : #000;
+  }
+  .domain {
+    fill: none;
+    stroke: #000;
+  }
+  .eje {
+    font-size: 12px;
+  }
+  .linea {
+    stroke: #fff;
+    opacity: 0.3
+  }
 }
 
 @media screen and (min-width: 800px) {

@@ -37,7 +37,7 @@ Colores = {};
 
 Colores.lineales = [['73161A', '8B1B1F', 'A31F25', 'BB242A', 'D3282F'], ['E87321', 'ED861E', 'F3981A', 'F8AB17', 'FDBD13'], ['8AC65A', '81BD47', '78B434', '6FAA20', '66A10D']];
 
-Colores.lineales = [['C10015', 'CC4C59', 'E887A5', 'F4B3CB', 'FFEBF3'], ['D10715', 'FFB510', 'FCD786', 'FFE3AB', 'FFF4C7'].reverse(), ['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse()];
+Colores.lineaales = [['C10015', 'CC4C59', 'E887A5', 'F4B3CB', 'FFEBF3'], ['D10715', 'FFB510', 'FCD786', 'FFE3AB', 'FFF4C7'].reverse(), ['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse()];
 
 Color = ColorStuff.lineal;
 
@@ -187,7 +187,7 @@ IDAIM.mainChart = function(dataSet, container, source) {
 };
 
 IDAIM.indiceNacional = function(variable, container) {
-  var $container, bar, c, chart, data, e, edo, label, x, _i, _len;
+  var $container, barHeight, chart, data, e, ejeX, ejeY, elementos, h, m, w, x, y, _i, _len;
   data = [];
   for (_i = 0, _len = variable.length; _i < _len; _i++) {
     e = variable[_i];
@@ -196,20 +196,39 @@ IDAIM.indiceNacional = function(variable, container) {
       v: e[1]
     });
   }
-  chart = d3.select(container);
   $container = $(container);
   $container.empty();
-  x = d3.scale.linear().domain([0, 100]).range([0, $container.width()]);
-  c = chart.selectAll('div').data(data);
-  edo = c.enter().append('div').attr('class', 'barra-container');
-  label = edo.append('div').attr('class', 'barra-label').text(function(d) {
+  elementos = data.length;
+  barHeight = 20;
+  m = {
+    top: 25,
+    right: 15,
+    bottom: 0,
+    left: 120
+  };
+  w = $container.width() - (m.right + m.left);
+  h = (barHeight + 1) * elementos;
+  x = d3.scale.linear().domain([0, 100]).range([0, w]);
+  y = d3.scale.ordinal().domain(data.map(function(d) {
     return IDAIM.estado(d.id);
-  });
-  return bar = edo.append('div').attr('class', 'barra').style('width', function(d) {
-    return x(d.v) + "px";
-  }).style('background-color', function(d) {
+  })).rangeRoundBands([0, h]);
+  ejeX = d3.svg.axis().scale(x).orient("top");
+  ejeY = d3.svg.axis().scale(y).orient("left");
+  chart = d3.select(container).append('svg').attr("width", w + (m.right + m.left)).attr("height", h + (m.top + m.bottom));
+  chart.selectAll(".barra").data(data).enter().append("rect").attr("class", "barra").attr("height", barHeight).attr("width", function(d) {
+    return x(d.v);
+  }).attr("x", m.left).attr("y", function(d) {
+    return m.top + 1 + y(IDAIM.estado(d.id));
+  }).attr("fill", function(d) {
     return Color(d.v);
   });
+  chart.selectAll(".linea").data(x.ticks()).enter().append("svg:line").attr("class", "linea").attr("x1", function(d) {
+    return x(d) + m.left;
+  }).attr("x2", function(d) {
+    return x(d) + m.left;
+  }).attr("y1", m.top).attr("y2", h + m.top);
+  chart.append("g").attr("class", "eje y").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeY);
+  return chart.append("g").attr("class", "eje x").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeX);
 };
 
 IDAIM.get = function(file) {
