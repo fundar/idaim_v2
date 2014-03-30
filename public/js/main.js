@@ -37,7 +37,7 @@ Colores = {};
 
 Colores.lineales = [['73161A', '8B1B1F', 'A31F25', 'BB242A', 'D3282F'], ['E87321', 'ED861E', 'F3981A', 'F8AB17', 'FDBD13'], ['8AC65A', '81BD47', '78B434', '6FAA20', '66A10D']];
 
-Colores.lineaales = [['C10015', 'CC4C59', 'E887A5', 'F4B3CB', 'FFEBF3'], ['D10715', 'FFB510', 'FCD786', 'FFE3AB', 'FFF4C7'].reverse(), ['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse()];
+Colores.lineales = [['C10015', 'CC4C59', 'E887A5', 'F4B3CB', 'FFEBF3'], ['D10715', 'FFB510', 'FCD786', 'FFE3AB', 'FFF4C7'].reverse(), ['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse()];
 
 Color = ColorStuff.lineal;
 
