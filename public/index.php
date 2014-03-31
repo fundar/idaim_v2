@@ -68,10 +68,12 @@
 
 					<div class="cf">
 						<div id="total-ultimo" class="texto-total">
+							<div>El Peor</div>
 							<h2 class="pc"></h2>
 							<h3></h3>
 						</div>
 						<div id="total-primero" class="texto-total">
+							<div>El Mejor</div>
 							<h2 class="pc"></h2>
 							<h3></h3>
 						</div>
