@@ -114,33 +114,70 @@ IDAIM.mainChart = (dataSet, container, source)->
 	
 	d3.select('#gn-total-idaim').attr('class', 'activo')
 	click.apply(IDAIM.selected.this, [IDAIM.selected.d, null, true]) if IDAIM.selected
-	
 
 IDAIM.indiceNacional = (variable, container)->
-	
 	data = []
 	for e in variable
-		data.push({id: e[0], v:e[1]})
+		data.push({id: e[0], v: e[1]})
 
-	chart = d3.select(container)
 	$container = $(container)
 	$container.empty()
+
+	elementos = data.length
+	barHeight = 20
+
+	m = {top: 25, right: 15, bottom: 0, left: 120}
+	w = $container.width() - (m.right + m.left)
+	h = ((barHeight + 1) * elementos)
+
+
 	x = d3.scale.linear()
 		.domain([0, 100])
-		.range([0, $container.width()]);
+		.range([0, w])
 
-	c = chart.selectAll('div').data(data)
+	y = d3.scale.ordinal()
+		.domain(data.map((d)->IDAIM.estado(d.id)))
+		.rangeRoundBands([0, h])
 
-	edo = c.enter().append('div')
-			.attr('class', 'barra-container')
+	ejeX = d3.svg.axis()
+		.scale(x)
+		.orient("top")
 
-	label = edo.append('div')
-			.attr('class', 'barra-label')
-			.text((d)-> IDAIM.estado(d.id))
-	bar = edo.append('div')
-			.attr('class', 'barra')
-			.style('width', (d)-> x(d.v)+"px")
-			.style('background-color', (d)-> Color(d.v))
+	ejeY = d3.svg.axis()
+		.scale(y)
+		.orient("left")
+
+	chart = d3.select(container).append('svg')
+		.attr("width", w + (m.right + m.left))
+		.attr("height", h + (m.top + m.bottom))
+
+	chart.selectAll(".barra")
+		.data(data).enter()
+		.append("rect")
+		.attr("class", "barra")
+		.attr("height", barHeight)
+		.attr("width", (d)-> x(d.v))
+		.attr("x", m.left)
+		.attr("y", (d)-> m.top + 1 + y(IDAIM.estado(d.id)))
+		.attr("fill", (d)->Color(d.v))
+
+	chart.selectAll(".linea")
+		.data(x.ticks()).enter()
+		.append("svg:line")
+		.attr("class", "linea")
+		.attr("x1", (d)-> x(d) + m.left).attr("x2", (d)-> x(d) + m.left)
+		.attr("y1", m.top).attr("y2", h + m.top)
+
+	chart.append("g")
+      .attr("class", "eje y")
+      .attr("transform", "translate("+m.left+"," + m.top + ")")
+      .call(ejeY)
+
+	chart.append("g")
+		.attr("class", "eje x")
+		.attr("transform", "translate("+m.left+"," + (m.top) + ")")
+		.call(ejeX)
+
 
 
 	

@@ -2,7 +2,7 @@
 // Estilo principal IDAIM
 //
 
-@import "attache/_attache";
+@import "attache/attache";
 @import "icons","fonts","variables";
 
 body {
@@ -178,17 +178,34 @@ footer {
   &.l5 { font-size: 38px;}
 }
 
+
 #nombre-variable {
-  font-size: 24px;
+  font-size: 18px;
   text-align: center;
+  line-height: 1;
 
-  margin: 0;
+  margin: 0 0 10px;
 }
-#descripcion-variable {
-  margin: 10px 0;
-  min-height: 50px;
+.descripcion-variable {
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  margin: 20px auto 0;
+  background: #fff;
+
+  font-size: 14px;
+
+  @include box-sizing(border-box);
+  @include box-shadow(0 1px 2px rgba(0,0,0,0.1));
+
+  p {
+    margin: 10px 0;
+  }
 }
 
+#nacional .container {
+  padding: 0 0 40px;
+  position: relative;
+}
 .texto-total {
   width: 120px;
   text-align: center;
@@ -207,6 +224,7 @@ footer {
 }
 #total-nacional-cont {
   margin: 0 auto;
+  width: 200px;
 }
 #total-ultimo {
   float: left;
@@ -256,24 +274,43 @@ footer {
   font-size: 11px;
 }
 
-g.activo rect {
-  fill-opacity: 1;
-  stroke: #fff;
-}
-rect {
-  stroke: #fff;
-  fill-opacity: .7;
-  cursor: pointer;
-
-  @include transition(fill-opacity 0.2s linear);
-
-  &:hover {
+#graph-total {
+  g.activo rect {
     fill-opacity: 1;
+    stroke: #fff;
+  }
+  rect {
+    stroke: #fff;
+    fill-opacity: .7;
+    cursor: pointer;
+
+    @include transition(fill-opacity 0.2s linear);
+
+    &:hover {
+      fill-opacity: 1;
+    }
+  }
+  text {
+    pointer-events: none;
+    text-anchor: middle;
   }
 }
-text {
-  pointer-events: none;
-  text-anchor: middle;
+
+#graph-indices-nacional {
+  .tick line {
+    stroke : #000;
+  }
+  .domain {
+    fill: none;
+    stroke: #000;
+  }
+  .eje {
+    font-size: 12px;
+  }
+  .linea {
+    stroke: #fff;
+    opacity: 0.3
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -282,7 +319,7 @@ text {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1078px) {
   #hero-text {
     float: left;
   }
@@ -295,5 +332,21 @@ text {
     position: absolute;
     right: 0;
     bottom: 0;
+  }
+  #mapita {
+    float: right;
+    width: 700px;
+    height: 353px;
+    margin: 10px 0;
+
+    background: url(/img/mapa.png) no-repeat 0 0/700px 353px;
+  }
+
+  #nombre-variable {
+    font-size: 24px;
+  }
+  .descripcion-variable {
+    margin: -60px auto 0;
+    width: 700px;
   }
 }

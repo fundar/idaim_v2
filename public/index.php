@@ -51,35 +51,43 @@
 						<span class="hero-text l7">mejores prácticas</span>
 						<span class="hero-text l8">Nacionales e Internacionales</span>
 					</div>
+					<div id="mapita"></div>
 				</div>
 			</section>
 
 			<section id="nacional" class="sec sec-a">
 				<div class="container cf">
-					<div id="texto-variable">
-						<h3 id="nombre-variable">IDAIM</h3>
-						<p id="descripcion-variable" style="display:none;"></p>
-					</div>
+					<h3 id="nombre-variable">IDAIM</h3>
 
 					<div class="texto-total" id="total-nacional-cont">
 						<h2 class="pc" id="total-nacional"></h2>
 						<h3 id="total-nombre">Promedio Nacional</h3>
 					</div>
 
-					<div id="graph-total">
+					<div id="graph-total"></div>
+
+					<div class="cf">
+						<div id="total-ultimo" class="texto-total">
+							<div>El Peor</div>
+							<h2 class="pc"></h2>
+							<h3></h3>
+						</div>
+						<div id="total-primero" class="texto-total">
+							<div>El Mejor</div>
+							<h2 class="pc"></h2>
+							<h3></h3>
+						</div>
 					</div>
-					<div id="total-ultimo" class="texto-total">
-						<h2 class="pc"></h2>
-						<h3></h3>
-					</div>
-					<div id="total-primero" class="texto-total">
-						<h2 class="pc"></h2>
-						<h3></h3>
+
+					<div class="descripcion-variable">
+						<p id="descripcion-variable"></p>
 					</div>
 				</div>
 
 			<section id="indice-nacional" class="sec sec-b">
 				<div class="container">
+					<h1>Índice por Estado</h1>
+					<label><input type="checkbox" id="indice-nacional-toggle" />Ordenar</label>
 					<div id="graph-indices-nacional"></div>
 				</div>
 			</section>
