@@ -27,6 +27,29 @@ ul {
   margin: 0 auto;
 }
 
+#geolocated {
+  background: $verde;
+  padding: .5em 0;
+  position: fixed;
+  width: 100%;
+  & p, & a {
+    color: lighten($verde, 40%);
+    position: relative;
+    margin: 0;
+  }
+
+  #close-geolocated {
+    right: 0px;
+    display: block;
+    width: 1em;
+    height: 1em;
+    background: darken($verde, 20%);
+    float: right;
+  }
+
+  
+}
+
 header {
   border-top: 4px solid $verde;
 
