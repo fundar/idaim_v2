@@ -48,6 +48,6 @@ if (false && file_exists(dirname(__FILE__).'/geoip/geoip_city.php')) {
 
 
 function geo() {
-	$server = $_SERVER['HTTP_GEOIP_REGION'] ? $_SERVER['GEOIP_REGION'];
+	$server = $_SERVER['HTTP_GEOIP_REGION'] ? : $_SERVER['GEOIP_REGION'];
 	return $server ? '"'.($server-1).'"' : EDO;
 }
