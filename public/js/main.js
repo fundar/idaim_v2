@@ -297,7 +297,7 @@ $(function() {
   };
   IDAIM.load(['regiones', 'nombres', 'ejes', 'indicadores', 'nacional', 'estados', 'estados/nal', 'estructura']);
   return IDAIM.on('ready', function() {
-    var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, last, svg, totales, totalesNacional;
+    var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, last, operadores, svg, totales, totalesNacional;
     totales = IDAIM.get('nacional');
     estados = IDAIM.get('estados');
     $('#total-nacional').text(totales.total[32]);
@@ -365,6 +365,46 @@ $(function() {
       textoVariable.descripcion.text(descripcion);
       $('#total-nacional').text(data.valor);
       return $('#total-nombre').text(nombre);
+    });
+    operadores = {
+      asc: function(a, b) {
+        return a > b;
+      },
+      desc: function(a, b) {
+        return a < b;
+      }
+    };
+    $('.ordena').click(function(evt) {
+      var $el, compara, orden, prop, val, _ref;
+      evt.preventDefault();
+      $el = $(this);
+      _ref = $el.data('orden').split('-'), prop = _ref[0], orden = _ref[1];
+      if (prop === 'alpha') {
+        val = function(item) {
+          return IDAIM.estado(item[0]);
+        };
+      } else if (prop === 'val') {
+        val = function(item) {
+          return item[1];
+        };
+      }
+      compara = operadores[orden];
+      totalesNacional.sort(function(a, b) {
+        var mayor;
+        a = val(a);
+        b = val(b);
+        if (a === b) {
+          return 0;
+        }
+        mayor = compara(a, b);
+        if (mayor) {
+          return 1;
+        }
+        if (!mayor) {
+          return -1;
+        }
+      });
+      return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     });
     debounce_main = debounce(dibujaMain, 250);
     dibujaMain();

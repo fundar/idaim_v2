@@ -87,7 +87,22 @@
 			<section id="indice-nacional" class="sec sec-b">
 				<div class="container">
 					<h1>Índice por Estado</h1>
-					<label><input type="checkbox" id="indice-nacional-toggle" />Ordenar</label>
+					<label>
+						<input type="checkbox" id="indice-nacional-toggle" class="ordena" data-orden="alpha-asc" />
+						A-Z
+					</label>
+					<label>
+						<input type="checkbox" id="indice-nacional-toggle" class="ordena" data-orden="alpha-desc" />
+						Z-A
+					</label>
+					<label>
+						<input type="checkbox" id="indice-nacional-toggle" class="ordena" data-orden="val-asc" />
+						0-100
+					</label>
+					<label>
+						<input type="checkbox" id="indice-nacional-toggle" class="ordena" data-orden="val-desc" />
+						100-0
+					</label>
 					<div id="graph-indices-nacional"></div>
 				</div>
 			</section>

@@ -95,6 +95,34 @@ $ ()->
 			$('#total-nacional').text(data.valor)
 			$('#total-nombre').text(nombre)
 
+
+		operadores =
+			asc: (a,b)-> a > b
+			desc: (a,b)-> a < b
+
+
+
+		$('.ordena').click (evt)->
+			evt.preventDefault();
+			$el = $ this
+			[prop, orden] = $el.data('orden').split('-')
+
+			if prop=='alpha'
+				val = (item)-> IDAIM.estado(item[0])
+			else if prop=='val'
+				val = (item)-> item[1] 
+			compara = operadores[orden]
+			totalesNacional.sort (a,b)->
+				a = val(a)
+				b = val(b)
+				return 0 if a == b
+				mayor = compara(a, b)
+				return 1 if mayor
+				return -1 if !mayor
+
+			IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')
+
+
 		debounce_main = debounce dibujaMain, 250
 		dibujaMain()
 		$(window).resize debounce_main
