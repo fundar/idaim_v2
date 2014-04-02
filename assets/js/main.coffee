@@ -38,7 +38,8 @@ $ ()->
 		for edo,cal of dup
 			$svg = $("svg ##{edo}")
 			$svg.click ()->
-				alert("#{IDAIM.estado this.id}: #{this.cal}")
+				$('#estado-hover-nombre').text IDAIM.estado(this.id)
+				$('#estado-hover-calificacion').text IDAIM.get('nacional').total[this.id]+'%'
 			svg = $svg.get(0)
 			svg.cal = cal;
 			svg.style.fill = Color(cal)
@@ -120,6 +121,15 @@ $ ()->
 
 			IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')
 
+		$('.shape-estado').on {
+			mouseover: (evt)->
+				$('#estado-hover-nombre').text IDAIM.estado(this.id)
+				$('#estado-hover-calificacion').text IDAIM.get('nacional').total[this.id]+'%'
+			mouseout: (evt)->
+				$('#estado-hover-nombre').html '&nbsp;'
+				$('#estado-hover-calificacion').html '&nbsp;'
+
+		}
 
 		debounce_main = debounce dibujaMain, 250
 		dibujaMain()

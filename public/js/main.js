@@ -311,7 +311,8 @@ $(function() {
       cal = dup[edo];
       $svg = $("svg #" + edo);
       $svg.click(function() {
-        return alert("" + (IDAIM.estado(this.id)) + ": " + this.cal);
+        $('#estado-hover-nombre').text(IDAIM.estado(this.id));
+        return $('#estado-hover-calificacion').text(IDAIM.get('nacional').total[this.id] + '%');
       });
       svg = $svg.get(0);
       svg.cal = cal;
@@ -408,6 +409,16 @@ $(function() {
         }
       });
       return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
+    });
+    $('.shape-estado').on({
+      mouseover: function(evt) {
+        $('#estado-hover-nombre').text(IDAIM.estado(this.id));
+        return $('#estado-hover-calificacion').text(IDAIM.get('nacional').total[this.id] + '%');
+      },
+      mouseout: function(evt) {
+        $('#estado-hover-nombre').html('&nbsp;');
+        return $('#estado-hover-calificacion').html('&nbsp;');
+      }
     });
     debounce_main = debounce(dibujaMain, 250);
     dibujaMain();
