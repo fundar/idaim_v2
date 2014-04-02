@@ -88,7 +88,7 @@
 				<div class="container">
 					<h1>Índice por Estado</h1>
 					<label>
-						<input type="checkbox" id="indice-nacional-toggle" class="ordena" data-orden="alpha-asc" />
+						<input type="checkbox" id="indice-nacional-toggle" class="ordena" data-orden="alpha-asc" checked="checked" />
 						A-Z
 					</label>
 					<label>

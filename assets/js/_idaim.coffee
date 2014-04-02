@@ -173,6 +173,9 @@ IDAIM.indiceNacional = (variable, container)->
       .attr("transform", "translate("+m.left+"," + m.top + ")")
       .call(ejeY)
 
+	chart.selectAll('.tick')
+    	.attr 'class', (d)-> "tick estado-#{d.toLowerCase()}"
+
 	chart.append("g")
 		.attr("class", "eje x")
 		.attr("transform", "translate("+m.left+"," + (m.top) + ")")

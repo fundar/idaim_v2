@@ -103,15 +103,13 @@ $ ()->
 
 
 		$('.ordena').click (evt)->
-			evt.preventDefault();
-			$el = $ this
-			[prop, orden] = $el.data('orden').split('-')
-
-			if prop=='alpha'
-				val = (item)-> IDAIM.estado(item[0])
-			else if prop=='val'
-				val = (item)-> item[1] 
+			$('.ordena').not(this).removeAttr('checked')
+			[prop, orden] = $(this).data('orden').split('-')
+			
+			val = ((item)-> IDAIM.estado(item[0])) if prop=='alpha'
+			val = ((item)-> item[1]) if prop=='val'
 			compara = operadores[orden]
+
 			totalesNacional.sort (a,b)->
 				a = val(a)
 				b = val(b)

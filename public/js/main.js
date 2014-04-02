@@ -226,6 +226,9 @@ IDAIM.indiceNacional = function(variable, container) {
     return x(d) + m.left;
   }).attr("y1", m.top).attr("y2", h + m.top);
   chart.append("g").attr("class", "eje y").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeY);
+  chart.selectAll('.tick').attr('class', function(d) {
+    return "tick estado-" + (d.toLowerCase());
+  });
   return chart.append("g").attr("class", "eje x").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeX);
 };
 
@@ -375,18 +378,18 @@ $(function() {
       }
     };
     $('.ordena').click(function(evt) {
-      var $el, compara, orden, prop, val, _ref;
-      evt.preventDefault();
-      $el = $(this);
-      _ref = $el.data('orden').split('-'), prop = _ref[0], orden = _ref[1];
+      var compara, orden, prop, val, _ref;
+      $('.ordena').not(this).removeAttr('checked');
+      _ref = $(this).data('orden').split('-'), prop = _ref[0], orden = _ref[1];
       if (prop === 'alpha') {
-        val = function(item) {
+        val = (function(item) {
           return IDAIM.estado(item[0]);
-        };
-      } else if (prop === 'val') {
-        val = function(item) {
+        });
+      }
+      if (prop === 'val') {
+        val = (function(item) {
           return item[1];
-        };
+        });
       }
       compara = operadores[orden];
       totalesNacional.sort(function(a, b) {

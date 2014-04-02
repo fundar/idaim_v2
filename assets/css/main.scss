@@ -300,6 +300,11 @@ footer {
   .tick line {
     stroke : #000;
   }
+  .tick.estado-nacional {
+    font-weight: bold;
+    fill: #aaa;
+  }
+
   .domain {
     fill: none;
     stroke: #000;
