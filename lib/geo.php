@@ -37,7 +37,7 @@ $regiones = array(
 	'zac', //'Zacatecas'
 );
 
-if (file_exists(dirname(__FILE__).'/geoip/geoip_city.php')) {
+if (false && file_exists(dirname(__FILE__).'/geoip/geoip_city.php')) {
 	require_once 'geoip/geoip_city.php';
 	$gi = geoip_open("/usr/local/share/GeoIP/GeoLiteCity.dat",GEOIP_STANDARD);
 	$data = GeoIP_record_by_addr($gi, '189.212.40.234');
