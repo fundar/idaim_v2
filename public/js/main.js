@@ -256,6 +256,9 @@ IDAIM.emit = function(evt, data) {
 IDAIM.load = function(data, callback) {
   var done, error, file, index, load, r, ready, reqs;
   if (typeof data === 'string') {
+    if (IDAIM.db[data]) {
+      callback(IDAIM.db[data]);
+    }
     r = $.getJSON("data/" + data + ".json");
     return r.done(function(response) {
       IDAIM.db[data] = response;
@@ -265,6 +268,9 @@ IDAIM.load = function(data, callback) {
     reqs = [];
     for (index in data) {
       file = data[index];
+      if (IDAIM.db[file]) {
+        continue;
+      }
       r = $.getJSON("data/" + file + ".json");
       done = function(file) {
         var f;
@@ -409,6 +415,10 @@ $(function() {
         return dibujaMain();
       });
     };
+    $('#close-geolocated').click(function(evt) {
+      evt.preventDefault();
+      return $('#geolocated').slideUp(250);
+    });
     Geo.start().onLocation(locationAquired).set(window._geoip);
     $('#total-nacional').text(totales.total[32]);
     arr = [];

@@ -46,6 +46,10 @@ $ ()->
 				graficaTotal = data;
 				dibujaMain();
 
+		$('#close-geolocated').click (evt)->
+			evt.preventDefault();
+			$('#geolocated').slideUp(250);
+
 		Geo.start().onLocation(locationAquired).set(window._geoip)
 
 		$('#total-nacional').text totales.total[32]

@@ -199,6 +199,7 @@ IDAIM.emit = (evt, data)->
 IDAIM.load = (data, callback)->
 
 	if typeof data is 'string'
+		callback(IDAIM.db[data]) if IDAIM.db[data]
 		r = $.getJSON "data/#{data}.json"
 		r.done (response)->
 			IDAIM.db[data] = response;
@@ -206,6 +207,7 @@ IDAIM.load = (data, callback)->
 	else
 		reqs = []
 		for index,file of data
+			continue if IDAIM.db[file]
 			r = $.getJSON "data/#{file}.json"
 			done = (file)->
 				f = file

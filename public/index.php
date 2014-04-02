@@ -22,7 +22,7 @@
 				<div id="geolocated">
 					<div class="container">
 						<p>
-							Parece que nos estás visitando desde <span id="geo-nombre-estado"></span>. <a href="#" id="cambiar-estado">¿No es correcto?</a>.
+							Parece que nos estás visitando desde <span id="geo-nombre-estado"></span>. <!--a href="#" id="cambiar-estado">¿No es correcto?</a-->.
 							<a href="#" id="close-geolocated">x</a>
 						</p>
 					</div>
