@@ -127,7 +127,7 @@ module Assets
 
   def self.type path
     path = full_path path unless path.include? root
-    return :coffee if path =~ /\.(coffee)$/
+    return :js if path =~ /\.(coffee)$/
     return :js if path =~ /\.(js)$/
     return :css if path =~ /\.(s?css|sass)$/
   end
@@ -137,7 +137,7 @@ module Assets
       when :coffee
         exp = /#= require\s+([\w]+)/
       when :js
-        exp = /\/\/ require\s+([\w\d\-\_]+)/
+        exp = /[\/#=]{2} require\s+([\w\d\-\_]+)/
       when :css
         exp = /@import\s+"([^"]+)";/
     end

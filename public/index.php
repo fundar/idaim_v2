@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php require('../lib/geo.php'); ?>
+<?php require('../lib/geo.php'); 
+	$geoip = geo();
+?>
 <html>
 		<head>
 				<meta charset="utf-8">
@@ -14,7 +16,7 @@
 		</head>
 		<body>
 			<script>
-			window._geoip = <?= geo(); ?>;
+			window._geoip = <?= $geoip ?>;
 			</script>
 			<!--[if lt IE 8]>
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
@@ -22,8 +24,16 @@
 				<div id="geolocated">
 					<div class="container">
 						<p>
-							Parece que nos estás visitando desde <span id="geo-nombre-estado"></span>. <!--a href="#" id="cambiar-estado">¿No es correcto?</a-->.
-							<a href="#" id="close-geolocated">x</a>
+							Mostrando datos de <select id="geo-select-estado">
+							<? $edos = json_decode(file_get_contents('data/estados.json'));
+								foreach($edos as $id => $info):
+									$checked = $geoip == $id;
+									$checked = $geoip=='false' && $id==32? true : $checked;
+							?>
+							<option value="<?= $id ;?>" <?= $checked ? 'selected' : '' ;?> ><?= $info->n ;?>
+							</option>
+							<? endforeach; ?>
+							</select>.
 						</p>
 					</div>
 				</div>
