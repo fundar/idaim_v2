@@ -409,7 +409,6 @@ $(function(){
 		$.each(IDAIM.get(pathEstado).c, function(id, criterio){
 			data.push({id: id, valor: criterio*100});
 		});
-		//var data = d3.range(0, 196);
 
 		var criterios = g.selectAll(".criterio")
 			.data(data)
@@ -447,9 +446,51 @@ $(function(){
 
 		var indicadores = generaPoligonos('indicador', dataIndicadores);
 		var ejes = generaPoligonos('eje', dataEjes);
+
+		var resize = function() {
+			wC = $(container).width(),
+			w = wC - (m.r + m.l),
+			h = (w/4),
+			s = w / 28,
+			filas = 7;
+
+			if (w < 480) {
+				h = w;
+				s = w / 14;
+				filas = 14;
+			}
+
+			hC = h + (m.t + m.b);
+
+			g.attr("width", wC).attr("height", hC);
+			criterios
+				.attr('width', s)
+				.attr('height', s)
+				.attr('x', function(d) { return xSquare(d) * s + m.l;})
+				.attr('y', function(d) { return ySquare(d) * s + m.t;})
+
+			indicadores
+				.attr('d', polygonPath);
+
+			ejes
+				.attr('d', polygonPath);
+
+		}
+
+		var debounce = function(fn, timeout) {
+			var timeoutID = -1;
+			return function() {
+				if (timeoutID > -1) {
+		            window.clearTimeout(timeoutID);
+		        }
+		        return timeoutID = window.setTimeout(fn, timeout);
+			}
+		}
+
+		var debounce_grafica = debounce(resize, 250);
+		d3.select(window).on('resize', debounce_grafica);
 	};
 
 	IDAIM.load([pathEstado, 'estructura', 'ejes', 'indicadores', 'nombres']);
 	IDAIM.on('ready', idaimReady);
-
 });
