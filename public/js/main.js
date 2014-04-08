@@ -187,7 +187,7 @@ IDAIM.mainChart = function(dataSet, container, source) {
 };
 
 IDAIM.indiceNacional = function(variable, container) {
-  var $container, barHeight, chart, data, e, ejeX, ejeY, elementos, h, m, w, x, y, _i, _len;
+  var $container, barHeight, chart, cuantosTicks, data, e, ejeX, ejeY, elementos, h, m, w, x, y, _i, _len;
   data = [];
   for (_i = 0, _len = variable.length; _i < _len; _i++) {
     e = variable[_i];
@@ -208,6 +208,22 @@ IDAIM.indiceNacional = function(variable, container) {
   };
   w = $container.width() - (m.right + m.left);
   h = (barHeight + 1) * elementos;
+  cuantosTicks = function(w) {
+    var r;
+    console.log(w);
+    r = 5;
+    if (w > 400) {
+      r = 10;
+    }
+    if (w > 600) {
+      r = 20;
+    }
+    if (w > 800) {
+      r = 50;
+    }
+    console.log(r);
+    return r;
+  };
   x = d3.scale.linear().domain([0, 100]).range([0, w]);
   y = d3.scale.ordinal().domain(data.map(function(d) {
     return IDAIM.estado(d.id);
@@ -222,7 +238,7 @@ IDAIM.indiceNacional = function(variable, container) {
   }).attr("fill", function(d) {
     return Color(d.v);
   });
-  chart.selectAll(".linea").data(x.ticks()).enter().append("svg:line").attr("class", "linea").attr("x1", function(d) {
+  chart.selectAll(".linea").data(x.ticks(cuantosTicks($container.width()))).enter().append("svg:line").attr("class", "linea").attr("x1", function(d) {
     return x(d) + m.left;
   }).attr("x2", function(d) {
     return x(d) + m.left;

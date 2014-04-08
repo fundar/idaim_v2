@@ -65,6 +65,6 @@
 					<div id="copyright">&copy; 2014 Fundar. Todos los derechos reservados</div>
 				</div>
 			</footer>
-			<script src="/js/main.js"></script>
+			<script src="/js/estado.js"></script>
 		</body>
 </html>
