@@ -51,7 +51,6 @@ Geo::denied = (evt)->
 
 Geo::tryGeoLocation = ()->
 	return unless navigator.geolocation;
-	return unless confirm('¿Deseas que te localizemos para mostrar los datos de tu estado?')
 	navigator.geolocation.getCurrentPosition @aquired, @denied
 
 

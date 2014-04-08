@@ -1,3 +1,23 @@
+<?
+	$edo = trim($_GET['edo']);
+	if (!$edo || $edo=='nal') {
+		header('Location: /');
+		exit;
+	}
+	$estados = json_decode(file_get_contents('data/estados.json'));
+	$nombreEstado = '';
+
+	foreach($estados as $estado){
+		if ($estado->i == $edo) {
+			$nombreEstado = $estado->n;
+			break;
+		}
+	}
+	if (!$nombreEstado) {
+		header('Location: /');
+		exit;
+	}
+?>
 <!DOCTYPE html>
 <html>
 		<head>
@@ -6,7 +26,7 @@
 				<title>IDAIM - Índice del Derecho de Acceso a la Información en México</title>
 				<meta name="description" content="">
 				<meta name="viewport" content="width=device-width, initial-scale=1">
-				<link rel="stylesheet" href="css/estado.css">
+				<link rel="stylesheet" href="/css/estado.css">
 				<style type="text/css">
 
     </style>
@@ -15,9 +35,9 @@
 			<!--[if lt IE 8]>
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
 			<![endif]-->
-			<div id="geolocated">
-
-			</div>
+			<script>
+			window._edo = '<?= $edo ?>';
+			</script>
 
 			<header>
 				<div class="container">
@@ -40,6 +60,8 @@
 
 
 			<div class="container">
+				
+				<h1><?= $nombreEstado ;?></h1>
 				<div id="graficaEstado"></div>
 			</div>
 			

@@ -275,7 +275,7 @@ IDAIM.load = function(data, callback) {
     if (IDAIM.db[data]) {
       callback(IDAIM.db[data]);
     }
-    r = $.getJSON("data/" + data + ".json");
+    r = $.getJSON("/data/" + data + ".json");
     return r.done(function(response) {
       IDAIM.db[data] = response;
       return callback(response);
@@ -287,7 +287,7 @@ IDAIM.load = function(data, callback) {
       if (IDAIM.db[file]) {
         continue;
       }
-      r = $.getJSON("data/" + file + ".json");
+      r = $.getJSON("/data/" + file + ".json");
       done = function(file) {
         var f;
         f = file;
@@ -377,9 +377,6 @@ Geo.prototype.denied = function(evt) {
 
 Geo.prototype.tryGeoLocation = function() {
   if (!navigator.geolocation) {
-    return;
-  }
-  if (!confirm('¿Deseas que te localizemos para mostrar los datos de tu estado?')) {
     return;
   }
   return navigator.geolocation.getCurrentPosition(this.aquired, this.denied);
