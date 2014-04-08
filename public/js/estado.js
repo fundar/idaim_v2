@@ -315,7 +315,7 @@ IDAIM.load = function(data, callback) {
 
 $(function(){
 
-	window._edo = window._edo || 'dur';
+	window._edo = window._edo || 'mor';
 	var pathEstado = 'estados/'+window._edo;
 	var idaimReady = function(){
 
@@ -323,7 +323,7 @@ $(function(){
 
 		$(container).empty();
 
-		var m = {t: 1, r: 1, b: 1, l: 1},
+		var m = {t: 2, r: 2, b: 2, l: 2},
 			wC = $(container).width(),
 			w = wC - (m.r + m.l),
 			h = (w/4),
@@ -394,7 +394,15 @@ $(function(){
 			.enter().append("path")
 			.attr('class', clase)
 			.attr('fill', function(d) {return Color(d.valor); })
-			.attr('d', polygonPath);
+			.attr('d', polygonPath)
+			.on('click', function(d) {
+				selectors = '.'+clase;
+				if (clase == 'eje') {
+					selectors = '.eje, .indicador';
+				}
+				d3.selectAll(selectors).classed('activo', 0);
+				d3.select(this).classed('activo', 1);
+			});
 		};
 
 		var data = [];
