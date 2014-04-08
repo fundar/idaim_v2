@@ -206,7 +206,7 @@ IDAIM.load = (data, callback)->
 
 	if typeof data is 'string'
 		callback(IDAIM.db[data]) if IDAIM.db[data]
-		r = $.getJSON "data/#{data}.json"
+		r = $.getJSON "/data/#{data}.json"
 		r.done (response)->
 			IDAIM.db[data] = response;
 			callback(response);
@@ -214,7 +214,7 @@ IDAIM.load = (data, callback)->
 		reqs = []
 		for index,file of data
 			continue if IDAIM.db[file]
-			r = $.getJSON "data/#{file}.json"
+			r = $.getJSON "/data/#{file}.json"
 			done = (file)->
 				f = file
 				return (data)->
