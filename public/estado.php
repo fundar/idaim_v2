@@ -39,8 +39,8 @@
 			</header>
 
 
-			<div id="container">
-				
+			<div class="container">
+				<div id="graficaEstado"></div>
 			</div>
 			
 
