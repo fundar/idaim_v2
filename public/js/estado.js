@@ -314,7 +314,6 @@ IDAIM.load = function(data, callback) {
 // require _idaim
 
 $(function(){
-
 	window._edo = window._edo || 'mor';
 	var pathEstado = 'estados/'+window._edo;
 	var idaimReady = function(){
@@ -432,7 +431,7 @@ $(function(){
 				d3.selectAll('.criterio').classed('activo', 0);
 				d3.select(this).classed('activo', 1);
 				$('#calificacion').text(d.valor+'%');
-				$('#nombre').text(IDAIM.get('nombres').criterio[d.id])
+				$('#nombre').text(IDAIM.get('nombres').criterio[d.id]);
 				$('#descripcion').text(' ');
 			});
 
@@ -504,6 +503,10 @@ $(function(){
 		var debounce_grafica = debounce(resize, 250);
 		d3.select(window).on('resize', debounce_grafica);
 	};
+
+	$('#calificacion').text('0%');
+	$('#nombre').text('IDAIM');
+	$('#descripcion').text(' ');
 
 	IDAIM.load([pathEstado, 'estructura', 'ejes', 'indicadores', 'nombres']);
 	IDAIM.on('ready', idaimReady);
