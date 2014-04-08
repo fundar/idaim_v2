@@ -1,0 +1,29 @@
+//
+// Estilo para hoja de estado
+//
+
+@import "main";
+
+.criterio {
+	stroke: #000;
+	stroke-width: 1;
+	fill: #aaa;
+}
+
+.eje {
+	stroke: #000;
+	stroke-width: 1;
+	fill: #fff;
+	fill-opacity: 0.5;
+	cursor: pointer;
+
+	&:hover {
+		fill-opacity: 0.8;
+	}
+}
+.indicador {
+	stroke: #000;
+	stroke-width: 1;
+	fill: #fff;
+	fill-opacity: 0.5;
+}

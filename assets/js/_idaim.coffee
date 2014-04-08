@@ -130,6 +130,14 @@ IDAIM.indiceNacional = (variable, container)->
 	w = $container.width() - (m.right + m.left)
 	h = ((barHeight + 1) * elementos)
 
+	cuantosTicks = (w)->
+		console.log(w)
+		r = 5
+		if w > 400 then r = 10
+		if w > 600 then r = 20
+		if w > 800 then r = 50
+		console.log(r)
+		r
 
 	x = d3.scale.linear()
 		.domain([0, 100])
@@ -162,7 +170,7 @@ IDAIM.indiceNacional = (variable, container)->
 		.attr("fill", (d)->Color(d.v))
 
 	chart.selectAll(".linea")
-		.data(x.ticks()).enter()
+		.data(x.ticks(cuantosTicks($container.width()))).enter()
 		.append("svg:line")
 		.attr("class", "linea")
 		.attr("x1", (d)-> x(d) + m.left).attr("x2", (d)-> x(d) + m.left)
