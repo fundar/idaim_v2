@@ -396,9 +396,9 @@ $(function(){
 			.attr('fill', function(d) {return Color(d.valor); })
 			.attr('d', polygonPath)
 			.on('click', function(d) {
-				selectors = '.'+clase;
+				selectors = '.indicador, .criterio';
 				if (clase == 'eje') {
-					selectors = '.eje, .indicador';
+					selectors = '.eje, .indicador, .criterio';
 				}
 				d3.selectAll(selectors).classed('activo', 0);
 				d3.select(this).classed('activo', 1);
@@ -419,7 +419,11 @@ $(function(){
 			.attr('height', s)
 			.attr('fill', function(d) { return Color(d.valor); } )
 			.attr('x', function(d) { return xSquare(d) * s + m.l;})
-			.attr('y', function(d) { return ySquare(d) * s + m.t;});
+			.attr('y', function(d) { return ySquare(d) * s + m.t;})
+			.on('click', function(d) {
+				d3.selectAll('.criterio').classed('activo', 0);
+				d3.select(this).classed('activo', 1);
+			});
 
 		var dataIndicadores = [];
 		var dataEjes = [];
