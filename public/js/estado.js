@@ -210,7 +210,6 @@ IDAIM.indiceNacional = function(variable, container) {
   h = (barHeight + 1) * elementos;
   cuantosTicks = function(w) {
     var r;
-    console.log(w);
     r = 5;
     if (w > 400) {
       r = 10;
@@ -221,7 +220,6 @@ IDAIM.indiceNacional = function(variable, container) {
     if (w > 800) {
       r = 50;
     }
-    console.log(r);
     return r;
   };
   x = d3.scale.linear().domain([0, 100]).range([0, w]);

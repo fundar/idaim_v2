@@ -12,8 +12,6 @@ debounce = (fn, timeout)->
 
 $ ()->
 
-	$('#geolocated').slideUp(0)
-
 	$graphTotal = $ '#graph-total'
 	textoVariable =
 		nombre: $('#nombre-variable')
@@ -37,8 +35,8 @@ $ ()->
 		totalNombre = 'Promedio Nacional';
 
 		locationAquired = (data)->
-			$('#geolocated').slideDown();
-			$('#geo-nombre-estado').text(data.n);
+			console.log(data.id);
+			$('#geo-select-estado').val(data.id);
 			$('#total-nacional').text totales.total[data.id]
 			$('#total-nombre').text data.n
 			totalNombre = data.n
@@ -46,9 +44,6 @@ $ ()->
 				graficaTotal = data;
 				dibujaMain();
 
-		$('#close-geolocated').click (evt)->
-			evt.preventDefault();
-			$('#geolocated').slideUp(250);
 
 		Geo.start().onLocation(locationAquired).set(window._geoip)
 

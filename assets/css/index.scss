@@ -45,6 +45,18 @@
   &.l5 { font-size: 38px;}
 }
 
+#geolocated {
+  background: $verde;
+  padding: .5em 0;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  & p, & a {
+    color: lighten($verde, 40%);
+    position: relative;
+    margin: 0;
+  }
+}
 
 #nombre-variable {
   font-size: 18px;

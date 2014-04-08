@@ -210,7 +210,6 @@ IDAIM.indiceNacional = function(variable, container) {
   h = (barHeight + 1) * elementos;
   cuantosTicks = function(w) {
     var r;
-    console.log(w);
     r = 5;
     if (w > 400) {
       r = 10;
@@ -221,7 +220,6 @@ IDAIM.indiceNacional = function(variable, container) {
     if (w > 800) {
       r = 50;
     }
-    console.log(r);
     return r;
   };
   x = d3.scale.linear().domain([0, 100]).range([0, w]);
@@ -409,7 +407,6 @@ debounce = function(fn, timeout) {
 
 $(function() {
   var $graphTotal, textoVariable;
-  $('#geolocated').slideUp(0);
   $graphTotal = $('#graph-total');
   textoVariable = {
     nombre: $('#nombre-variable'),
@@ -423,8 +420,8 @@ $(function() {
     graficaTotal = IDAIM.get('estados/nal');
     totalNombre = 'Promedio Nacional';
     locationAquired = function(data) {
-      $('#geolocated').slideDown();
-      $('#geo-nombre-estado').text(data.n);
+      console.log(data.id);
+      $('#geo-select-estado').val(data.id);
       $('#total-nacional').text(totales.total[data.id]);
       $('#total-nombre').text(data.n);
       totalNombre = data.n;
@@ -433,10 +430,6 @@ $(function() {
         return dibujaMain();
       });
     };
-    $('#close-geolocated').click(function(evt) {
-      evt.preventDefault();
-      return $('#geolocated').slideUp(250);
-    });
     Geo.start().onLocation(locationAquired).set(window._geoip);
     $('#total-nacional').text(totales.total[32]);
     arr = [];

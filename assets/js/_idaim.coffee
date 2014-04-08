@@ -131,12 +131,10 @@ IDAIM.indiceNacional = (variable, container)->
 	h = ((barHeight + 1) * elementos)
 
 	cuantosTicks = (w)->
-		console.log(w)
 		r = 5
 		if w > 400 then r = 10
 		if w > 600 then r = 20
 		if w > 800 then r = 50
-		console.log(r)
 		r
 
 	x = d3.scale.linear()
