@@ -5,22 +5,30 @@
 @import "main";
 
 .criterio {
-	stroke: #000;
-	stroke-width: 1;
+	stroke: #444;
+	stroke-width: 2;
+	fill-opacity: 0.75;
+	cursor: pointer;
+
+	&:hover, &.activo {
+		fill-opacity: 1;
+	}
 }
 
-.eje {
+.eje, .indicador {
 	stroke: #000;
-	stroke-width: 1;
-	fill-opacity: 0.95;
+	stroke-width: 2;
+	fill-opacity: 0.75;
 	cursor: pointer;
 
 	&:hover {
 		fill-opacity: 0.5;
 	}
+
+	&.activo {
+		display: none;	
+	}
 }
 .indicador {
-	stroke: #000;
-	stroke-width: 1;
-	fill-opacity: 0.5;
+	stroke: #222;
 }
