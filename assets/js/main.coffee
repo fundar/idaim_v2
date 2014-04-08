@@ -44,6 +44,16 @@ $ ()->
 				graficaTotal = data;
 				dibujaMain();
 
+		$('#geo-select-estado').on 'change', (evt)->
+			Geo.instance.cancelGeolocation();
+			edo = estados[this.value]
+			$('#total-nacional').text totales.total[this.value]
+			$('#total-nombre').text edo.n
+			totalNombre = edo.n
+			IDAIM.load "estados/#{edo.i}", (data)->
+				graficaTotal = data;
+				dibujaMain();
+
 
 		Geo.start().onLocation(locationAquired).set(window._geoip)
 
