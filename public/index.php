@@ -13,11 +13,19 @@
     </style>
 		</head>
 		<body>
+			<script>
+			window._geoip = <?= geo(); ?>;
+			</script>
 			<!--[if lt IE 8]>
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
 			<![endif]-->
 				<div id="geolocated">
-
+					<div class="container">
+						<p>
+							Parece que nos estás visitando desde <span id="geo-nombre-estado"></span>. <!--a href="#" id="cambiar-estado">¿No es correcto?</a-->.
+							<a href="#" id="close-geolocated">x</a>
+						</p>
+					</div>
 				</div>
 
 			<header>

@@ -147,10 +147,13 @@
   g.activo rect {
     fill-opacity: 1;
     stroke: #fff;
+    stroke-width: 8;
+    z-index: 1000;
   }
   rect {
     stroke: #fff;
-    fill-opacity: .7;
+    fill-opacity: 1;
+
     cursor: pointer;
 
     @include transition(fill-opacity 0.2s linear);

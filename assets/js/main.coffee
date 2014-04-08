@@ -2,7 +2,7 @@
 #= require _d3
 #= require _color
 #= require _idaim
-# require _
+#= require _geo
 
 debounce = (fn, timeout)->
 	timeoutID = -1;
@@ -11,6 +11,8 @@ debounce = (fn, timeout)->
 		timeoutID = window.setTimeout fn, timeout
 
 $ ()->
+
+	$('#geolocated').slideUp(0)
 
 	$graphTotal = $ '#graph-total'
 	textoVariable =
@@ -31,6 +33,25 @@ $ ()->
 	IDAIM.on 'ready', ()->
 		totales = IDAIM.get('nacional')
 		estados = IDAIM.get('estados')
+		graficaTotal = IDAIM.get('estados/nal')
+		totalNombre = 'Promedio Nacional';
+
+		locationAquired = (data)->
+			$('#geolocated').slideDown();
+			$('#geo-nombre-estado').text(data.n);
+			$('#total-nacional').text totales.total[data.id]
+			$('#total-nombre').text data.n
+			totalNombre = data.n
+			IDAIM.load "estados/#{data.i}", (data)->
+				graficaTotal = data;
+				dibujaMain();
+
+		$('#close-geolocated').click (evt)->
+			evt.preventDefault();
+			$('#geolocated').slideUp(250);
+
+		Geo.start().onLocation(locationAquired).set(window._geoip)
+
 		$('#total-nacional').text totales.total[32]
 		arr = []
 		dup = JSON.parse(JSON.stringify totales.total)
@@ -74,16 +95,17 @@ $ ()->
 		dibujaMain = ()->
 			ww = Math.min $('#mapa .container').width(), 1000
 			$('#mapa svg').width(ww).height(ww*0.8)
-			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal')
+			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), graficaTotal
 			IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')
 		
 		IDAIM.on 'mainChart.click', (data)->
 			descripcion = false
 			nombre = "Calificación de #{data.tipo}"
+			console.log data.tipo == 'total'
 			switch data.tipo
 				when 'total'
-					nombre = 'Promedio Nacional'
 					console.log 'total'
+					nombre = totalNombre
 				when 'eje'
 					descripcion = IDAIM.get('ejes')[data.id]
 				when 'indicador'

@@ -36,3 +36,18 @@ $regiones = array(
 	'yuc', //'Yucatán',
 	'zac', //'Zacatecas'
 );
+
+if (false && file_exists(dirname(__FILE__).'/geoip/geoip_city.php')) {
+	require_once 'geoip/geoip_city.php';
+	$gi = geoip_open("/usr/local/share/GeoIP/GeoLiteCity.dat",GEOIP_STANDARD);
+	$data = GeoIP_record_by_addr($gi, '189.212.40.234');
+	define('EDO', $data->region-1);
+} else {
+	define('EDO', 'false');
+}
+
+
+function geo() {
+	$server = $_SERVER['HTTP_GEOIP_REGION'] ? : $_SERVER['GEOIP_REGION'];
+	return $server ? '"'.($server-1).'"' : EDO;
+}

@@ -37,6 +37,8 @@ Colores = {};
 
 Colores.lineales = [['73161A', '8B1B1F', 'A31F25', 'BB242A', 'D3282F'], ['E87321', 'ED861E', 'F3981A', 'F8AB17', 'FDBD13'], ['8AC65A', '81BD47', '78B434', '6FAA20', '66A10D']];
 
+Colores.lineales = [['E2031E', 'DB3333', 'E64C4B', 'F26860', 'F98E78'], ['FED900', 'FBE34D', 'FCD786', 'FCE586', 'FEF9C4'].reverse(), ['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse()];
+
 Color = ColorStuff.lineal;
 
 var IDAIM;
@@ -253,30 +255,128 @@ IDAIM.emit = function(evt, data) {
   return _results;
 };
 
-IDAIM.load = function(data) {
+IDAIM.load = function(data, callback) {
   var done, error, file, index, load, r, ready, reqs;
-  reqs = [];
-  for (index in data) {
-    file = data[index];
-    r = $.getJSON("data/" + file + ".json");
-    done = function(file) {
-      var f;
-      f = file;
-      return function(data) {
-        return IDAIM.db[f] = data;
+  if (typeof data === 'string') {
+    if (IDAIM.db[data]) {
+      callback(IDAIM.db[data]);
+    }
+    r = $.getJSON("data/" + data + ".json");
+    return r.done(function(response) {
+      IDAIM.db[data] = response;
+      return callback(response);
+    });
+  } else {
+    reqs = [];
+    for (index in data) {
+      file = data[index];
+      if (IDAIM.db[file]) {
+        continue;
+      }
+      r = $.getJSON("data/" + file + ".json");
+      done = function(file) {
+        var f;
+        f = file;
+        return function(data) {
+          return IDAIM.db[f] = data;
+        };
       };
+      r.done(done(file));
+      reqs.push(r);
+    }
+    load = $.when.apply($, reqs);
+    ready = function() {
+      return IDAIM.emit('ready');
     };
-    r.done(done(file));
-    reqs.push(r);
+    error = function(e, c, d) {
+      return console.log(e, c, d);
+    };
+    return load.then(ready, error);
   }
-  load = $.when.apply($, reqs);
-  ready = function() {
-    return IDAIM.emit('ready');
-  };
-  error = function(e, c, d) {
-    return console.log(e, c, d);
-  };
-  return load.then(ready, error);
+};
+
+var Geo;
+
+Geo = function() {
+  this.callback = null;
+  return this;
+};
+
+Geo.instance = null;
+
+Geo.start = function() {
+  Geo.instance = new Geo();
+  return Geo.instance;
+};
+
+Geo.prototype.set = function(iso) {
+  if (!iso) {
+    return this.tryGeoLocation();
+  } else {
+    return this.locationAquired(iso);
+  }
+};
+
+Geo.prototype.aquired = function(evt) {
+  var r, req;
+  r = evt.coords;
+  req = $.ajax({
+    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + r.latitude + "," + r.longitude + "&sensor=false&language=es_mx"
+  });
+  req.done(function(d) {
+    var candidato, edo, err, estado, id, _ref;
+    try {
+      edo = d.results[d.results.length - 2].formatted_address;
+    } catch (_error) {
+      err = _error;
+      return alert('No te pude localizar');
+    }
+    estado = false;
+    candidato = edo.split(',')[0];
+    _ref = IDAIM.get('estados');
+    for (id in _ref) {
+      edo = _ref[id];
+      if (edo.n === candidato) {
+        estado = id;
+        break;
+      }
+    }
+    if (estado) {
+      return Geo.instance.locationAquired(id);
+    }
+  });
+  return req.fail(function(a, b) {
+    return console.log(a, b);
+  });
+};
+
+Geo.prototype.denied = function(evt) {
+  return true;
+};
+
+Geo.prototype.tryGeoLocation = function() {
+  if (!navigator.geolocation) {
+    return;
+  }
+  if (!confirm('¿Deseas que te localizemos para mostrar los datos de tu estado?')) {
+    return;
+  }
+  return navigator.geolocation.getCurrentPosition(this.aquired, this.denied);
+};
+
+Geo.prototype.onLocation = function(cb) {
+  this.callback = cb;
+  return this;
+};
+
+Geo.prototype.locationAquired = function(code) {
+  var data;
+  if (!this.callback) {
+    return;
+  }
+  data = IDAIM.get('estados')[code];
+  data['id'] = code;
+  return this.callback(data);
 };
 var debounce;
 
@@ -293,6 +393,7 @@ debounce = function(fn, timeout) {
 
 $(function() {
   var $graphTotal, textoVariable;
+  $('#geolocated').slideUp(0);
   $graphTotal = $('#graph-total');
   textoVariable = {
     nombre: $('#nombre-variable'),
@@ -300,9 +401,27 @@ $(function() {
   };
   IDAIM.load(['regiones', 'nombres', 'ejes', 'indicadores', 'nacional', 'estados', 'estados/nal', 'estructura']);
   return IDAIM.on('ready', function() {
-    var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, last, operadores, svg, totales, totalesNacional;
+    var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, graficaTotal, last, locationAquired, operadores, svg, totalNombre, totales, totalesNacional;
     totales = IDAIM.get('nacional');
     estados = IDAIM.get('estados');
+    graficaTotal = IDAIM.get('estados/nal');
+    totalNombre = 'Promedio Nacional';
+    locationAquired = function(data) {
+      $('#geolocated').slideDown();
+      $('#geo-nombre-estado').text(data.n);
+      $('#total-nacional').text(totales.total[data.id]);
+      $('#total-nombre').text(data.n);
+      totalNombre = data.n;
+      return IDAIM.load("estados/" + data.i, function(data) {
+        graficaTotal = data;
+        return dibujaMain();
+      });
+    };
+    $('#close-geolocated').click(function(evt) {
+      evt.preventDefault();
+      return $('#geolocated').slideUp(250);
+    });
+    Geo.start().onLocation(locationAquired).set(window._geoip);
     $('#total-nacional').text(totales.total[32]);
     arr = [];
     dup = JSON.parse(JSON.stringify(totales.total));
@@ -345,17 +464,18 @@ $(function() {
       var ww;
       ww = Math.min($('#mapa .container').width(), 1000);
       $('#mapa svg').width(ww).height(ww * 0.8);
-      IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), IDAIM.get('estados/nal'));
+      IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), graficaTotal);
       return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     };
     IDAIM.on('mainChart.click', function(data) {
       var action, descripcion, nombre;
       descripcion = false;
       nombre = "Calificación de " + data.tipo;
+      console.log(data.tipo === 'total');
       switch (data.tipo) {
         case 'total':
-          nombre = 'Promedio Nacional';
           console.log('total');
+          nombre = totalNombre;
           break;
         case 'eje':
           descripcion = IDAIM.get('ejes')[data.id];
