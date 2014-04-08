@@ -331,6 +331,10 @@ Geo.prototype.set = function(iso) {
   }
 };
 
+Geo.prototype.cancelGeolocation = function() {
+  return true;
+};
+
 Geo.prototype.aquired = function(evt) {
   var r, req;
   r = evt.coords;
@@ -359,6 +363,9 @@ Geo.prototype.aquired = function(evt) {
       return Geo.instance.locationAquired(id);
     }
   });
+  this.cancelGeolocation = function() {
+    return req.abort();
+  };
   return req.fail(function(a, b) {
     return console.log(a, b);
   });
@@ -430,6 +437,18 @@ $(function() {
         return dibujaMain();
       });
     };
+    $('#geo-select-estado').on('change', function(evt) {
+      var edo;
+      Geo.instance.cancelGeolocation();
+      edo = estados[this.value];
+      $('#total-nacional').text(totales.total[this.value]);
+      $('#total-nombre').text(edo.n);
+      totalNombre = edo.n;
+      return IDAIM.load("estados/" + edo.i, function(data) {
+        graficaTotal = data;
+        return dibujaMain();
+      });
+    });
     Geo.start().onLocation(locationAquired).set(window._geoip);
     $('#total-nacional').text(totales.total[32]);
     arr = [];

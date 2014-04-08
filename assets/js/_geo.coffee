@@ -15,6 +15,9 @@ Geo::set = (iso)->
 	else
 		@locationAquired(iso)
 
+Geo::cancelGeolocation = ()->
+	true;
+
 Geo::aquired = (evt)->
 	r = evt.coords;
 	req = $.ajax({
@@ -36,6 +39,9 @@ Geo::aquired = (evt)->
 
 		if estado
 			Geo.instance.locationAquired(id)
+
+	@cancelGeolocation = ()->
+		req.abort();
 
 	req.fail (a,b)->
 		console.log a,b
