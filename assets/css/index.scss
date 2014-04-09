@@ -6,7 +6,7 @@
 
 #hero {
   position: relative;
-  z-index: 900;
+  z-index: 800;
   background: url(/img/bg-featured.jpg) center center no-repeat;
   @include clearfix;
 }
@@ -46,8 +46,14 @@
   &.l5 { font-size: 38px;}
 }
 
+header {
+  padding-top: 30px;
+}
+
 #geolocated {
   background: $verde;
+  background: transparentize($verde, 0.05);
+
   padding: .5em 0;
   position: fixed;
   z-index: 1000;
@@ -200,6 +206,17 @@
   .linea {
     stroke: #fff;
     opacity: 0.3
+  }
+
+  .eje.y text {
+    cursor: pointer;
+    -webkit-user-select: none;
+    &:hover {
+      font-weight: bold;
+    }
+    &:active {
+      fill: $verde;
+    }
   }
 }
 
