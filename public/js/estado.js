@@ -49,6 +49,17 @@ IDAIM.cbs = {};
 
 IDAIM.db = {};
 
+IDAIM.codEstado = function(nombre) {
+  var datum, index, _ref;
+  _ref = IDAIM.get('estados');
+  for (index in _ref) {
+    datum = _ref[index];
+    if (nombre === datum.n) {
+      return datum.i;
+    }
+  }
+};
+
 IDAIM.estado = function(index) {
   return IDAIM.get('estados')[index].n;
 };
@@ -241,7 +252,11 @@ IDAIM.indiceNacional = function(variable, container) {
   }).attr("x2", function(d) {
     return x(d) + m.left;
   }).attr("y1", m.top).attr("y2", h + m.top);
-  chart.append("g").attr("class", "eje y").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeY);
+  chart.append("g").attr("class", "eje y").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeY).selectAll('text').on('click', function(d) {
+    var estado;
+    estado = '/estado/' + IDAIM.codEstado(d);
+    return window.location.href = estado;
+  });
   chart.selectAll('.tick').attr('class', function(d) {
     return "tick estado-" + (d.toLowerCase());
   });
@@ -314,7 +329,6 @@ IDAIM.load = function(data, callback) {
 // require _idaim
 
 $(function(){
-
 	window._edo = window._edo || 'mor';
 	var pathEstado = 'estados/'+window._edo;
 	var idaimReady = function(){
@@ -396,12 +410,21 @@ $(function(){
 			.attr('fill', function(d) {return Color(d.valor); })
 			.attr('d', polygonPath)
 			.on('click', function(d) {
-				selectors = '.indicador, .criterio';
 				if (clase == 'eje') {
 					selectors = '.eje, .indicador, .criterio';
+					descripcion = IDAIM.get('ejes')[d.id];
+					nombre = IDAIM.get('nombres').eje[d.id];
+				} else {
+					selectors = '.indicador, .criterio';
+					descripcion = IDAIM.get('indicadores')[d.id];
+					nombre = IDAIM.get('nombres').indicador[d.id];
 				}
 				d3.selectAll(selectors).classed('activo', 0);
 				d3.select(this).classed('activo', 1);
+
+				$('#calificacion').text(d.valor+'%');
+				$('#nombre').text(nombre)
+				$('#descripcion').text(descripcion);
 			});
 		};
 
@@ -422,6 +445,9 @@ $(function(){
 			.on('click', function(d) {
 				d3.selectAll('.criterio').classed('activo', 0);
 				d3.select(this).classed('activo', 1);
+				$('#calificacion').text(d.valor+'%');
+				$('#nombre').text(IDAIM.get('nombres').criterio[d.id]);
+				$('#descripcion').text(' ');
 			});
 
 		var dataIndicadores = [];
@@ -448,6 +474,7 @@ $(function(){
 		var ejes = generaPoligonos('eje', dataEjes);
 
 		var resize = function() {
+			// Calculamos tamaños nuevos
 			wC = $(container).width(),
 			w = wC - (m.r + m.l),
 			h = (w/4),
@@ -462,16 +489,17 @@ $(function(){
 
 			hC = h + (m.t + m.b);
 
-			g.attr("width", wC).attr("height", hC);
+			// Resizeamos
+			g
+				.attr("width", wC)
+				.attr("height", hC);
 			criterios
 				.attr('width', s)
 				.attr('height', s)
 				.attr('x', function(d) { return xSquare(d) * s + m.l;})
 				.attr('y', function(d) { return ySquare(d) * s + m.t;})
-
 			indicadores
 				.attr('d', polygonPath);
-
 			ejes
 				.attr('d', polygonPath);
 

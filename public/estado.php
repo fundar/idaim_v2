@@ -17,6 +17,7 @@
 		header('Location: /');
 		exit;
 	}
+	$datos = json_decode(file_get_contents('data/estados/'.$edo.'.json'));
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,12 +42,12 @@
 
 			<header>
 				<div class="container">
-					<a href="#" id="logo">IDAIM</a>
+					<a href="/" id="logo">IDAIM</a>
 					<nav id="nav-principal">
 							<ul class="nav-paginas">
-									<li><a href="">Quiénes somos</a></li>
-									<li><a href="">Acerca de</a></li>
-									<li><a href="">Contacto</a></li>
+									<li><a href="/quienes-somos">Quiénes somos</a></li>
+									<li><a href="/acerca-de">Acerca de</a></li>
+									<li><a href="/contacto">Contacto</a></li>
 							</ul>
 
 							<ul class="nav-social">
@@ -59,23 +60,25 @@
 			</header>
 
 
-			<div class="container">
-				
+			<article class="container estado">				
 				<h1><?= $nombreEstado ;?></h1>
 				<div id="graficaEstado"></div>
-			</div>
+				<div id="calificacion"><?= $datos->t ?>%</div>
+				<div id="nombre">IDAIM</div>
+				<div id="descripcion"></div>
+			</article>
 			
 
 			<footer>
 				<div class="container">
-					<a href="#" id="logo-fundar"></a>
+					<a href="http://fundar.org.mx" id="logo-fundar"></a>
 
 					<nav id="nav-footer">
 							<ul class="footer-paginas">
-									<li><a href="">Quiénes somos</a></li>
-									<li><a href="">Acerca de</a></li>
-									<li><a href="">Contacto</a></li>
-									<li><a href="">IDAIM 2010</a></li>
+									<li><a href="/quienes-somos">Quiénes somos</a></li>
+									<li><a href="/acerca-de">Acerca de</a></li>
+									<li><a href="/contacto">Contacto</a></li>
+									<li><a href="http://www.checatuley.org.mx">IDAIM 2010</a></li>
 							</ul>
 
 							<ul class="footer-otros">

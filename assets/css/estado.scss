@@ -4,6 +4,14 @@
 
 @import "main";
 
+.estado {
+	padding: 20px 0;
+	h1 {
+		font-size: 32px;
+		margin: 0;
+	}
+}
+
 .criterio {
 	stroke: #444;
 	stroke-width: 2;
@@ -34,4 +42,20 @@
 }
 .indicador {
 	stroke: #222;
+}
+
+#calificacion {
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1;
+
+	margin: 0;
+}
+#nombre {
+	font-size: 24px;
+	text-align: center;
+	line-height: 1.2;
+
+	margin: 10px 0;
 }
