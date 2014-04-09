@@ -519,10 +519,6 @@ $(function(){
 		d3.select(window).on('resize', debounce_grafica);
 	};
 
-	$('#calificacion').text('0%');
-	$('#nombre').text('IDAIM');
-	$('#descripcion').text(' ');
-
 	IDAIM.load([pathEstado, 'estructura', 'ejes', 'indicadores', 'nombres']);
 	IDAIM.on('ready', idaimReady);
 });
