@@ -24,7 +24,7 @@
 		<head>
 				<meta charset="utf-8">
 				<meta http-equiv="X-UA-Compatible" content="IE=edge">
-				<title>IDAIM - Índice del Derecho de Acceso a la Información en México</title>
+				<title>IDAIM <?= $nombreEstado ;?> - Índice del Derecho de Acceso a la Información en México</title>
 				<meta name="description" content="">
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<link rel="stylesheet" href="/css/estado.css">
@@ -61,6 +61,7 @@
 
 
 			<article class="container estado">				
+				<h2 class="posicion">#<?= $datos->pos ;?></h2>
 				<h1><?= $nombreEstado ;?></h1>
 				<div id="graficaEstado"></div>
 				<div id="calificacion"><?= $datos->t ?>%</div>

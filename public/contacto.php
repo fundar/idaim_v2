@@ -38,31 +38,49 @@
 				<article class="container">
 					<h1>Contacto</h1>
 
+					<?
+						$fields = ['nombre', 'email', 'mensaje'];
+
+						if ($_POST['nombre']):
+							
+							$data = (object) array_combine($fields, array_map(function($f){
+								return htmlentities(trim($_POST[$f]));
+							}, $fields));
+							
+					?>
+
+					<section>
+						<p>¡Gracias por tu comentario!</p>
+					</section>
+
+					<? else: ?>
 					<section>
 						<p>Si deseas recibir mayor información lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ornare pharetra velit, et cursus mauris fringilla at. Ut adipiscing tristique erat in dapibus. Morbi quis ligula at sapien gravida cursus sed in odio. Suspendisse at sagittis eros, sit amet consectetur lorem. Pellentesque ut tristique nibh.</p>
 					</section>
 
 					<section>
-						<form>
+						<form method="post">
 							<fieldset>
-								<label>Nombre*</label>
-								<input name="nombre" type="text" />
+								<label for="nombre">Nombre*</label>
+								<input name="nombre" id="nombre" type="text" required />
 							</fieldset>
 
 							<fieldset>
-								<label>Email*</label>
-								<input name="email" type="email" />
+								<label for="email">Email*</label>
+								<input name="email" id="email" type="email" required />
 							</fieldset>
 
 							<fieldset>
-								<label>Mensaje</label>
-								<textarea name="mensaje"></textarea>
+								<label for="mensaje">Mensaje</label>
+								<textarea name="mensaje" id="mensaje"></textarea>
 							</fieldset>
 							<p class="help">* Son campos obligatorios</p>
 
 							<button type="submit">Enviar</button>
 						</form>
 					</section>
+					<? endif; ?>
+
 				</article>
 			</div>
 
