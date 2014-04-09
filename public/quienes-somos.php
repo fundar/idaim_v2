@@ -15,10 +15,6 @@
 			<!--[if lt IE 8]>
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
 			<![endif]-->
-			<script>
-			window._edo = '<?= $edo ?>';
-			</script>
-
 			<header>
 				<div class="container">
 					<a href="/" id="logo">IDAIM</a>

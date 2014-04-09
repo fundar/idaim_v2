@@ -15,10 +15,6 @@
 			<!--[if lt IE 8]>
 					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
 			<![endif]-->
-			<script>
-			window._edo = '<?= $edo ?>';
-			</script>
-
 			<header>
 				<div class="container">
 					<a href="/" id="logo">IDAIM</a>
@@ -42,31 +38,31 @@
 				<article class="container">
 					<h1>Acerca de</h1>
 
-					<p>En esta sección podrás encontrar diferentes documentos derivados de la evaluación de las leyes de transparencia que permiten entender mejor el ejercicio.</p>
+					<p>En esta sección podrás encontrar diferentes documentos derivados de la evaluación de las leyes de transparencia que permiten entender mejor el ejercicio.</p>
 					<ul>
 						<li>
 							<img src="/img/ad-db.jpg" alt="thumb" />
 							<h2>Base de datos</h2>
-							<p>Es un documento en Excel que contiene las calificaciones de los 196 criterios para cada ley evaluada. Sobre este documento se hizo el cálculo del IDAIM.<br />
+							<p>Es un documento en Excel que contiene las calificaciones de los 196 criterios para cada ley evaluada. Sobre este documento se hizo el cálculo del IDAIM.<br />
 							<a href="">Base de datos</a></p>
 						</li>
 						<li>
 							<img src="/img/ad-ft.jpg" alt="thumb" />
-							<h2>Fichas de evaluación por ley de transparencia</h2>
-							<p>Son 33 fichas, una para cada ley de transparencia en México. Cada ficha contiene la calificación de los 196 criterios y el artículo que contiene el criterio evaluado o en caso de tener cero, el que estipula lo contrario. Ocasionalmente no se establece ningún artículo, esto sucede cuando no está contenido en ningún sitio de la ley.<br />
+							<h2>Fichas de evaluación por ley de transparencia</h2>
+							<p>Son 33 fichas, una para cada ley de transparencia en México. Cada ficha contiene la calificación de los 196 criterios y el artículo que contiene el criterio evaluado o en caso de tener cero, el que estipula lo contrario. Ocasionalmente no se establece ningún artículo, esto sucede cuando no está contenido en ningún sitio de la ley.<br />
 							<a href="">Fichas por ley de transparencia (zip 30M)</a></p>
 						</li>
 						<li>
 							<img src="/img/ad-fi.jpg" alt="thumb" />
-							<h2>Guía de interpretación</h2>
-							<p>Son 33 fichas, una para cada ley de transparencia en México. Cada ficha contiene la calificación de los 196 criterios y el artículo que contiene el criterio evaluado o en caso de tener cero, el que estipula lo contrario. Ocasionalmente no se establece ningún artículo, esto sucede cuando no está contenido en ningún sitio de la ley.<br />
-							<a href="">Guía de interpretación</a></p>
+							<h2>Guía de interpretación</h2>
+							<p>Son 33 fichas, una para cada ley de transparencia en México. Cada ficha contiene la calificación de los 196 criterios y el artículo que contiene el criterio evaluado o en caso de tener cero, el que estipula lo contrario. Ocasionalmente no se establece ningún artículo, esto sucede cuando no está contenido en ningún sitio de la ley.<br />
+							<a href="">Guía de interpretación</a></p>
 							
 						</li>
 						<li>
 							<img src="/img/ad-cu.jpg" alt="thumb" />
 							<h2>Cuadernillo de resultados</h2>
-							<p>En este documento se exponen los resultados del índice, así como su interpretación a la luz del debate actual. El análisis de los resultados presentados es una de muchas formas de hacerlo, para ello está disponible la base de datos de donde pueden obtener la información necesaria para hacer los cruces de información de interés de cada persona. En este cuadernillo se presentan los resultados por indicador, en donde buscamos, sobre todo, dar un panorama general del estado de<br />
+							<p>En este documento se exponen los resultados del índice, así como su interpretación a la luz del debate actual. El análisis de los resultados presentados es una de muchas formas de hacerlo, para ello está disponible la base de datos de donde pueden obtener la información necesaria para hacer los cruces de información de interés de cada persona. En este cuadernillo se presentan los resultados por indicador, en donde buscamos, sobre todo, dar un panorama general del estado de<br />
 							<a href="">Cuadernillo de resultados</a></p>
 						</li>
 					</ul>
