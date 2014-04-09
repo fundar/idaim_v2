@@ -42,7 +42,7 @@
 
 			<header>
 				<div class="container">
-					<a href="#" id="logo">IDAIM</a>
+					<a href="/" id="logo">IDAIM</a>
 					<nav id="nav-principal">
 							<ul class="nav-paginas">
 									<li><a href="">Quiénes somos</a></li>
@@ -71,7 +71,7 @@
 
 			<footer>
 				<div class="container">
-					<a href="#" id="logo-fundar"></a>
+					<a href="http://fundar.org.mx" id="logo-fundar"></a>
 
 					<nav id="nav-footer">
 							<ul class="footer-paginas">
