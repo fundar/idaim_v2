@@ -11,6 +11,7 @@ $outDir = File.expand_path(ARGV[1], Dir.pwd)
 
 def guarda nombre, data
   fname = "#{$outDir}/#{nombre}.json"
+  puts "Creando #{fname}"
   FileUtils.mkdir_p File.dirname(fname)
   File.open(fname, 'w+') do |f|
     f << data.to_json
@@ -52,7 +53,6 @@ def calificacion_por_entidad entidad
   h
 end
 
-
 nombres = {
   eje: {
     1 => 'Positivación',
@@ -87,10 +87,14 @@ nacional = {
   ejes: {}
 }
 
+# lista interina para poder asignar posiciones
+edos = {}
+
 $data[:estados].each_with_index do |edo, index|
   data = calificacion_por_entidad(index)
-  puts "#{index} - #{edo}: "+data[:e].values.join(',')
-  guarda "estados/#{Estados.iso(edo)}", data
+  #puts "#{index} - #{edo}: "+data[:e].values.join(',')
+  edos[edo] = {iso: Estados.iso(edo), data: data}
+  
   estados[index] = Estados.paraCodigoInterno(edo)
 
   nacional[:total][index] = data[:t]
@@ -98,6 +102,20 @@ $data[:estados].each_with_index do |edo, index|
     nacional[:ejes][key] = nacional[:ejes][key] || {}
     nacional[:ejes][key][index] = eje
   end
+end
+
+edosClean = edos.dup
+edosClean.delete :fed
+listaEstados = Hash[edosClean.map {|id, estado|
+  [id, estado[:data][:t]]
+}]
+
+listaEstados.sort_by {|k,v| v}.reverse.each_with_index do |estado, index|
+  edos[estado[0]][:data][:pos] = index+1
+end
+
+edos.each do |key, edo|
+  guarda :"estados/#{edo[:iso]}", edo[:data]
 end
 
 guarda :estados, estados
