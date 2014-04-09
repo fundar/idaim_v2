@@ -3,6 +3,10 @@ IDAIM = ()->
 IDAIM.cbs = {}
 IDAIM.db = {}
 
+IDAIM.codEstado = (nombre)->
+	for index,datum of IDAIM.get('estados')
+		return datum.i if nombre == datum.n
+
 IDAIM.estado = (index)->
 	IDAIM.get('estados')[index].n
 
@@ -178,6 +182,11 @@ IDAIM.indiceNacional = (variable, container)->
       .attr("class", "eje y")
       .attr("transform", "translate("+m.left+"," + m.top + ")")
       .call(ejeY)
+      .selectAll('text')
+      .on('click', (d)->
+      	estado = '/estado/'+IDAIM.codEstado(d)
+      	window.location.href = estado
+      )
 
 	chart.selectAll('.tick')
     	.attr 'class', (d)-> "tick estado-#{d.toLowerCase()}"

@@ -49,6 +49,17 @@ IDAIM.cbs = {};
 
 IDAIM.db = {};
 
+IDAIM.codEstado = function(nombre) {
+  var datum, index, _ref;
+  _ref = IDAIM.get('estados');
+  for (index in _ref) {
+    datum = _ref[index];
+    if (nombre === datum.n) {
+      return datum.i;
+    }
+  }
+};
+
 IDAIM.estado = function(index) {
   return IDAIM.get('estados')[index].n;
 };
@@ -241,7 +252,11 @@ IDAIM.indiceNacional = function(variable, container) {
   }).attr("x2", function(d) {
     return x(d) + m.left;
   }).attr("y1", m.top).attr("y2", h + m.top);
-  chart.append("g").attr("class", "eje y").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeY);
+  chart.append("g").attr("class", "eje y").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeY).selectAll('text').on('click', function(d) {
+    var estado;
+    estado = '/estado/' + IDAIM.codEstado(d);
+    return window.location.href = estado;
+  });
   chart.selectAll('.tick').attr('class', function(d) {
     return "tick estado-" + (d.toLowerCase());
   });
