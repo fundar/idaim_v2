@@ -1,7 +1,7 @@
 <?
 	$edo = trim($_GET['edo']);
 	if (!$edo || $edo=='nal') {
-		header('Location: /estado/dif');
+		header('Location: /');
 		exit;
 	}
 	$estados = json_decode(file_get_contents('data/estados.json'));
@@ -14,7 +14,7 @@
 		}
 	}
 	if (!$nombreEstado) {
-		header('Location: /estado/dif');
+		header('Location: /');
 		exit;
 	}
 	$datos = json_decode(file_get_contents('data/estados/'.$edo.'.json'));
@@ -45,9 +45,9 @@
 					<a href="/" id="logo">IDAIM</a>
 					<nav id="nav-principal">
 							<ul class="nav-paginas">
-									<li><a href="">Quiénes somos</a></li>
-									<li><a href="">Acerca de</a></li>
-									<li><a href="">Contacto</a></li>
+									<li><a href="/quienes-somos">Quiénes somos</a></li>
+									<li><a href="/acerca-de">Acerca de</a></li>
+									<li><a href="/contacto">Contacto</a></li>
 							</ul>
 
 							<ul class="nav-social">
@@ -75,10 +75,10 @@
 
 					<nav id="nav-footer">
 							<ul class="footer-paginas">
-									<li><a href="">Quiénes somos</a></li>
-									<li><a href="">Acerca de</a></li>
-									<li><a href="">Contacto</a></li>
-									<li><a href="">IDAIM 2010</a></li>
+									<li><a href="/quienes-somos">Quiénes somos</a></li>
+									<li><a href="/acerca-de">Acerca de</a></li>
+									<li><a href="/contacto">Contacto</a></li>
+									<li><a href="http://www.checatuley.org.mx">IDAIM 2010</a></li>
 							</ul>
 
 							<ul class="footer-otros">

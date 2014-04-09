@@ -60,7 +60,7 @@ header {
     &:hover {
       color: $verde;
     }
-    &:active {
+    &:active, &.activo {
       color: #000;
     }
   }
@@ -98,7 +98,7 @@ footer {
     &:hover {
       color: $verde;
     }
-    &:active {
+    &:active, &.activo {
       color: #fff;
     }
   }
