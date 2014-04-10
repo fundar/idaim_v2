@@ -1,6 +1,15 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
+# Generador de archivos JSON para IDAIM
+# 
+# USAGE: ./genera.rb data.json /path/to/output
+# Este script toma los datos generados por `parse.rb` y
+# los separa y procesa a sus archivos separados 
+# 
+# @author Partido Surrealista Mexicano
+# @version 1.0
+
 require 'json'
 require 'fileutils'
 require_relative './lib/estados'
@@ -8,7 +17,14 @@ require_relative './lib/estados'
 $data = JSON.parse(File.open(ARGV[0]).read, symbolize_names: true)
 $outDir = File.expand_path(ARGV[1], Dir.pwd)
 
+# --
+# Funciones
+# --
 
+# Guarda un archivo
+# 
+# @param [Symbol,String] El nombre del archivo
+# @param [Hash,Array] Los datos a convertir a JSON
 def guarda nombre, data
   fname = "#{$outDir}/#{nombre}.json"
   puts "Creando #{fname}"
@@ -18,7 +34,9 @@ def guarda nombre, data
   end
 end
 
-
+# La valoración por eje, indicador y criterio de una entidad
+# 
+# @param [Integer] El índice de la entidad 
 def calificacion_por_entidad entidad
   h = {
     t: 0,  #total
@@ -26,10 +44,12 @@ def calificacion_por_entidad entidad
     i: {}, #indicadores
     c: {}  #criterios
   }
+  # Los valores de los criterios por estado
   h[:c] = $data[:porEstado].values[entidad]
   
   last = 0;
   c = h[:c].values
+  # Los valores de los indicadores por estado
   $data[:indicadores].each do |index, indicador|
     qty = indicador[:criterios]
     slice = c.slice(last, qty)
@@ -39,6 +59,7 @@ def calificacion_por_entidad entidad
 
   last = 0;
   sum = 0;
+  # Los valores de los ejes por estado
   $data[:ejes].each do |index, eje|
     qty = eje[:criterios].count
     slice = c.slice(last,qty)
@@ -48,11 +69,13 @@ def calificacion_por_entidad entidad
     last += qty
   end
 
+  # La calificación total
   h[:t] = (sum*100/h[:e].length.to_f).round
 
   h
 end
 
+# nombres.json
 nombres = {
   eje: {
     1 => 'Positivación',
@@ -64,6 +87,7 @@ nombres = {
 }
 
 e = []
+# estructura.json
 $data[:ejes].each do |eje, d|
   indicadores = d[:indicadores].map do |indicador|
     c = $data[:criterios].select {|crit| crit[:indicador].to_s == indicador.to_s}.map {|crit| {id: crit[:index]} }
@@ -76,10 +100,7 @@ $data[:ejes].each do |eje, d|
 end
 
 guarda :estructura, e
-
 guarda :nombres, nombres
-
-#federal = $data[:estados].index 'fed'
 
 estados = {}
 nacional = {
@@ -90,13 +111,16 @@ nacional = {
 # lista interina para poder asignar posiciones
 edos = {}
 
+# estados/{estado}.json
 $data[:estados].each_with_index do |edo, index|
   data = calificacion_por_entidad(index)
-  #puts "#{index} - #{edo}: "+data[:e].values.join(',')
+  
+  # Array post-procesable para sacar posiciones
   edos[edo] = {iso: Estados.iso(edo), data: data}
   
   estados[index] = Estados.paraCodigoInterno(edo)
 
+  # nacional.json
   nacional[:total][index] = data[:t]
   data[:e].each do |key, eje|
     nacional[:ejes][key] = nacional[:ejes][key] || {}
@@ -104,6 +128,7 @@ $data[:estados].each_with_index do |edo, index|
   end
 end
 
+# Empieza posicionamiento
 edosClean = edos.dup
 edosClean.delete :fed
 listaEstados = Hash[edosClean.map {|id, estado|
@@ -113,11 +138,11 @@ listaEstados = Hash[edosClean.map {|id, estado|
 listaEstados.sort_by {|k,v| v}.reverse.each_with_index do |estado, index|
   edos[estado[0]][:data][:pos] = index+1
 end
+# Termina posicionamiento
 
 edos.each do |key, edo|
   guarda :"estados/#{edo[:iso]}", edo[:data]
 end
 
 guarda :estados, estados
-
 guarda :nacional, nacional

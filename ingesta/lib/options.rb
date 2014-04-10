@@ -1,3 +1,10 @@
+# encoding: utf-8
+# 
+# OptionParser para parser de datos
+# 
+# @author Partido Surrealista Mexicano
+# @version 1.0
+
 def get_opts
   pwd = Dir.pwd
   options = {}

@@ -1,5 +1,14 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
+# 
+# Generador de archivos JSON para IDAIM
+# 
+# USAGE: ./genera.rb -s [número de hoja] basededatos.xslx
+# Esta rutina sólo extrae datos y los peina para después
+# ser procesados por `genera.rb`
+# 
+# @author Partido Surrealista Mexicano
+# @version 1.0
 
 require 'rubygems'
 require 'bundler/setup'
@@ -7,39 +16,49 @@ require 'roo'
 require 'optparse'
 require 'fileutils'
 require 'json'
-require_relative 'lib/testing'
+require_relative 'lib/sheet'
 require_relative 'lib/options'
 require_relative 'lib/string'
 
 options = get_opts
 
+# Tomamos como único argumento el path al archivo de Excel
 file = File.expand_path(ARGV[0], Dir.pwd)
 ss = Roo::Spreadsheet.open(file)
 
+# Si no hay más que una hoja, leámos esta
 if (ss.sheets.count == 1)
   options[:sheet] = 0
 end
 
+# De lo contrario, preguntamos
 options[:sheet] = ask_for_sheet_in_spreadsheet(ss) unless (options[:sheet])
 
 estados = []
 ss.default_sheet = ss.sheets[options[:sheet]]
 
+# Iteramos para sacar los estados
 (5..37).each do |col|
   estados << ss.cell(1, col).downcase
 end
 
+# E inicializamos todas las variables que leeremos
 indicadores = {}
 criterios = []
 ejes = {}
 eje_actual = 1
 
+# Las celdas "vacías", que en realidad estan merged
 skips = []
+# Los saltos entre eje y eje
 breaks = []
+# Si estoy saltando esta celda
 saltando = false
 
+# Expresión para detectar un indicador
 indicador_match = /^(\d+)\./
 
+# Leyendo todas las filas
 0.upto(ss.last_row) do |row|
   cell = ss.cell(row,1)
 
@@ -51,10 +70,11 @@ indicador_match = /^(\d+)\./
   saltando = (is_blank or is_indicador) ? false : true
 end
 
+# El primer break no sirve de nada
 breaks.shift
-#exit
 saltando = false
 
+# Por cada par consecutivo de <breaks>
 breaks.each_cons(2) do |start, ends|
   cell = ss.cell(start,1)
   unless cell =~ indicador_match
@@ -118,11 +138,12 @@ puts "Encontré #{ejes.length} ejes, #{indicadores.length} indicadores y #{crite
 
 str = data.to_json
 
-
+# Guardamos por default los datos en ./data
 options[:output] = File.expand_path('./data', Dir.pwd) unless options[:output]
 
 puts "Guardando datos en #{options[:output]}/consolidado.json..."
 
+# Guardamos todo
 FileUtils.mkdir_p options[:output]
 File.open("#{options[:output]}/consolidado.json", 'w+') do |f|
   f << str
