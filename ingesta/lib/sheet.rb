@@ -1,3 +1,13 @@
+# encoding: utf-8
+# 
+# Pide una hoja de Excel válida
+# 
+# @author Partido Surrealista Mexicano
+# @version 1.0
+
+# Pide una hoja de Excel válida y no para hasta encontrarla!
+# 
+# @param ss [Roo::Spreadsheet] El documento de Excel
 def ask_for_sheet_in_spreadsheet(ss)
   puts "¿En qué hoja se encuentra la base de datos?"
   last = 0;

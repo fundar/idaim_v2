@@ -1,6 +1,13 @@
 # encoding: utf-8
+# 
+# Conversiones entre los estados de Excel y nombres ISO
+# 
+# @author Partido Surrealista Mexicano
+# @version 1.0
 
 module Estados
+
+  # La tabla de traducciones
   TABLA = {
     ags:  {i: "agu", n: "Aguascalientes" },
     bc:   {i: "bcn", n: "Baja California" },
@@ -37,14 +44,26 @@ module Estados
     fed:  {i: "nal", n: "Nacional" }
   }
 
+  # Convierte de codigo interno a ISO
+  # 
+  # @param interno [String] El código de Excel
+  # @return [String] El código ISO
   def self.iso interno
     self.paraCodigoInterno(interno)[:i]
   end
 
+  # Convierte codigo interno a Nombre de estado
+  # 
+  # @param interno [String] El código interno
+  # @return [String] El nombre del estado
   def self.nombre interno
     self.paraCodigoInterno(interno)[:n]
   end
 
+  # Regresa la tabla completa para el código interno
+  # 
+  # @param interno [String] El código interno
+  # @return [Hash] La tabla con propiedades `i` y `n`, código ISO y nombre respectivamente
   def self.paraCodigoInterno interno
     Estados::TABLA[interno.to_sym]
   end
