@@ -91,9 +91,10 @@ EMAIL;
 							try {
 								$result = $client->sendEmail($email);
 							} catch (\Exception $e) {
-								echo "<!--";
-								var_dump($e);
-								echo "-->";
+								echo "Error :/";
+								#echo "<!--";
+								#var_dump($e);
+								#echo "-->";
 							}
 							
 					?>
