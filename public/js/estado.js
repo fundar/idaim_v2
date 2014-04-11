@@ -67,7 +67,7 @@ IDAIM.estado = function(index) {
 IDAIM.selected = null;
 
 IDAIM.mainChart = function(dataSet, container, source) {
-  var click, colorPara, count, data, eje, g, h, idPara, indicador, minW, nombreDe, partition, sizes, transform, valor, vis, w, x, y, _i, _j, _len, _len1, _ref;
+  var click, colorPara, count, data, eje, g, h, hover, idPara, indicador, minW, nombreDe, partition, sizes, transform, valor, vis, w, x, y, _i, _j, _len, _len1, _ref;
   container.empty();
   w = container.outerWidth();
   h = w > 500 ? 240 : 200;
@@ -185,7 +185,27 @@ IDAIM.mainChart = function(dataSet, container, source) {
     });
     return d3.select("#" + (idPara(d))).attr('class', "" + clase + " activo");
   };
-  g = vis.selectAll('g').data(partition.nodes(data)).enter().append('svg:g').attr('class', nombreDe).attr('valor', valor).attr('id', idPara).attr('transform', transform).on('click', click);
+  hover = function(d) {
+    var clase, elem, id, nombre, tipo;
+    elem = d3.select(this);
+    id = d.id.toString().replace(/\D+/, '');
+    clase = elem.attr('class');
+    if (id) {
+      nombre = IDAIM.get('nombres')[clase][id];
+      tipo = clase;
+    } else {
+      tipo = 'total';
+      id = 'total';
+      nombre = "IDAIM";
+    }
+    return IDAIM.emit('mainChart.hover', {
+      id: id,
+      tipo: tipo,
+      nombre: nombre,
+      valor: elem.attr('valor')
+    });
+  };
+  g = vis.selectAll('g').data(partition.nodes(data)).enter().append('svg:g').attr('class', nombreDe).attr('valor', valor).attr('id', idPara).attr('transform', transform).on('click', click).on('mouseover', hover);
   g.append('svg:rect').attr('width', function(d) {
     return x(d.dx);
   }).attr('height', function(d) {

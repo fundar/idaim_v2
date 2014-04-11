@@ -101,6 +101,19 @@ IDAIM.mainChart = (dataSet, container, source)->
 
 		d3.select("##{idPara d}").attr 'class', "#{clase} activo"
 
+	hover = (d)->
+		elem = d3.select(this)
+		id = d.id.toString().replace /\D+/, ''
+		clase = elem.attr('class')
+		if id
+			nombre = IDAIM.get('nombres')[clase][id]
+			tipo = clase
+		else
+			tipo = 'total'
+			id = 'total'
+			nombre = "IDAIM"
+
+		IDAIM.emit('mainChart.hover', {id: id, tipo: tipo, nombre: nombre, valor: elem.attr('valor') })
 
 	g = vis.selectAll('g')
 		.data(partition.nodes(data))
@@ -110,6 +123,7 @@ IDAIM.mainChart = (dataSet, container, source)->
 			.attr('id', idPara)
 			.attr('transform', transform)
 			.on('click', click)
+			.on('mouseover', hover)
 
 	g.append('svg:rect')
 		.attr('width', (d)-> x(d.dx))
