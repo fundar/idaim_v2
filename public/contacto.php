@@ -39,7 +39,7 @@
 					<h1>Contacto</h1>
 
 					<?
-						$fields = ['nombre', 'email', 'mensaje'];
+						$fields = array('nombre', 'email', 'mensaje');
 
 						if ($_POST['nombre']):
 							
@@ -49,11 +49,11 @@
 								return htmlentities(trim($_POST[$f]));
 							}, $fields));
 
-							$client = Aws\Ses\SesClient::factory([
+							$client = Aws\Ses\SesClient::factory(array(
 								'key' => 'AKIAJYNGUEQXHN53IMEA',
 								'secret' => 'Agc8KTm83smQiQNucHVFAlgFESNptQuqyMBfIUjNJG+K',
 								'region' => 'us-east-1'
-							]);
+							));
 
 							$msg = <<<EMAIL
 <h1>Contacto de <a href="mailto:{$data->email}">{$data->nombre} ({$data->email})</a></h1>
@@ -65,28 +65,36 @@ idaim.org.mx
 EMAIL;
 							$dst = 'rob@surrealista.mx';
 
-							$result = $client->sendEmail([
+							$email = array(
 								'Source' => 'idaim@fundar.org.mx',
-								'Destination' => ['Renata Terrazas' => $dst],
-								'Message' => [
-									'Subject' => [
+								'Destination' => array('Renata Terrazas' => $dst),
+								'Message' => array(
+									'Subject' => array(
 										'Data' => 'Contacto de fundar.org.mx',
 										'Charset' => 'utf-8'
-									],
-									'Body' => [
-										'Text' => [
+									),
+									'Body' => array(
+										'Text' => array(
 											'Data' => str_replace('<br />', "\r\n", $msg),
 											'Charset' => 'utf-8'
-										],
-										'Html' => [
+										),
+										'Html' => array(
 											'Data' => $msg,
 											'Charset' => 'utf-8'
-										]
-									]
-								],
-								'ReplyToAddresses' => [$data->email],
+										)
+									)
+								),
+								'ReplyToAddresses' => array($data->email),
 								'ReturnPath' => $dst
-							]);
+							);
+
+							try {
+								$result = $client->sendEmail($email);
+							} catch (\Exception $e) {
+								echo "<!--";
+								var_dump($e);
+								echo "-->";
+							}
 							
 					?>
 
