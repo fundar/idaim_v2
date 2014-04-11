@@ -43,9 +43,50 @@
 
 						if ($_POST['nombre']):
 							
+							require('../lib/aws.phar');
+							$rcpt = 'renata@fundar.org.mx';
 							$data = (object) array_combine($fields, array_map(function($f){
 								return htmlentities(trim($_POST[$f]));
 							}, $fields));
+
+							$client = Aws\Ses\SesClient::factory([
+								'key' => 'AKIAJYNGUEQXHN53IMEA',
+								'secret' => 'Agc8KTm83smQiQNucHVFAlgFESNptQuqyMBfIUjNJG+K',
+								'region' => 'us-east-1'
+							]);
+
+							$msg = <<<EMAIL
+<h1>Contacto de <a href="mailto:{$data->email}">{$data->nombre} ({$data->email})</a></h1>
+<blockquote>
+{$data->mensaje}
+</blockquote>
+
+idaim.org.mx
+EMAIL;
+							$dst = 'rob@surrealista.mx';
+
+							$result = $client->sendEmail([
+								'Source' => 'idaim@fundar.org.mx',
+								'Destination' => ['Renata Terrazas' => $dst],
+								'Message' => [
+									'Subject' => [
+										'Data' => 'Contacto de fundar.org.mx',
+										'Charset' => 'utf-8'
+									],
+									'Body' => [
+										'Text' => [
+											'Data' => str_replace('<br />', "\r\n", $msg),
+											'Charset' => 'utf-8'
+										],
+										'Html' => [
+											'Data' => $msg,
+											'Charset' => 'utf-8'
+										]
+									]
+								],
+								'ReplyToAddresses' => [$data->email],
+								'ReturnPath' => $dst
+							]);
 							
 					?>
 
