@@ -57,7 +57,7 @@ $ ()->
 
 		Geo.start().onLocation(locationAquired).set(window._geoip)
 
-		$('#total-nacional').text totales.total[32]
+		$('#total-nacional').text totales.total[32]/10
 		arr = []
 		dup = JSON.parse(JSON.stringify totales.total)
 		delete dup[32]
@@ -78,8 +78,8 @@ $ ()->
 
 		last = arr[0]
 		first = arr[arr.length-1]
-		$('#total-ultimo').find('h2').text(last[1])
-		$('#total-primero').find('h2').text(first[1])
+		$('#total-ultimo').find('h2').text(last[1]/10)
+		$('#total-primero').find('h2').text(first[1]/10)
 
 		$('#total-ultimo').find('h3').text(IDAIM.estado last[0])
 		$('#total-primero').find('h3').text(IDAIM.estado first[0])
@@ -120,7 +120,7 @@ $ ()->
 			textoVariable.nombre.text(data.nombre)
 			textoVariable.descripcion[action]()
 			textoVariable.descripcion.text(descripcion)
-			$('#total-nacional').text(data.valor)
+			$('#total-nacional').text(data.valor/10)
 			$('#total-nombre').text(nombre)
 
 		IDAIM.on 'mainChart.click', setMainChartData
