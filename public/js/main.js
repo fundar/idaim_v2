@@ -67,7 +67,7 @@ IDAIM.estado = function(index) {
 IDAIM.selected = null;
 
 IDAIM.mainChart = function(dataSet, container, source) {
-  var click, colorPara, count, data, eje, g, h, idPara, indicador, minW, nombreDe, partition, sizes, transform, valor, vis, w, x, y, _i, _j, _len, _len1, _ref;
+  var click, colorPara, count, data, eje, g, h, hover, idPara, indicador, minW, nombreDe, partition, sizes, transform, valor, vis, w, x, y, _i, _j, _len, _len1, _ref;
   container.empty();
   w = container.outerWidth();
   h = w > 500 ? 240 : 200;
@@ -185,7 +185,27 @@ IDAIM.mainChart = function(dataSet, container, source) {
     });
     return d3.select("#" + (idPara(d))).attr('class', "" + clase + " activo");
   };
-  g = vis.selectAll('g').data(partition.nodes(data)).enter().append('svg:g').attr('class', nombreDe).attr('valor', valor).attr('id', idPara).attr('transform', transform).on('click', click);
+  hover = function(d) {
+    var clase, elem, id, nombre, tipo;
+    elem = d3.select(this);
+    id = d.id.toString().replace(/\D+/, '');
+    clase = elem.attr('class');
+    if (id) {
+      nombre = IDAIM.get('nombres')[clase][id];
+      tipo = clase;
+    } else {
+      tipo = 'total';
+      id = 'total';
+      nombre = "IDAIM";
+    }
+    return IDAIM.emit('mainChart.hover', {
+      id: id,
+      tipo: tipo,
+      nombre: nombre,
+      valor: elem.attr('valor')
+    });
+  };
+  g = vis.selectAll('g').data(partition.nodes(data)).enter().append('svg:g').attr('class', nombreDe).attr('valor', valor).attr('id', idPara).attr('transform', transform).on('click', click).on('mouseover', hover);
   g.append('svg:rect').attr('width', function(d) {
     return x(d.dx);
   }).attr('height', function(d) {
@@ -433,7 +453,7 @@ $(function() {
   };
   IDAIM.load(['regiones', 'nombres', 'ejes', 'indicadores', 'nacional', 'estados', 'estados/nal', 'estructura']);
   return IDAIM.on('ready', function() {
-    var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, graficaTotal, last, locationAquired, operadores, svg, totalNombre, totales, totalesNacional;
+    var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, graficaTotal, last, locationAquired, operadores, setMainChartData, svg, totalNombre, totales, totalesNacional;
     totales = IDAIM.get('nacional');
     estados = IDAIM.get('estados');
     graficaTotal = IDAIM.get('estados/nal');
@@ -507,7 +527,7 @@ $(function() {
       IDAIM.mainChart(IDAIM.get('estructura'), $('#graph-total'), graficaTotal);
       return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     };
-    IDAIM.on('mainChart.click', function(data) {
+    setMainChartData = function(data) {
       var action, descripcion, nombre;
       descripcion = false;
       nombre = "Calificación de " + data.tipo;
@@ -529,7 +549,9 @@ $(function() {
       textoVariable.descripcion.text(descripcion);
       $('#total-nacional').text(data.valor);
       return $('#total-nombre').text(nombre);
-    });
+    };
+    IDAIM.on('mainChart.click', setMainChartData);
+    IDAIM.on('mainChart.hover', setMainChartData);
     operadores = {
       asc: function(a, b) {
         return a > b;

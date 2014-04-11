@@ -103,7 +103,7 @@ $ ()->
 			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), graficaTotal
 			IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')
 		
-		IDAIM.on 'mainChart.click', (data)->
+		setMainChartData = (data)->
 			descripcion = false
 			nombre = "Calificación de #{data.tipo}"
 			console.log data.tipo == 'total'
@@ -122,6 +122,10 @@ $ ()->
 			textoVariable.descripcion.text(descripcion)
 			$('#total-nacional').text(data.valor)
 			$('#total-nombre').text(nombre)
+
+		IDAIM.on 'mainChart.click', setMainChartData
+		IDAIM.on 'mainChart.hover', setMainChartData
+
 
 
 		operadores =
