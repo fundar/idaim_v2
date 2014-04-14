@@ -16,7 +16,7 @@
 
 			<div class="acerca-de cf">
 				<article class="container">
-					<h1>Acerca de</h1>
+					<h1>Documentos</h1>
 
 					<p>En esta sección podrás encontrar diferentes documentos derivados de la evaluación de las leyes de transparencia que permiten entender mejor el ejercicio.</p>
 					<ul>
