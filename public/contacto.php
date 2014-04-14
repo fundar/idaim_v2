@@ -17,12 +17,26 @@
 					<h1>Contacto</h1>
 
 					<?
-						$fields = array('nombre', 'email', 'mensaje');
+						require('../lib/recaptcha.php');
+						define('PRODUCCION', $_SERVER['HTTP_ORIGIN'] === 'http://idaim.org.mx');
 
-						if ($_POST['nombre']):
-							
+						$publickey = "6Lehw_ESAAAAABVm6gsdguxyfe-ndzfMyc-wHzFY";
+						$privatekey = "6Lehw_ESAAAAAAMaBg1rq2-6IDGH19SXPTh3TZ63";
+						
+						$fields = array('nombre', 'email', 'mensaje');
+						function valid_captcha(){
+							if (!PRODUCCION) {
+								return true;
+							}
+							global $privatekey;
+							$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+							return $resp->is_valid;
+						}
+
+						if ($_POST['nombre'] && valid_captcha()):
+
 							require('../lib/aws.phar');
-							$dst = 'renata@fundar.org.mx';
+							
 							$data = (object) array_combine($fields, array_map(function($f){
 								return htmlentities(trim($_POST[$f]));
 							}, $fields));
@@ -41,9 +55,7 @@
 
 idaim.org.mx
 EMAIL;
-							if ($_SERVER['HTTP_ORIGIN'] !== 'http://idaim.org.mx') {
-								$dst = 'rob@surrealista.mx';
-							}
+							$dst = PRODUCCION ? 'renata@fundar.org.mx' : 'rob@surrealista.mx';
 
 							$email = array(
 								'Source' => 'idaim@fundar.org.mx',
@@ -71,10 +83,15 @@ EMAIL;
 							try {
 								$result = $client->sendEmail($email);
 							} catch (\Exception $e) {
-								echo "Error :/";
-								#echo "<!--";
+								if (PRODUCCION) {
+									echo "<!--";
+								}
+								
+								echo "Error :/<br />";
 								echo $e->getMessage();
-								#echo "-->";
+								if (PRODUCCION) {
+									echo "-->";
+								}
 							}
 							
 					?>
@@ -92,19 +109,21 @@ EMAIL;
 						<form method="post">
 							<fieldset>
 								<label for="nombre">Nombre*</label>
-								<input name="nombre" id="nombre" type="text" required />
+								<input name="nombre" id="nombre" type="text" required value="<?= htmlentities($_POST['nombre']) ;?>"/>
 							</fieldset>
 
 							<fieldset>
 								<label for="email">Email*</label>
-								<input name="email" id="email" type="email" required />
+								<input name="email" id="email" type="email" required value="<?= htmlentities($_POST['email']) ;?>"/>
 							</fieldset>
 
 							<fieldset>
 								<label for="mensaje">Mensaje</label>
-								<textarea name="mensaje" id="mensaje"></textarea>
+								<textarea name="mensaje" id="mensaje"><?= htmlentities($_POST['mensaje']) ;?></textarea>
 							</fieldset>
 							<p class="help">* Son campos obligatorios</p>
+
+							<? if(PRODUCCION) echo recaptcha_get_html($publickey); ?>
 
 							<button type="submit">Enviar</button>
 						</form>
