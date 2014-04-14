@@ -15,47 +15,28 @@
     </style>
 		</head>
 		<body>
+			<div id="geolocated">
+				<div class="container">
+					<p>
+						Mostrando datos de <select id="geo-select-estado">
+						<? $edos = json_decode(file_get_contents('data/estados.json'));
+							foreach($edos as $id => $info):
+								$checked = $geoip == $id;
+								$checked = $geoip=='false' && $id==32? true : $checked;
+						?>
+						<option value="<?= $id ;?>" <?= $checked ? 'selected' : '' ;?> ><?= $info->n ;?>
+						</option>
+						<? endforeach; ?>
+						</select>.
+					</p>
+				</div>
+			</div>
+
+			<? include('header.php') ;?>
 			<script>
 			window._geoip = <?= $geoip ?>;
 			</script>
-			<!--[if lt IE 8]>
-					<p class="browsehappy">Estás usando un navegador <strong>anticuado</strong>. Por favor <a href="http://browsehappy.com/?locale=es">actualiza tu navegador</a> para mejorar tu experiencia.</p>
-			<![endif]-->
-				<div id="geolocated">
-					<div class="container">
-						<p>
-							Mostrando datos de <select id="geo-select-estado">
-							<? $edos = json_decode(file_get_contents('data/estados.json'));
-								foreach($edos as $id => $info):
-									$checked = $geoip == $id;
-									$checked = $geoip=='false' && $id==32? true : $checked;
-							?>
-							<option value="<?= $id ;?>" <?= $checked ? 'selected' : '' ;?> ><?= $info->n ;?>
-							</option>
-							<? endforeach; ?>
-							</select>.
-						</p>
-					</div>
-				</div>
-
-			<header>
-				<div class="container">
-					<a href="/" id="logo">IDAIM</a>
-					<nav id="nav-principal">
-							<ul class="nav-paginas">
-									<li><a href="/quienes-somos">Quiénes somos</a></li>
-									<li><a href="/acerca-de">Acerca de</a></li>
-									<li><a href="/contacto">Contacto</a></li>
-							</ul>
-
-							<ul class="nav-social">
-									<li><a class="ss-icon ss-social-regular" href="">email</a></li>
-									<li><a class="ss-icon ss-social-regular" href="">tumblr</a></li>
-									<li><a class="ss-icon ss-social-regular" href="">facebook</a></li>
-							</ul>
-					</nav>
-				</div>
-			</header>
+			
 
 			<section id="hero">
 				<div class="container">
@@ -139,27 +120,7 @@
 				</div>
 			</section>
 
-			<footer>
-				<div class="container">
-					<a href="http://fundar.org.mx" id="logo-fundar"></a>
-
-					<nav id="nav-footer">
-							<ul class="footer-paginas">
-									<li><a href="/quienes-somos">Quiénes somos</a></li>
-									<li><a href="/acerca-de">Acerca de</a></li>
-									<li><a href="/contacto">Contacto</a></li>
-									<li><a href="http://www.checatuley.org.mx">IDAIM 2010</a></li>
-							</ul>
-
-							<ul class="footer-otros">
-									<li><a href="">Aviso de Privacidad</a></li>
-									<li><a href="">Ayuda</a></li>
-							</ul>
-					</nav>
-
-					<div id="copyright">&copy; 2014 Fundar. Todos los derechos reservados</div>
-				</div>
-			</footer>
+			<? include('footer.php') ;?>
 			<script src="/js/main.js"></script>
 		</body>
 </html>
