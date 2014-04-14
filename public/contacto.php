@@ -58,7 +58,7 @@ EMAIL;
 							$dst = PRODUCCION ? 'renata@fundar.org.mx' : 'rob@surrealista.mx';
 
 							$email = array(
-								'Source' => 'idaim@fundar.org.mx',
+								'Source' => 'no-reply@idaim.org.mx',
 								'Destination' => array('ToAddresses' => array($dst)),
 								'Message' => array(
 									'Subject' => array(
@@ -77,7 +77,7 @@ EMAIL;
 									)
 								),
 								'ReplyToAddresses' => array($data->email),
-								'ReturnPath' => $dst
+								//'ReturnPath' => $dst
 							);
 
 							try {
