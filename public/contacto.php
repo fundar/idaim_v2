@@ -18,7 +18,7 @@
 
 					<?
 						require('../lib/recaptcha.php');
-						define('PRODUCCION', $_SERVER['HTTP_ORIGIN'] === 'http://idaim.org.mx');
+						define('PRODUCCION', $_SERVER['HTTP_HOST'] === 'idaim.org.mx');
 
 						$publickey = "6Lehw_ESAAAAABVm6gsdguxyfe-ndzfMyc-wHzFY";
 						$privatekey = "6Lehw_ESAAAAAAMaBg1rq2-6IDGH19SXPTh3TZ63";
