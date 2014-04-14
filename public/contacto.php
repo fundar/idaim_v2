@@ -45,7 +45,7 @@ EMAIL;
 
 							$email = array(
 								'Source' => 'idaim@fundar.org.mx',
-								'Destination' => array('Renata Terrazas' => $dst),
+								'Destination' => array('ToAddresses' => array($dst)),
 								'Message' => array(
 									'Subject' => array(
 										'Data' => 'Contacto de fundar.org.mx',

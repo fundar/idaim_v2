@@ -7,9 +7,16 @@
 					<a href="/" id="logo">IDAIM</a>
 					<nav id="nav-principal">
 							<ul class="nav-paginas">
-									<li><a href="/quienes-somos">Quiénes somos</a></li>
-									<li><a href="/documentos">Documentos</a></li>
-									<li><a href="/contacto" class="activo">Contacto</a></li>
+									<?php
+										function estamos_en($path) {
+											if ($_SERVER['REQUEST_URI'] == "/{$path}") {
+												return 'class="activo"';
+											}
+										}
+									?>
+									<li><a href="/quienes-somos" <?= estamos_en('quienes-somos');?>>Quiénes somos</a></li>
+									<li><a href="/documentos" <?= estamos_en('documentos');?>>Documentos</a></li>
+									<li><a href="/contacto" <?= estamos_en('contacto');?>>Contacto</a></li>
 							</ul>
 
 							<ul class="nav-social">
