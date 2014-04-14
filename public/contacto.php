@@ -22,7 +22,7 @@
 						if ($_POST['nombre']):
 							
 							require('../lib/aws.phar');
-							$rcpt = 'renata@fundar.org.mx';
+							$dst = 'renata@fundar.org.mx';
 							$data = (object) array_combine($fields, array_map(function($f){
 								return htmlentities(trim($_POST[$f]));
 							}, $fields));
@@ -41,7 +41,9 @@
 
 idaim.org.mx
 EMAIL;
-							$dst = 'rob@surrealista.mx';
+							if ($_SERVER['HTTP_ORIGIN'] !== 'http://idaim.org.mx') {
+								$dst = 'rob@surrealista.mx';
+							}
 
 							$email = array(
 								'Source' => 'idaim@fundar.org.mx',
