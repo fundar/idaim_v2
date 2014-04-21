@@ -5,7 +5,7 @@
 					<nav id="nav-footer">
 							<ul class="footer-paginas">
 									<li><a href="/quienes-somos">Quiénes somos</a></li>
-									<li><a href="/acerca-de">Acerca de</a></li>
+									<li><a href="/documentos">Documentos</a></li>
 									<li><a href="/contacto">Contacto</a></li>
 									<li><a href="http://www.checatuley.org">IDAIM 2010</a></li>
 							</ul>
