@@ -11,12 +11,12 @@ var Color, ColorStuff, Colores;
 ColorStuff = {
   fijo: function(val) {
     if (val < 59) {
-      return '#D3282F';
+      return '#d5001b';
     }
     if (val < 79) {
-      return '#F7C639';
+      return '#fccf20';
     } else {
-      return '#8AC65A';
+      return '#6cb439';
     }
   },
   lineal: function(val) {
@@ -39,7 +39,7 @@ Colores.lineales = [['73161A', '8B1B1F', 'A31F25', 'BB242A', 'D3282F'], ['E87321
 
 Colores.lineales = [['E2031E', 'DB3333', 'E64C4B', 'F26860', 'F98E78'], ['FED900', 'FBE34D', 'FCD786', 'FCE586', 'FEF9C4'].reverse(), ['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse()];
 
-Color = ColorStuff.lineal;
+Color = ColorStuff.fijo;
 
 var IDAIM;
 

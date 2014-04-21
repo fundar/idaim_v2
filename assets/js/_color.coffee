@@ -2,11 +2,11 @@ ColorStuff =
 	fijo: (val)->
 		if val < 59
 			#todos flunkean duro
-			return '#D3282F'
+			return '#d5001b'
 		if val < 79
-			return '#F7C639'
+			return '#fccf20'
 		else
-			return '#8AC65A'
+			return '#6cb439'
 	lineal: (val)->
 		if val <= 59
 			set = Colores.lineales[0]
@@ -32,4 +32,4 @@ Colores.lineales = [
 	['72AF31', '94CA65', 'AAD687', 'CAE6B6', 'E5EED4'].reverse(), #verde
 ]
 
-Color = ColorStuff.lineal
+Color = ColorStuff.fijo

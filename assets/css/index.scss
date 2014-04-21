@@ -13,7 +13,7 @@
 #hero-text {
   width: 280px;
   padding: 15px 0;
-  margin: 0 auto 20px;
+  margin: 60px auto 20px;
   border-bottom: 1px solid #A2A2A2;
 
   text-align: center;
@@ -50,23 +50,66 @@ header {
   padding-top: 30px;
 }
 
-#geolocated {
+#idaim-2010 {
   background: $verde;
   background: transparentize($verde, 0.05);
+  text-align: center;
 
-  padding: .5em 0;
-  position: fixed;
+  margin: 0;
   z-index: 1000;
   width: 100%;
-  & p, & a {
-    color: lighten($verde, 40%);
+  & p {
+    margin: 0;
+  }
+  & a {
+    color: #fff;
+    font-size: 1.5em;
+    line-height: 1.5em;
     position: relative;
     margin: 0;
+    text-decoration: none;
   }
 }
 
-#nombre-variable {
+#nacional p {
   font-size: 18px;
+  color: #4b4b4b;
+}
+
+#geolocation {
+
+  & h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #4b4b4b;
+    font-weight: normal;
+    margin-top: 50px;
+  }
+
+  & img {
+    float: left;
+    margin: 0 1em;
+  }
+
+  & select {
+    font: inherit;
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: 100;
+    line-height: 2em;
+    padding: 0 2em 0 .5em;
+    display: block;
+    background: #f2f2f2 url(/img/select-arrow.png) 97% 50% no-repeat;
+    -webkit-appearance: none;
+    border: 1px solid #c7c7c7;
+  }
+
+  @include clearfix();
+}
+
+#nombre-variable {
+  font-size: 13px;
+  font-weight: 100;
   text-align: center;
   line-height: 1;
 
@@ -103,6 +146,7 @@ header {
   h2 {
     font-size: 40px;
     line-height: 1;
+    color: #3a3a3a;
   }
   h3 {
     font-size: 12px;
@@ -268,7 +312,7 @@ header {
     float: right;
     width: 700px;
     height: 353px;
-    margin: 10px 0;
+    margin: 60px 0;
 
     background: url(/img/mapa.png) no-repeat 0 0/700px 353px;
   }
