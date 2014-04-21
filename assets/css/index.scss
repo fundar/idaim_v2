@@ -116,15 +116,10 @@ header {
   margin: 0 0 10px;
 }
 .descripcion-variable {
-  border: 1px solid #ccc;
   padding: 0 10px;
   margin: 20px auto 0;
-  background: #fff;
-
-
 
   @include box-sizing(border-box);
-  @include box-shadow(0 1px 2px rgba(0,0,0,0.1));
 
   p#descripcion-variable {
     margin: 10px 0;
@@ -164,6 +159,22 @@ header {
 }
 #total-primero {
   float: right;
+}
+
+#total-ultimo, #total-primero {
+  & div {
+    font-size: 16px; 
+  }
+
+  & .pc {
+    border-bottom: 5px solid #999;
+  }
+
+  & h3 {
+    font-size: 18px;
+    color: #4B4B4B;
+  }
+  
 }
 
 
@@ -323,7 +334,7 @@ header {
     font-size: 24px;
   }
   .descripcion-variable {
-    margin: -60px auto 0;
+    margin: -120px auto 0;
     width: 700px;
   }
 }
