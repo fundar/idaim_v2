@@ -15,19 +15,10 @@
     </style>
 		</head>
 		<body>
-			<div id="geolocated">
+			<div id="idaim-2010">
 				<div class="container">
 					<p>
-						Mostrando datos de <select id="geo-select-estado">
-						<? $edos = json_decode(file_get_contents('data/estados.json'));
-							foreach($edos as $id => $info):
-								$checked = $geoip == $id;
-								$checked = $geoip=='false' && $id==32? true : $checked;
-						?>
-						<option value="<?= $id ;?>" <?= $checked ? 'selected' : '' ;?> ><?= $info->n ;?>
-						</option>
-						<? endforeach; ?>
-						</select>.
+						<a href="http://checatuley.org">Conoce el IDAIM 2010</a>
 					</p>
 				</div>
 			</div>
@@ -56,6 +47,26 @@
 
 			<section id="nacional" class="sec sec-a">
 				<div class="container cf">
+					<p>In volutpat, eros et rhoncus venenatis, nibh felis tristique elit, vitae convallis tortor augue eu nulla. Vivamus pulvinar in erat nec tristique. Integer varius nisl at sodales mollis. Maecenas placerat, nulla et dignissim elementum, sem mauris ornare augue, nec vulputate diam ipsum nec enim. Ut pretium scelerisque augue ac scelerisque. Ut sed placerat mauris, quis placerat mauris. Fusce at lacinia sem, in interdum lacus. Nam at ornare mauris, eu feugiat felis. Donec vitae nisl lacinia, interdum ligula vel, dictum dolor.</p>
+
+					<div id="geolocation">
+						<h3>Estás visitándonos desde</h3>
+
+						<div id="select-estado">
+							<img src="/img/flecha-roja.png" />
+							<select id="geo-select-estado">
+								<? $edos = json_decode(file_get_contents('data/estados.json'));
+									foreach($edos as $id => $info):
+										$checked = $geoip == $id;
+										$checked = $geoip=='false' && $id==32? true : $checked;
+								?>
+								<option value="<?= $id ;?>" <?= $checked ? 'selected' : '' ;?> ><?= $info->n ;?>
+								</option>
+								<? endforeach; ?>
+							</select>
+						</div>
+					</div>
+
 					<h3 id="nombre-variable">IDAIM</h3>
 
 					<div class="texto-total" id="total-nacional-cont">
