@@ -1,23 +1,18 @@
 <?
 	$edo = trim($_GET['edo']);
-	if (!$edo || $edo=='nal') {
+	if ($edo === "" || $edo==32) {
 		header('Location: /');
 		exit;
 	}
 	$estados = json_decode(file_get_contents('data/estados.json'));
-	$nombreEstado = '';
 
-	foreach($estados as $estado){
-		if ($estado->i == $edo) {
-			$nombreEstado = $estado->n;
-			break;
-		}
-	}
-	if (!$nombreEstado) {
+	$estado = $estados->$edo;
+
+	if (!$estado) {
 		header('Location: /');
 		exit;
 	}
-	$datos = json_decode(file_get_contents('data/estados/'.$edo.'.json'));
+	$datos = json_decode(file_get_contents('data/estados/'.$estado->i.'.json'));
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +31,7 @@
 			<? include('header.php') ;?>
 			
 			<script>
-			window._edo = '<?= $edo ?>';
+			window._edo = '<?= $edo->i ?>';
 			</script>
 
 			<article class="container estado">				

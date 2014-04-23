@@ -173,6 +173,9 @@ $ ()->
 			IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')
 
 		$('.shape-estado').on {
+			click: (evt)->
+				stub = IDAIM.estado(this.id).toLowerCase().replace(/\s/g, '-')
+				window.location.href = "/estado/#{this.id}-#{stub}"
 			mouseover: (evt)->
 				$('#estado-hover-nombre').text IDAIM.estado(this.id)
 				$('#estado-hover-calificacion').text IDAIM.get('nacional').total[this.id]/10

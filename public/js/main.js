@@ -55,7 +55,7 @@ IDAIM.codEstado = function(nombre) {
   for (index in _ref) {
     datum = _ref[index];
     if (nombre === datum.n) {
-      return datum.i;
+      return index;
     }
   }
 };
@@ -273,8 +273,10 @@ IDAIM.indiceNacional = function(variable, container) {
     return x(d) + m.left;
   }).attr("y1", m.top).attr("y2", h + m.top);
   chart.append("g").attr("class", "eje y").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeY).selectAll('text').on('click', function(d) {
-    var estado;
-    estado = '/estado/' + IDAIM.codEstado(d);
+    var estado, id, stub;
+    stub = d.toLowerCase().replace(/\s/g, '-');
+    id = IDAIM.codEstado(d);
+    estado = "/estado/" + id + "-" + stub;
     return window.location.href = estado;
   });
   chart.selectAll('.tick').attr('class', function(d) {
@@ -611,6 +613,11 @@ $(function() {
       return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     });
     $('.shape-estado').on({
+      click: function(evt) {
+        var stub;
+        stub = IDAIM.estado(this.id).toLowerCase().replace(/\s/g, '-');
+        return window.location.href = "/estado/" + this.id + "-" + stub;
+      },
       mouseover: function(evt) {
         $('#estado-hover-nombre').text(IDAIM.estado(this.id));
         return $('#estado-hover-calificacion').text(IDAIM.get('nacional').total[this.id] / 10);
