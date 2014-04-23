@@ -55,7 +55,7 @@ IDAIM.codEstado = function(nombre) {
   for (index in _ref) {
     datum = _ref[index];
     if (nombre === datum.n) {
-      return datum.i;
+      return index;
     }
   }
 };
@@ -273,8 +273,10 @@ IDAIM.indiceNacional = function(variable, container) {
     return x(d) + m.left;
   }).attr("y1", m.top).attr("y2", h + m.top);
   chart.append("g").attr("class", "eje y").attr("transform", "translate(" + m.left + "," + m.top + ")").call(ejeY).selectAll('text').on('click', function(d) {
-    var estado;
-    estado = '/estado/' + IDAIM.codEstado(d);
+    var estado, id, stub;
+    stub = d.toLowerCase().replace(/\s/g, '-');
+    id = IDAIM.codEstado(d);
+    estado = "/estado/" + id + "-" + stub;
     return window.location.href = estado;
   });
   chart.selectAll('.tick').attr('class', function(d) {
@@ -451,7 +453,7 @@ $(function() {
     nombre: $('#nombre-variable'),
     descripcion: $('#descripcion-variable')
   };
-  IDAIM.load(['regiones', 'nombres', 'ejes', 'indicadores', 'nacional', 'estados', 'estados/nal', 'estructura']);
+  IDAIM.load(['regiones', 'top', 'nombres', 'ejes', 'indicadores', 'nacional', 'estados', 'estados/nal', 'estructura']);
   return IDAIM.on('ready', function() {
     var $svg, arr, cal, debounce_main, dibujaMain, dup, edo, estados, first, graficaTotal, last, locationAquired, operadores, setMainChartData, svg, totalNombre, totales, totalesNacional;
     totales = IDAIM.get('nacional');
@@ -459,7 +461,6 @@ $(function() {
     graficaTotal = IDAIM.get('estados/nal');
     totalNombre = 'Promedio Nacional';
     locationAquired = function(data) {
-      console.log(data.id);
       $('#geo-select-estado').val(data.id);
       $('#total-nacional').text(totales.total[data.id]);
       $('#total-nombre').text(data.n);
@@ -505,6 +506,18 @@ $(function() {
     });
     last = arr[0];
     first = arr[arr.length - 1];
+    IDAIM.get('top').t = {
+      total: {
+        max: {
+          edo: first[0],
+          cal: first[1]
+        },
+        min: {
+          edo: last[0],
+          cal: last[1]
+        }
+      }
+    };
     $('#total-ultimo').find('h2').text(last[1] / 10);
     $('#total-primero').find('h2').text(first[1] / 10);
     $('#total-ultimo').find('h3').text(IDAIM.estado(last[0]));
@@ -528,13 +541,11 @@ $(function() {
       return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     };
     setMainChartData = function(data) {
-      var action, descripcion, nombre;
+      var action, descripcion, nombre, tipo, top;
       descripcion = false;
       nombre = "Calificación de " + data.tipo;
-      console.log(data.tipo === 'total');
       switch (data.tipo) {
         case 'total':
-          console.log('total');
           nombre = totalNombre;
           break;
         case 'eje':
@@ -548,7 +559,16 @@ $(function() {
       textoVariable.descripcion[action]();
       textoVariable.descripcion.text(descripcion);
       $('#total-nacional').text(data.valor / 10);
-      return $('#total-nombre').text(nombre);
+      $('#total-nombre').text(nombre);
+      tipo = data.tipo[0];
+      if (tipo === 'c') {
+        return true;
+      }
+      top = IDAIM.get('top')[tipo][data.id];
+      $('#total-ultimo').find('h2').text(top.min.cal / 10);
+      $('#total-primero').find('h2').text(top.max.cal / 10);
+      $('#total-ultimo').find('h3').text(IDAIM.estado(top.min.edo));
+      return $('#total-primero').find('h3').text(IDAIM.estado(top.max.edo));
     };
     IDAIM.on('mainChart.click', setMainChartData);
     IDAIM.on('mainChart.hover', setMainChartData);
@@ -593,9 +613,14 @@ $(function() {
       return IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional');
     });
     $('.shape-estado').on({
+      click: function(evt) {
+        var stub;
+        stub = IDAIM.estado(this.id).toLowerCase().replace(/\s/g, '-');
+        return window.location.href = "/estado/" + this.id + "-" + stub;
+      },
       mouseover: function(evt) {
         $('#estado-hover-nombre').text(IDAIM.estado(this.id));
-        return $('#estado-hover-calificacion').text(IDAIM.get('nacional').total[this.id] + '%');
+        return $('#estado-hover-calificacion').text(IDAIM.get('nacional').total[this.id] / 10);
       },
       mouseout: function(evt) {
         $('#estado-hover-nombre').html('&nbsp;');
