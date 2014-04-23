@@ -97,7 +97,7 @@ $(function(){
 				d3.selectAll(selectors).classed('activo', 0);
 				d3.select(this).classed('activo', 1);
 
-				$('#calificacion').text(d.valor+'%');
+				$('#calificacion').text(d.valor/10);
 				$('#nombre').text(nombre)
 				$('#descripcion').text(descripcion);
 			});
@@ -120,7 +120,7 @@ $(function(){
 			.on('click', function(d) {
 				d3.selectAll('.criterio').classed('activo', 0);
 				d3.select(this).classed('activo', 1);
-				$('#calificacion').text(d.valor+'%');
+				$('#calificacion').text(d.valor/10);
 				$('#nombre').text(IDAIM.get('nombres').criterio[d.id]);
 				$('#descripcion').text(' ');
 			});
