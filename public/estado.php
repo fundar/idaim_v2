@@ -43,7 +43,7 @@
 				<h2 class="posicion">#<?= $datos->pos ;?></h2>
 				<h1><?= $nombreEstado ;?></h1>
 				<div id="graficaEstado"></div>
-				<div id="calificacion"><?= $datos->t ?>%</div>
+				<div id="calificacion"><?= $datos->t/10 ?></div>
 				<div id="nombre">IDAIM</div>
 				<div id="descripcion"></div>
 			</article>
