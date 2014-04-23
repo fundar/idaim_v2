@@ -19,6 +19,7 @@ $ ()->
 
 	IDAIM.load([
 		'regiones',
+		'top',
 		'nombres',
 		'ejes',
 		'indicadores',
@@ -35,7 +36,6 @@ $ ()->
 		totalNombre = 'Promedio Nacional';
 
 		locationAquired = (data)->
-			console.log(data.id);
 			$('#geo-select-estado').val(data.id);
 			$('#total-nacional').text totales.total[data.id]
 			$('#total-nombre').text data.n
@@ -78,6 +78,18 @@ $ ()->
 
 		last = arr[0]
 		first = arr[arr.length-1]
+		IDAIM.get('top').t = {
+			total: {
+				max: {
+					edo: first[0],
+					cal: first[1]
+				},
+				min: {
+					edo: last[0],
+					cal: last[1]
+				}
+			}
+		}
 		$('#total-ultimo').find('h2').text(last[1]/10)
 		$('#total-primero').find('h2').text(first[1]/10)
 
@@ -106,10 +118,9 @@ $ ()->
 		setMainChartData = (data)->
 			descripcion = false
 			nombre = "Calificación de #{data.tipo}"
-			console.log data.tipo == 'total'
+
 			switch data.tipo
 				when 'total'
-					console.log 'total'
 					nombre = totalNombre
 				when 'eje'
 					descripcion = IDAIM.get('ejes')[data.id]
@@ -122,6 +133,15 @@ $ ()->
 			textoVariable.descripcion.text(descripcion)
 			$('#total-nacional').text(data.valor/10)
 			$('#total-nombre').text(nombre)
+
+			tipo = data.tipo[0]
+			return true if tipo == 'c'
+			top = IDAIM.get('top')[tipo][data.id]
+			$('#total-ultimo').find('h2').text(top.min.cal/10)
+			$('#total-primero').find('h2').text(top.max.cal/10)
+
+			$('#total-ultimo').find('h3').text(IDAIM.estado top.min.edo)
+			$('#total-primero').find('h3').text(IDAIM.estado top.max.edo)
 
 		IDAIM.on 'mainChart.click', setMainChartData
 		IDAIM.on 'mainChart.hover', setMainChartData
@@ -155,7 +175,7 @@ $ ()->
 		$('.shape-estado').on {
 			mouseover: (evt)->
 				$('#estado-hover-nombre').text IDAIM.estado(this.id)
-				$('#estado-hover-calificacion').text IDAIM.get('nacional').total[this.id]+'%'
+				$('#estado-hover-calificacion').text IDAIM.get('nacional').total[this.id]/10
 			mouseout: (evt)->
 				$('#estado-hover-nombre').html '&nbsp;'
 				$('#estado-hover-calificacion').html '&nbsp;'

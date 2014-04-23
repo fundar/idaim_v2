@@ -105,11 +105,15 @@ guarda :nombres, nombres
 estados = {}
 nacional = {
   total: {},
-  ejes: {}
+  ejes: {},
 }
 
 # lista interina para poder asignar posiciones
 edos = {}
+top = {
+  e: {},
+  i: {}
+}
 
 # estados/{estado}.json
 $data[:estados].each_with_index do |edo, index|
@@ -125,6 +129,16 @@ $data[:estados].each_with_index do |edo, index|
   data[:e].each do |key, eje|
     nacional[:ejes][key] = nacional[:ejes][key] || {}
     nacional[:ejes][key][index] = eje
+    unless index == 32
+      top[:e][key] ||= []
+      top[:e][key] << {edo: index, cal: eje}
+    end
+  end
+
+  next if index == 32
+  data[:i].each do |key, indicador|
+    top[:i][key] ||= []
+    top[:i][key] << {edo: index, cal: indicador}
   end
 end
 
@@ -138,6 +152,38 @@ listaEstados = Hash[edosClean.map {|id, estado|
 listaEstados.sort_by {|k,v| v}.reverse.each_with_index do |estado, index|
   edos[estado[0]][:data][:pos] = index+1
 end
+
+maxmin = {
+  e: {},
+  i: {}
+}
+
+topIntermedio = {
+  e: {},
+  i: {}
+}
+
+
+top[:e].each do |key, eje|
+  topIntermedio[:e][key] = eje.sort_by {|v| v[:cal]}
+end
+
+top[:i] = top[:i].each do |key, indicador|
+  topIntermedio[:i][key] = indicador.sort_by {|v| v[:cal]}
+end
+
+
+topIntermedio[:e].each do |k, e|
+  maxmin[:e][k] = {max: e.last, min: e.first}
+end
+
+topIntermedio[:i].each do |k, i|
+  maxmin[:i][k] = {max: i.last, min: i.first}
+end
+
+guarda :"top", maxmin
+
+
 # Termina posicionamiento
 
 edos.each do |key, edo|
