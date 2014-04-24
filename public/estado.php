@@ -31,7 +31,7 @@
 			<? include('header.php') ;?>
 			
 			<script>
-			window._edo = '<?= $edo->i ?>';
+			window._edo = '<?= $estado->i ?>';
 			</script>
 
 			<article class="container estado">

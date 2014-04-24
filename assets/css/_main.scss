@@ -90,6 +90,18 @@ footer {
   margin: 20px auto;
   background: url(/img/logo-fundar.png) no-repeat 50%/100%;
 }
+
+.breadcrumb {
+  text-decoration: none;
+  color: #4B4B4B;
+  font-size: 11px;
+
+  &.active-breadcrumb {
+    font-weight: bold;
+  }
+}
+
+
 #nav-footer {
   a {
     text-decoration: none;
