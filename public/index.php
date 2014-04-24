@@ -47,7 +47,9 @@
 
 			<section id="nacional" class="sec sec-a">
 				<div class="container cf">
-					<p>In volutpat, eros et rhoncus venenatis, nibh felis tristique elit, vitae convallis tortor augue eu nulla. Vivamus pulvinar in erat nec tristique. Integer varius nisl at sodales mollis. Maecenas placerat, nulla et dignissim elementum, sem mauris ornare augue, nec vulputate diam ipsum nec enim. Ut pretium scelerisque augue ac scelerisque. Ut sed placerat mauris, quis placerat mauris. Fusce at lacinia sem, in interdum lacus. Nam at ornare mauris, eu feugiat felis. Donec vitae nisl lacinia, interdum ligula vel, dictum dolor.</p>
+					<p>El IDAIM mide la calidad de las leyes de transparencia en México con relación a las mejores prácticas nacionales e internacionales en la materia. Se compone de tres variables principales: diseño normativo, diseño institucional y procedimiento de acceso a la información pública y obligaciones de transparencia. Cada variable se compone de siete, cinco y nueve indicadores respectivamente, los cuales se alimentan de 196 criterios.</p>
+					<p>Los criterios representan los elementos que consideramos debe contener una ley de transparencia para que garantice y proteja adecuadamente el ejercicio del derecho de acceso a la información (DAI) y favorezca la transparencia.</p>
+					<p>A continuación se presenta una gráfica en donde se pueden observar las calificaciones de cada variable, indicador y criterio para cada ley evaluada. Los colores reflejan el rango en el que se encuentra cada componente. Verde cuando se considera buena (calificación entre 8.0 y 10), amarillo cuando se considera regular (calificación entre 6.0 y 7.9) y rojo cuando se considera mala (calificación entre 0 y 5.9).</p>
 
 					<div id="geolocation">
 						<h3>Estás visitándonos desde</h3>
