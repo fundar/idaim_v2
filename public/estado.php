@@ -1,30 +1,25 @@
 <?
 	$edo = trim($_GET['edo']);
-	if (!$edo || $edo=='nal') {
+	if ($edo === "" || $edo==32) {
 		header('Location: /');
 		exit;
 	}
 	$estados = json_decode(file_get_contents('data/estados.json'));
-	$nombreEstado = '';
 
-	foreach($estados as $estado){
-		if ($estado->i == $edo) {
-			$nombreEstado = $estado->n;
-			break;
-		}
-	}
-	if (!$nombreEstado) {
+	$estado = $estados->$edo;
+
+	if (!$estado) {
 		header('Location: /');
 		exit;
 	}
-	$datos = json_decode(file_get_contents('data/estados/'.$edo.'.json'));
+	$datos = json_decode(file_get_contents('data/estados/'.$estado->i.'.json'));
 ?>
 <!DOCTYPE html>
 <html>
 		<head>
 				<meta charset="utf-8">
 				<meta http-equiv="X-UA-Compatible" content="IE=edge">
-				<title>IDAIM <?= $nombreEstado ;?> - Índice del Derecho de Acceso a la Información en México</title>
+				<title>IDAIM <?= $estado->n ;?> - Índice del Derecho de Acceso a la Información en México</title>
 				<meta name="description" content="">
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<link rel="stylesheet" href="/css/estado.css">
@@ -36,11 +31,11 @@
 			<? include('header.php') ;?>
 			
 			<script>
-			window._edo = '<?= $edo ?>';
+			window._edo = '<?= $edo->i ?>';
 			</script>
 
 			<article class="container estado">
-				<h1><?= $nombreEstado ;?></h1>
+				<h1><?= $estado->n ;?></h1>
 				<div class="texto-descriptivo">
 					<p>El IDAIM se compone de tres variables que pueden identificarse con cada uno de los tres cuadros que se ven en la figura de abajo. De izquierda a derecha son: Disposiciones normativas, Diseño institucional y Procedimiento de acceso a la información y obligaciones de transparencia. Éstas se encontrarán en el color que represente su calificación general.</p>
 					<p>Al darle clic a cada variable aparecerá su estructura interna conformada por siete, cinco y nueve indicadores respectivamente. Éstos se podrán observar en el color que corresponda a su calificación. En la parte inferior de la gráfica se podrá observar el nombre del indicador y la calificación que obtuvo.</p>
