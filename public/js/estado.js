@@ -365,6 +365,53 @@ IDAIM.load = function(data, callback) {
 $(function(){
 	window._edo = window._edo || 'mor';
 	var pathEstado = 'estados/'+window._edo;
+
+	$('.breadcrumb:not(.active-breadcrumb)').hide();
+	$('.breadcrumb').on('click', function(evt){
+		evt.preventDefault();
+		var $el = $(this);
+		var tipo = this.id.split('-')[1];
+		selector = '';
+		plural = false;
+		switch (tipo) {
+			case 'total':
+				selector = '.indicador, .criterio, .eje';
+				break;
+			case 'eje':
+				selector = '.indicador, .criterio';
+				plural = 'ejes';
+				break;
+			case 'indicador':
+				plural = 'indicadores';
+				selector = '.criterio';
+				break;
+		}
+		console.log(tipo);
+		var nombre, descripcion, d;
+		if (tipo == 'total') {
+			d = {
+				valor: IDAIM.get(pathEstado).t
+			};
+			nombre = 'IDAIM';
+			descripcion = '';
+		} else {
+			d = $el.data();
+			descripcion = plural && IDAIM.get(plural)[d.id];
+			nombre = IDAIM.get('nombres').indicador[d.id];	
+		}
+		console.log(IDAIM.get(pathEstado));
+
+		$('#calificacion').text(d.valor/10);
+		$('#nombre').text(nombre);
+		$('#descripcion').text(descripcion);
+		
+		d3.selectAll(selector).classed('activo', 0);
+
+		$el.addClass('active-breadcrumb').nextAll().hide();
+	});
+			
+
+
 	var idaimReady = function(){
 
 		var container = '#graficaEstado';
@@ -448,14 +495,23 @@ $(function(){
 					selectors = '.eje, .indicador, .criterio';
 					descripcion = IDAIM.get('ejes')[d.id];
 					nombre = IDAIM.get('nombres').eje[d.id];
+					$bc = $('#breadcrumb-eje');
+					$bc.data('tipo', 'eje').data('id', d.id).data('valor', d.valor);
+					$('.active-breadcrumb').removeClass('active-breadcrumb');
+					$bc.show().addClass('active-breadcrumb').prevAll().show();
+					$bc.nextAll().hide();
 				} else {
 					selectors = '.indicador, .criterio';
 					descripcion = IDAIM.get('indicadores')[d.id];
 					nombre = IDAIM.get('nombres').indicador[d.id];
+					$bc = $('#breadcrumb-indicador');
+					$bc.data('tipo', 'indicador').data('id', d.id).data('valor', d.valor);
+					$('.active-breadcrumb').removeClass('active-breadcrumb');
+					$bc.show().addClass('active-breadcrumb').prevAll().show();
+					$bc.nextAll().hide();
 				}
 				d3.selectAll(selectors).classed('activo', 0);
 				d3.select(this).classed('activo', 1);
-
 				$('#calificacion').text(d.valor/10);
 				$('#nombre').text(nombre)
 				$('#descripcion').text(descripcion);
@@ -479,6 +535,12 @@ $(function(){
 			.on('click', function(d) {
 				d3.selectAll('.criterio').classed('activo', 0);
 				d3.select(this).classed('activo', 1);
+				$bc = $('#breadcrumb-criterio');
+				$bc.data('tipo', 'criterio').data('id', d.id).data('valor', d.valor);
+				$('.active-breadcrumb').removeClass('active-breadcrumb');
+				$bc.show().addClass('active-breadcrumb').prevAll().show();
+				$bc.nextAll().hide();
+
 				$('#calificacion').text(d.valor/10);
 				$('#nombre').text(IDAIM.get('nombres').criterio[d.id]);
 				$('#descripcion').text(' ');
@@ -491,7 +553,12 @@ $(function(){
 			var start = eje.children[0].children[0].id;
 			var ultimoIndicador = eje.children[eje.children.length-1];
 			var end = ultimoIndicador.children[ultimoIndicador.children.length-1].id;
-			dataEjes.push({start: start, end: end, id: eje.id, valor: IDAIM.get(pathEstado).e[eje.id]});
+			dataEjes.push({
+				start: start,
+				end: end,
+				id: eje.id,
+				valor: IDAIM.get(pathEstado).e[eje.id]
+			});
 
 			$.each(eje.children, function(index, indicador) {
 				var ch = indicador.children;

@@ -45,6 +45,22 @@
 					<span>Ranking nacional</span>
 					<h2 class="no">#<?= $datos->pos ;?></h2>
 				</div>
+
+				<ul>
+					<li id="breadcrumb-total" class="breadcrumb active-breadcrumb" data-parent="#gn-total-idaim">
+						<a href="#">Estado</a>
+					</li>
+					<li id="breadcrumb-eje" class="breadcrumb">
+						<a href="#" >&gt; Calificación del eje</a>
+					</li>
+					<li id="breadcrumb-indicador" class="breadcrumb">
+						<a href="#">&gt; Calificación del indicador</a>
+					</li>
+					<li id="breadcrumb-criterio" class="breadcrumb">
+						<a href="#">&gt; Calificación del criterio</a>
+					</li>
+				</ul>
+				
 				<div id="graficaEstado"></div>
 				<div id="calificacion"><?= $datos->t/10 ?></div>
 				<div id="nombre">IDAIM</div>
