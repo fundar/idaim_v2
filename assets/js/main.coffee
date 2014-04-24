@@ -115,6 +115,20 @@ $ ()->
 			IDAIM.mainChart IDAIM.get('estructura'), $('#graph-total'), graficaTotal
 			IDAIM.indiceNacional(totalesNacional, '#graph-indices-nacional')
 		
+		$('.breadcrumb:not(.active-breadcrumb)').hide()
+		$('.breadcrumb').on 'click', (evt)->
+			evt.preventDefault();
+			$el = $(this)
+			if parent = $el.data('parent')
+				e = document.createEvent('UIEvents');
+				e.initUIEvent('click', true, true)
+				d3.select(parent).node().dispatchEvent(e);
+				#$(parent).click();
+
+
+			$el.addClass('active-breadcrumb').nextAll().hide();
+
+
 		setMainChartData = (data)->
 			descripcion = false
 			nombre = "Calificación de #{data.tipo}"
@@ -133,6 +147,20 @@ $ ()->
 			textoVariable.descripcion.text(descripcion)
 			$('#total-nacional').text(data.valor/10)
 			$('#total-nombre').text(nombre)
+
+			parents = data.parents
+			if (parents)
+				$('.active-breadcrumb').removeClass('active-breadcrumb')
+				$este = $("#breadcrumb-#{data.tipo}")
+
+				$este.show().addClass 'active-breadcrumb'
+				
+				for parent in parents
+					parentId = "#gn-#{parent.tipo}-#{parent.id}"
+					$("#breadcrumb-#{parent.tipo}").data('parent', parentId)
+
+				$este.prevAll().show();
+
 
 			tipo = data.tipo[0]
 			return true if tipo == 'c'

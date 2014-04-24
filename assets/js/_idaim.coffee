@@ -81,15 +81,26 @@ IDAIM.mainChart = (dataSet, container, source)->
         newTotal = x 1
 
         id = d.id.toString().replace /\D+/, ''
+
+        order = ['total', 'eje', 'indicador', 'criterio']
         if id
             nombre = IDAIM.get('nombres')[clase][id]
             tipo = clase
+            tipoParent = order[order.indexOf(clase)-1]
         else
             tipo = 'total'
             id = 'total'
             nombre = "IDAIM"
+            tipoParent = null
 
-        IDAIM.emit('mainChart.click', {id: id, tipo: tipo, nombre: nombre, valor: elem.attr('valor') })
+
+        parents = []
+        current = d
+        while current = current.parent
+            parents.push({tipo: order[current.depth], id: current.id})
+
+
+        IDAIM.emit('mainChart.click', {id: id, tipo: tipo, nombre: nombre, valor: elem.attr('valor'), parents: parents })
 
         el = g.classed('activo', false)
         # KHAAAAAAAAAAAAAAAAAACK
@@ -104,7 +115,7 @@ IDAIM.mainChart = (dataSet, container, source)->
     hover = (d)->
         elem = d3.select(this)
         id = d.id.toString().replace /\D+/, ''
-        clase = elem.attr('class')
+        clase = nombreDe(d)
         if id
             nombre = IDAIM.get('nombres')[clase][id]
             tipo = clase
