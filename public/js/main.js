@@ -595,6 +595,7 @@ $(function() {
           $("#breadcrumb-" + parent.tipo).data('parent', parentId);
         }
         $este.prevAll().show();
+        $este.nextAll().hide();
       }
       tipo = data.tipo[0];
       if (tipo === 'c') {

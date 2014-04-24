@@ -159,7 +159,8 @@ $ ()->
 					parentId = "#gn-#{parent.tipo}-#{parent.id}"
 					$("#breadcrumb-#{parent.tipo}").data('parent', parentId)
 
-				$este.prevAll().show();
+				$este.prevAll().show()
+				$este.nextAll().hide()
 
 
 			tipo = data.tipo[0]
