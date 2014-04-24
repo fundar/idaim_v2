@@ -4,22 +4,32 @@
 
 @import "main";
 
+.texto-descriptivo {
+	font-size: 13px;
+}
+
 .estado {
 	padding: 20px 0;
 	h1 {
-		font-size: 32px;
-		margin: 0;
+		font-size: 36px;
+		font-weight: normal;
+		text-transform: uppercase;
+		text-align: center;
 	}
 
-	h2 {
+	.posicion {
 		float: right;
 		margin: 0;
-		border: 2px solid #000;
-		width: 2em;
-		height: 2em;
-		line-height: 2em;
+		color: #4b4b4b;
+	}
+	.no {
+		display: inline;
+		margin: 0;
+
+		color: #000;
+		font-size: 38px;
+		font-family: $font-titulos;
 		text-align: center;
-		border-radius: 5em;
 	}
 }
 
@@ -56,6 +66,7 @@
 }
 
 #calificacion {
+	color: #4b4b4b;
 	font-size: 48px;
 	font-weight: bold;
 	text-align: center;
@@ -64,9 +75,14 @@
 	margin: 0;
 }
 #nombre {
-	font-size: 24px;
+	color: #000;
+	font-size: 20px;
 	text-align: center;
 	line-height: 1.2;
 
 	margin: 10px 0;
+}
+#descripcion {
+	color: #4b4b4b;
+	text-align: center;
 }
