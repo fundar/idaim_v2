@@ -65,6 +65,22 @@
 								<? endforeach; ?>
 							</select>
 						</div>
+
+						<br />
+						<ul>
+							<li>
+								<a href="#" class="breadcrumb" class="active-breadcrumb">Estado</a>
+							</li>
+							<li>
+								<a href="#" class="breadcrumb">&gt; Calificación del eje</a>
+							</li>
+							<li>
+								<a href="#" class="breadcrumb">&gt; Calificación del indicador</a>
+							</li>
+							<li>
+								<a href="#" class="breadcrumb">&gt; Calificación del criterio</a>
+							</li>
+						</ul>
 					</div>
 
 					<h3 id="nombre-variable">IDAIM</h3>
