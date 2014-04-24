@@ -41,6 +41,8 @@
 				<div id="calificacion"><?= $datos->t/10 ?></div>
 				<div id="nombre">IDAIM</div>
 				<div id="descripcion"></div>
+
+				<a href="/data/fichas/<?= $estado->i ;?>.xlsx">Descarga la ficha de Estado</a>
 			</article>
 			
 
