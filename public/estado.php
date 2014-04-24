@@ -39,9 +39,17 @@
 			window._edo = '<?= $edo ?>';
 			</script>
 
-			<article class="container estado">				
-				<h2 class="posicion">#<?= $datos->pos ;?></h2>
+			<article class="container estado">
 				<h1><?= $nombreEstado ;?></h1>
+				<div class="texto-descriptivo">
+					<p>El IDAIM se compone de tres variables que pueden identificarse con cada uno de los tres cuadros que se ven en la figura de abajo. De izquierda a derecha son: Disposiciones normativas, Diseño institucional y Procedimiento de acceso a la información y obligaciones de transparencia. Éstas se encontrarán en el color que represente su calificación general.</p>
+					<p>Al darle clic a cada variable aparecerá su estructura interna conformada por siete, cinco y nueve indicadores respectivamente. Éstos se podrán observar en el color que corresponda a su calificación. En la parte inferior de la gráfica se podrá observar el nombre del indicador y la calificación que obtuvo.</p>
+					<p>Para conocer el detalle de cada indicador, se puede dar clic en el mismo y aparecerán los criterios los cuales se presentarán en color verde o rojo según esté o no contemplado en la ley.</p>
+				</div>
+				<div class="posicion">
+					<span>Ranking nacional</span>
+					<h2 class="no">#<?= $datos->pos ;?></h2>
+				</div>
 				<div id="graficaEstado"></div>
 				<div id="calificacion"><?= $datos->t/10 ?></div>
 				<div id="nombre">IDAIM</div>
