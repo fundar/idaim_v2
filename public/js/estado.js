@@ -399,7 +399,6 @@ $(function(){
 			descripcion = plural && IDAIM.get(plural)[d.id];
 			nombre = IDAIM.get('nombres').indicador[d.id];	
 		}
-		console.log(IDAIM.get(pathEstado));
 
 		$('#calificacion').text(d.valor/10);
 		$('#nombre').text(nombre);
