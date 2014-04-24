@@ -140,7 +140,7 @@ IDAIM.mainChart = function(dataSet, container, source) {
     return "translate(" + (x(d.x)) + ", " + (y(d.y)) + ")";
   };
   click = function(d, sepa, resize) {
-    var clase, depth, el, elem, id, newTotal, newWidth, newZero, nombre, tipo;
+    var clase, current, depth, el, elem, id, newTotal, newWidth, newZero, nombre, order, parents, tipo, tipoParent;
     resize = resize !== 0;
     IDAIM.selected = {
       d: d,
@@ -162,19 +162,31 @@ IDAIM.mainChart = function(dataSet, container, source) {
     newZero = x(0);
     newTotal = x(1);
     id = d.id.toString().replace(/\D+/, '');
+    order = ['total', 'eje', 'indicador', 'criterio'];
     if (id) {
       nombre = IDAIM.get('nombres')[clase][id];
       tipo = clase;
+      tipoParent = order[order.indexOf(clase) - 1];
     } else {
       tipo = 'total';
       id = 'total';
       nombre = "IDAIM";
+      tipoParent = null;
+    }
+    parents = [];
+    current = d;
+    while (current = current.parent) {
+      parents.push({
+        tipo: order[current.depth],
+        id: current.id
+      });
     }
     IDAIM.emit('mainChart.click', {
       id: id,
       tipo: tipo,
       nombre: nombre,
-      valor: elem.attr('valor')
+      valor: elem.attr('valor'),
+      parents: parents
     });
     el = g.classed('activo', false);
     if (!resize) {
@@ -189,7 +201,7 @@ IDAIM.mainChart = function(dataSet, container, source) {
     var clase, elem, id, nombre, tipo;
     elem = d3.select(this);
     id = d.id.toString().replace(/\D+/, '');
-    clase = elem.attr('class');
+    clase = nombreDe(d);
     if (id) {
       nombre = IDAIM.get('nombres')[clase][id];
       tipo = clase;

@@ -91,14 +91,14 @@ footer {
   background: url(/img/logo-fundar.png) no-repeat 50%/100%;
 }
 
-.breadcrumb {
+.breadcrumb a {
   text-decoration: none;
   color: #4B4B4B;
   font-size: 11px;
+}
 
-  &.active-breadcrumb {
-    font-weight: bold;
-  }
+.active-breadcrumb {
+  font-weight: bold;
 }
 
 

@@ -68,17 +68,17 @@
 
 						<br />
 						<ul>
-							<li>
-								<a href="#" class="breadcrumb" class="active-breadcrumb">Estado</a>
+							<li id="breadcrumb-total" class="breadcrumb active-breadcrumb" data-parent="#gn-total-idaim">
+								<a href="#">Estado</a>
 							</li>
-							<li>
-								<a href="#" class="breadcrumb">&gt; Calificación del eje</a>
+							<li id="breadcrumb-eje" class="breadcrumb">
+								<a href="#" >&gt; Calificación del eje</a>
 							</li>
-							<li>
-								<a href="#" class="breadcrumb">&gt; Calificación del indicador</a>
+							<li id="breadcrumb-indicador" class="breadcrumb">
+								<a href="#">&gt; Calificación del indicador</a>
 							</li>
-							<li>
-								<a href="#" class="breadcrumb">&gt; Calificación del criterio</a>
+							<li id="breadcrumb-criterio" class="breadcrumb">
+								<a href="#">&gt; Calificación del criterio</a>
 							</li>
 						</ul>
 					</div>
