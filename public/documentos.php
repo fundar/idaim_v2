@@ -30,7 +30,7 @@
 							<img src="/img/ad-ft.jpg" alt="thumb" />
 							<h2>Fichas de evaluación por ley de transparencia</h2>
 							<p>Son 33 fichas, una para cada ley de transparencia en México. Cada ficha contiene la calificación de los 196 criterios y el artículo que contiene el criterio evaluado o en caso de tener cero, el que estipula lo contrario. Ocasionalmente no se establece ningún artículo, esto sucede cuando no está contenido en ningún sitio de la ley.<br />
-							<a href="">Fichas por ley de transparencia (zip 30M)</a></p>
+							<a href="/data/fichas.zip">Fichas por ley de transparencia (zip 30M)</a></p>
 						</li>
 						<li>
 							<img src="/img/ad-fi.jpg" alt="thumb" />

@@ -386,7 +386,7 @@ $(function(){
 				selector = '.criterio';
 				break;
 		}
-		console.log(tipo);
+
 		var nombre, descripcion, d;
 		if (tipo == 'total') {
 			d = {
