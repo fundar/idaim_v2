@@ -145,6 +145,31 @@ footer {
   }
 }
 
+.escala {
+  .titulo {
+    float: left;
+    margin-right: 10px;
+  }
+}
+.escala-barra-cont {
+  float: left;
+  margin-right: 10px;
+
+  .barrita {
+    width: 60px;
+    height: 20px;
+
+    &.rojo { background: #d5001b; }
+    &.amarillo { background: #fccf20; }
+    &.verde { background: #6cb439; }
+  }
+  .descr {
+    width: 60px;
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
 @media screen and (min-width: 480px) {
   #nav-footer {
     position: absolute;

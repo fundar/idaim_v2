@@ -309,6 +309,13 @@ header {
   font-size: 36px;
   line-height: 1;
 }
+.separador {
+  display: block;
+  clear: both;
+
+  width: 100%;
+  height: 10px;
+}
 
 @media screen and (min-width: 800px) {
   .estado-hover {
