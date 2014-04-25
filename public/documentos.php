@@ -24,7 +24,7 @@
 							<img src="/img/ad-db.jpg" alt="thumb" />
 							<h2>Base de datos</h2>
 							<p>Es un documento en Excel que contiene las calificaciones de los 196 criterios para cada ley evaluada. Sobre este documento se hizo el cálculo del IDAIM.<br />
-							<a href="">Base de datos</a></p>
+							<a href="/data/db.xls">Base de datos</a></p>
 						</li>
 						<li>
 							<img src="/img/ad-ft.jpg" alt="thumb" />
@@ -43,7 +43,7 @@
 							<img src="/img/ad-cu.jpg" alt="thumb" />
 							<h2>Cuadernillo de resultados</h2>
 							<p>En este documento se exponen los resultados del índice, así como su interpretación a la luz del debate actual. El análisis de los resultados presentados es una de muchas formas de hacerlo, para ello está disponible la base de datos de donde pueden obtener la información necesaria para hacer los cruces de información de interés de cada persona. En este cuadernillo se presentan los resultados por indicador, en donde buscamos, sobre todo, dar un panorama general del estado de<br />
-							<a href="">Cuadernillo de resultados</a></p>
+							<a href="/data/cuadernillos.pdf">Cuadernillo de resultados</a></p>
 						</li>
 					</ul>
 				</article>
