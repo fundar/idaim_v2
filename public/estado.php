@@ -66,6 +66,26 @@
 				<div id="nombre">IDAIM</div>
 				<div id="descripcion"></div>
 
+				<div class="escala cf">
+						<div class="titulo">Escala</div>
+						<div class="escala-barras">
+							<div class="escala-barra-cont">
+								<div class="barrita rojo"></div>
+								<div class="descr rojo">0 - 5.9</div>
+							</div>
+
+							<div class="escala-barra-cont">
+								<div class="barrita amarillo"></div>
+								<div class="descr amarillo">6 - 7.9</div>
+							</div>
+
+							<div class="escala-barra-cont">
+								<div class="barrita verde"></div>
+								<div class="descr verde">8 - 10</div>
+							</div>
+						</div>
+					</div>
+
 				<a class="descargar" href="/data/fichas/<?= $estado->i ;?>.xlsx">Descarga la ficha de Estado</a>
 			</article>
 			
