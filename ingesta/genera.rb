@@ -53,7 +53,7 @@ def calificacion_por_entidad entidad
   $data[:indicadores].each do |index, indicador|
     qty = indicador[:criterios]
     slice = c.slice(last, qty)
-    h[:i][indicador[:index]] = (slice.inject(:+).to_f/qty.to_f*100).round
+    h[:i][indicador[:index]] = (slice.inject(:+).to_f/qty.to_f*100).floor
     last += qty
   end
 
@@ -65,7 +65,7 @@ def calificacion_por_entidad entidad
     slice = c.slice(last,qty)
     pc = slice.inject(:+).to_f/qty.to_f
     sum += pc;
-    h[:e][index] = (pc*100).round
+    h[:e][index] = (pc*100).floor
     last += qty
   end
 

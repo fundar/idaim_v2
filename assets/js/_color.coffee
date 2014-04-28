@@ -1,9 +1,9 @@
 ColorStuff =
 	fijo: (val)->
-		if val < 59
+		if val < 60
 			#todos flunkean duro
 			return '#d5001b'
-		if val < 79
+		if val < 80
 			return '#fccf20'
 		else
 			return '#6cb439'

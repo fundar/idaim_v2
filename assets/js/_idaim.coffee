@@ -147,7 +147,7 @@ IDAIM.mainChart = (dataSet, container, source)->
 IDAIM.indiceNacional = (variable, container)->
     data = []
     for e in variable
-        data.push({id: e[0], v: e[1]})
+        data.push({id: e[0], v: e[1]/10})
 
     $container = $(container)
     $container.empty()
@@ -167,7 +167,7 @@ IDAIM.indiceNacional = (variable, container)->
         r
 
     x = d3.scale.linear()
-        .domain([0, 100])
+        .domain([0, 10])
         .range([0, w])
 
     y = d3.scale.ordinal()
@@ -194,7 +194,7 @@ IDAIM.indiceNacional = (variable, container)->
         .attr("width", (d)-> x(d.v))
         .attr("x", m.left)
         .attr("y", (d)-> m.top + 1 + y(IDAIM.estado(d.id)))
-        .attr("fill", (d)->Color(d.v))
+        .attr("fill", (d)->Color(d.v*10))
 
     chart.selectAll(".linea")
         .data(x.ticks(cuantosTicks($container.width()))).enter()
