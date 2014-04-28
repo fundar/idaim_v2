@@ -10,10 +10,10 @@ var Color, ColorStuff, Colores;
 
 ColorStuff = {
   fijo: function(val) {
-    if (val < 59) {
+    if (val < 60) {
       return '#d5001b';
     }
-    if (val < 79) {
+    if (val < 80) {
       return '#fccf20';
     } else {
       return '#6cb439';
@@ -236,7 +236,7 @@ IDAIM.indiceNacional = function(variable, container) {
     e = variable[_i];
     data.push({
       id: e[0],
-      v: e[1]
+      v: e[1] / 10
     });
   }
   $container = $(container);
@@ -265,7 +265,7 @@ IDAIM.indiceNacional = function(variable, container) {
     }
     return r;
   };
-  x = d3.scale.linear().domain([0, 100]).range([0, w]);
+  x = d3.scale.linear().domain([0, 10]).range([0, w]);
   y = d3.scale.ordinal().domain(data.map(function(d) {
     return IDAIM.estado(d.id);
   })).rangeRoundBands([0, h]);
@@ -277,7 +277,7 @@ IDAIM.indiceNacional = function(variable, container) {
   }).attr("x", m.left).attr("y", function(d) {
     return m.top + 1 + y(IDAIM.estado(d.id));
   }).attr("fill", function(d) {
-    return Color(d.v);
+    return Color(d.v * 10);
   });
   chart.selectAll(".linea").data(x.ticks(cuantosTicks($container.width()))).enter().append("svg:line").attr("class", "linea").attr("x1", function(d) {
     return x(d) + m.left;
