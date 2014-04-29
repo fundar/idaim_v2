@@ -12,6 +12,10 @@
 </head>
 
 <body>
+	<script>
+		window._geoip = <?= $geoip ?>;
+	</script>
+	
 	<section id="nacional" class="sec sec-a">
 		<div class="container cf">
 			<div id="geolocation">
