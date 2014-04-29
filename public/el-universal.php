@@ -102,6 +102,19 @@
 		</div>
 	</section>
 	
+	<section id="mapa" class="sec sec-a">
+		<div class="container">
+			<div class="estado-hover">
+				<h2 id="estado-hover-nombre">&nbsp;</h2>
+				<h1 id="estado-hover-calificacion">&nbsp;</h1>
+			</div>
+			
+			<div id="mapa_svg">
+				<?= file_get_contents('./img/mapa.svg') ;?>
+			</div>
+		</div>
+	</section>
+			
 	<script src="/js/main.js"></script>
 </body>
 
