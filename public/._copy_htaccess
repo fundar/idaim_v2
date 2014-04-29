@@ -1,0 +1,10 @@
+GeoIPEnable On
+RewriteEngine On
+RewriteRule ^estado/(\d+)-.+$ estado.php?edo=$1 [NC,L]
+RewriteRule ^(documentos|quienes-somos|contacto)$ $1.php [NC,L]
+#GeoIPDBFile /usr/share/GeoIP/GeoLiteCity.dat MemoryCache
+
+AuthUserFile /var/www/idaim/app/.htpasswd
+AuthType Basic
+AuthName "IDAIM 2014"
+Require valid-user
