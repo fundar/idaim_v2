@@ -10,7 +10,7 @@
 	<meta name="generator" content="Geany 0.21" />
 	<link rel="stylesheet" href="css/index.css">
 	<style>
-		#mapa { visibility: hidden; }
+		#mapa { visibility: hidden; display:none; }
 	</style>
 </head>
 
