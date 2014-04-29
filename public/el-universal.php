@@ -9,6 +9,9 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 0.21" />
 	<link rel="stylesheet" href="css/index.css">
+	<style>
+		#mapa { visibility: hidden; }
+	</style>
 </head>
 
 <body>
