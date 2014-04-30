@@ -3,6 +3,10 @@
 // require _color
 // require _idaim
 
+var decimal = function(val) {
+	return (val/10).toFixed(1);
+};
+
 $(function(){
 	window._edo = window._edo || 'mor';
 	var pathEstado = 'estados/'+window._edo;
@@ -41,7 +45,7 @@ $(function(){
 			nombre = IDAIM.get('nombres').indicador[d.id];	
 		}
 
-		$('#calificacion').text(d.valor/10);
+		$('#calificacion').text(decimal(d.valor));
 		$('#nombre').text(nombre);
 		$('#descripcion').text(descripcion);
 		
@@ -152,7 +156,7 @@ $(function(){
 				}
 				d3.selectAll(selectors).classed('activo', 0);
 				d3.select(this).classed('activo', 1);
-				$('#calificacion').text(d.valor/10);
+				$('#calificacion').text(decimal(d.valor));
 				$('#nombre').text(nombre)
 				$('#descripcion').text(descripcion);
 			});
@@ -181,7 +185,7 @@ $(function(){
 				$bc.show().addClass('active-breadcrumb').prevAll().show();
 				$bc.nextAll().hide();
 
-				$('#calificacion').text(d.valor/10);
+				$('#calificacion').text(decimal(d.valor));
 				$('#nombre').text(IDAIM.get('nombres').criterio[d.id]);
 				$('#descripcion').text(' ');
 			});
