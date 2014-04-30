@@ -70,7 +70,8 @@ def calificacion_por_entidad entidad
   end
 
   # La calificación total
-  h[:t] = (sum*100/h[:e].length.to_f).round
+  h[:t] = (sum*(100.00)/h[:e].length.to_f)
+  #h[:t] = (sum*100/h[:e].length.to_f).round
 
   h
 end

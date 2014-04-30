@@ -445,7 +445,11 @@ Geo.prototype.locationAquired = function(code) {
   data['id'] = code;
   return this.callback(data);
 };
-var debounce;
+var debounce, decimal;
+
+decimal = function(val) {
+  return (val / 10).toFixed(1);
+};
 
 debounce = function(fn, timeout) {
   var timeoutID;
@@ -474,7 +478,7 @@ $(function() {
     totalNombre = 'Promedio Nacional';
     locationAquired = function(data) {
       $('#geo-select-estado').val(data.id);
-      $('#total-nacional').text(totales.total[data.id]);
+      $('#total-nacional').text(decimal(totales.total[data.id]));
       $('#total-nombre').text(data.n);
       totalNombre = data.n;
       return IDAIM.load("estados/" + data.i, function(data) {
@@ -486,7 +490,7 @@ $(function() {
       var edo;
       Geo.instance.cancelGeolocation();
       edo = estados[this.value];
-      $('#total-nacional').text(totales.total[this.value] / 10);
+      $('#total-nacional').text(decimal(totales.total[this.value]));
       $('#total-nombre').text(edo.n);
       totalNombre = edo.n;
       return IDAIM.load("estados/" + edo.i, function(data) {
@@ -495,7 +499,7 @@ $(function() {
       });
     });
     Geo.start().onLocation(locationAquired).set(window._geoip);
-    $('#total-nacional').text(totales.total[32] / 10);
+    $('#total-nacional').text(decimal(totales.total[32]));
     arr = [];
     dup = JSON.parse(JSON.stringify(totales.total));
     delete dup[32];
@@ -530,8 +534,8 @@ $(function() {
         }
       }
     };
-    $('#total-ultimo').find('h2').text(last[1] / 10);
-    $('#total-primero').find('h2').text(first[1] / 10);
+    $('#total-ultimo').find('h2').text(decimal(last[1]));
+    $('#total-primero').find('h2').text(decimal(first[1]));
     $('#total-ultimo').find('h3').text(IDAIM.estado(last[0]));
     $('#total-primero').find('h3').text(IDAIM.estado(first[0]));
     totalesNacional = arr;
@@ -582,7 +586,7 @@ $(function() {
       textoVariable.nombre.text(data.nombre);
       textoVariable.descripcion[action]();
       textoVariable.descripcion.text(descripcion);
-      $('#total-nacional').text(data.valor / 10);
+      $('#total-nacional').text(decimal(data.valor));
       $('#total-nombre').text(nombre);
       parents = data.parents;
       if (parents) {
@@ -602,8 +606,8 @@ $(function() {
         return true;
       }
       top = IDAIM.get('top')[tipo][data.id];
-      $('#total-ultimo').find('h2').text(top.min.cal / 10);
-      $('#total-primero').find('h2').text(top.max.cal / 10);
+      $('#total-ultimo').find('h2').text(decimal(top.min.cal));
+      $('#total-primero').find('h2').text(decimal(top.max.cal));
       $('#total-ultimo').find('h3').text(IDAIM.estado(top.min.edo));
       return $('#total-primero').find('h3').text(IDAIM.estado(top.max.edo));
     };
@@ -657,7 +661,7 @@ $(function() {
       },
       mouseover: function(evt) {
         $('#estado-hover-nombre').text(IDAIM.estado(this.id));
-        return $('#estado-hover-calificacion').text(IDAIM.get('nacional').total[this.id] / 10);
+        return $('#estado-hover-calificacion').text(decimal(IDAIM.get('nacional').total[this.id]));
       },
       mouseout: function(evt) {
         $('#estado-hover-nombre').html('&nbsp;');

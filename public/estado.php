@@ -62,7 +62,7 @@
 				</ul>
 				
 				<div id="graficaEstado"></div>
-				<div id="calificacion"><?= $datos->t/10 ?></div>
+				<div id="calificacion"><?= round($datos->t/10, 1) ?></div>
 				<div id="nombre">IDAIM</div>
 				<div id="descripcion"></div>
 
