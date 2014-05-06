@@ -102,7 +102,7 @@ EMAIL;
 
 					<? else: ?>
 					<section>
-						<p>Si deseas recibir mayor información lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ornare pharetra velit, et cursus mauris fringilla at. Ut adipiscing tristique erat in dapibus. Morbi quis ligula at sapien gravida cursus sed in odio. Suspendisse at sagittis eros, sit amet consectetur lorem. Pellentesque ut tristique nibh.</p>
+						<p>Escríbenos si deseas recibir mayor información.</p>
 					</section>
 
 					<section>
