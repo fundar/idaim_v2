@@ -15,6 +15,7 @@
     </style>
 		</head>
 		<body>
+			<!--
 			<div id="idaim-2010">
 				<div class="container">
 					<p>
@@ -22,7 +23,7 @@
 					</p>
 				</div>
 			</div>
-
+			-->
 			<? include('header.php') ;?>
 			<script>
 			window._geoip = <?= $geoip ?>;
