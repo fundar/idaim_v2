@@ -32,12 +32,12 @@
 							<p>Son 33 fichas, una para cada ley de transparencia en México. Cada ficha contiene la calificación de los 196 criterios y el artículo que contiene el criterio evaluado o en caso de tener cero, el que estipula lo contrario. Ocasionalmente no se establece ningún artículo, esto sucede cuando no está contenido en ningún sitio de la ley.<br />
 							<a href="/data/fichas.zip">Fichas por ley de transparencia (zip)</a></p>
 						</li>
-						<!--li>
+						<li>
 							<img src="/img/ad-fi.jpg" alt="thumb" />
 							<h2>Guía de interpretación</h2>
-							<p>Son 33 fichas, una para cada ley de transparencia en México. Cada ficha contiene la calificación de los 196 criterios y el artículo que contiene el criterio evaluado o en caso de tener cero, el que estipula lo contrario. Ocasionalmente no se establece ningún artículo, esto sucede cuando no está contenido en ningún sitio de la ley.<br />
-							<a href="">Guía de interpretación</a></p>
-						</li-->
+							<p>Para la calificación de las leyes se generó un documento que guiara la interpretación de los criterios, el cual además permite que posteriormente se pueda recurrir a él para tener una mayor claridad de qué es lo que está midiendo cada criterio.<br />
+							<a href="/data/Guia_interpretacion_IDAIM.docx">Guía de interpretación</a></p>
+						</li>
 						<li>
 							<img src="/img/ad-cu.jpg" alt="thumb" />
 							<h2>Cuadernillo de resultados</h2>
